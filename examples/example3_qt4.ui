@@ -1,0 +1,428 @@
+<ui version="4.0" >
+ <author>(c) 2006 Fabrizio Pollastri</author>
+ <class>example3</class>
+ <widget class="QMainWindow" name="example3" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>658</width>
+    <height>356</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>AVC Qt4 example 3</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" >
+   <widget class="QLabel" name="textLabel8" >
+    <property name="geometry" >
+     <rect>
+      <x>21</x>
+      <y>297</y>
+      <width>108</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>string</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="boolean2__label" >
+    <property name="geometry" >
+     <rect>
+      <x>540</x>
+      <y>120</y>
+      <width>102</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label2</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel5" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>170</y>
+      <width>108</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>index (integer)</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="radio__label" >
+    <property name="geometry" >
+     <rect>
+      <x>542</x>
+      <y>172</y>
+      <width>102</width>
+      <height>49</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label3</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="boolean2" >
+    <property name="geometry" >
+     <rect>
+      <x>370</x>
+      <y>120</y>
+      <width>90</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>checkbox</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel1" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>108</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Control Type</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="string__label" >
+    <property name="geometry" >
+     <rect>
+      <x>542</x>
+      <y>297</y>
+      <width>102</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label6</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="integer__label" >
+    <property name="geometry" >
+     <rect>
+      <x>542</x>
+      <y>227</y>
+      <width>102</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label4</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel6" >
+    <property name="geometry" >
+     <rect>
+      <x>21</x>
+      <y>227</y>
+      <width>108</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>integer</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="boolean1__label" >
+    <property name="geometry" >
+     <rect>
+      <x>540</x>
+      <y>70</y>
+      <width>102</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label1</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel2" >
+    <property name="geometry" >
+     <rect>
+      <x>540</x>
+      <y>20</y>
+      <width>102</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Control Value</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel3" >
+    <property name="geometry" >
+     <rect>
+      <x>310</x>
+      <y>20</y>
+      <width>61</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>Widgets</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boolean1__pushbutton" >
+    <property name="geometry" >
+     <rect>
+      <x>160</x>
+      <y>70</y>
+      <width>361</width>
+      <height>32</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>button</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel4" >
+    <property name="geometry" >
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>108</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>boolean</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="boolean2__pushbutton2" >
+    <property name="geometry" >
+     <rect>
+      <x>190</x>
+      <y>120</y>
+      <width>92</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>togglebutton</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radio__button2" >
+    <property name="geometry" >
+     <rect>
+      <x>400</x>
+      <y>180</y>
+      <width>112</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>radiobutton2</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radio__button0" >
+    <property name="geometry" >
+     <rect>
+      <x>180</x>
+      <y>180</y>
+      <width>112</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>radiobutton0</string>
+    </property>
+    <property name="checked" >
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radio__button1" >
+    <property name="geometry" >
+     <rect>
+      <x>290</x>
+      <y>180</y>
+      <width>111</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>radiobutton1</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="integer__entry" >
+    <property name="geometry" >
+     <rect>
+      <x>365</x>
+      <y>227</y>
+      <width>171</width>
+      <height>29</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="float__entry" >
+    <property name="geometry" >
+     <rect>
+      <x>365</x>
+      <y>262</y>
+      <width>171</width>
+      <height>29</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="float__label" >
+    <property name="geometry" >
+     <rect>
+      <x>542</x>
+      <y>262</y>
+      <width>102</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>label5</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="textLabel7" >
+    <property name="geometry" >
+     <rect>
+      <x>21</x>
+      <y>262</y>
+      <width>108</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text" >
+     <string>float</string>
+    </property>
+    <property name="alignment" >
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="wordWrap" >
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="integer__spinbox" >
+    <property name="geometry" >
+     <rect>
+      <x>140</x>
+      <y>230</y>
+      <width>110</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum" >
+     <number>999999</number>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="string__entry" >
+    <property name="geometry" >
+     <rect>
+      <x>187</x>
+      <y>297</y>
+      <width>280</width>
+      <height>29</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QDoubleSpinBox" name="float__spinbox" >
+    <property name="geometry" >
+     <rect>
+      <x>140</x>
+      <y>260</y>
+      <width>111</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="specialValueText" >
+     <string/>
+    </property>
+    <property name="maximum" >
+     <double>999999.989999999990687</double>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

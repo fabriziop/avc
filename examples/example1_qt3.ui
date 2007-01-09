@@ -1,0 +1,46 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>example1</class>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>example1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>231</width>
+            <height>80</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>AVC Qt3 example 1</string>
+    </property>
+    <hbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>spin_value__label</cstring>
+            </property>
+            <property name="text">
+                <string>label</string>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>spin_value__spinbox</cstring>
+            </property>
+            <property name="maxValue">
+                <number>1000000</number>
+            </property>
+            <property name="minValue">
+                <number>-1000000</number>
+            </property>
+        </widget>
+    </hbox>
+</widget>
+<toolbars>
+</toolbars>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

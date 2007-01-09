@@ -1,0 +1,20 @@
+Metadata-Version: 1.0
+Name: avc
+Version: 0.1.0
+Summary: 
+  AVC, the Application View Controller, is a fully transparent and
+  automatic connector between the values displayed and entered by GUI
+  widgets and the variables of an application using the GUI.
+Home-page: http://avc.iriti.cnr.it
+Author: Fabrizio Pollastri
+Author-email: pollastri@iriti.cnr.it
+License: http://www.gnu.org/licenses/gpl.txt
+Description: see html/index.html or http://avc.iriti.cnr.it/
+Platform: Linux
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Programming Language :: Python
+Classifier: Topic :: System :: Hardware
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Operating System :: POSIX :: Linux
