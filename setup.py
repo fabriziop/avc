@@ -55,7 +55,7 @@ if sys.version_info < (2, 3):
 
 setup (
   name = 'avc',
-  version = '0.1.0',
+  version = '0.2.0',
   author = 'Fabrizio Pollastri',
   author_email = 'pollastri@iriti.cnr.it',
   maintainer = 'Fabrizio Pollastri',

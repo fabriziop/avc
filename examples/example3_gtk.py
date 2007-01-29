@@ -59,6 +59,8 @@ class Example(AVC):
     self.integer = 0
     self.float = 0.0
     self.string = ''
+    self.textview = ''
+    self.status = ''
 
     # start variables incrementer
     increment = self.incrementer()
@@ -69,7 +71,9 @@ class Example(AVC):
     """
     Booleans are toggled, radio button index is rotated from first to last,
     integer is incremented by 1, float by 0.5, string is appended a char
-    untill maxlen when string is cleared. Return True to keep timer alive.
+    untill maxlen when string is cleared, text view/edit is appended a line
+    of text untill maxlen when it is cleared. Status bar message is toggled.
+    Return True to keep timer alive.
     """
     while True:
 
@@ -91,10 +95,22 @@ class Example(AVC):
       self.float += 0.5
       yield True
 
-      if len(self.string) >= 20:
-        self.string = 'A'
+      if len(self.string) >= 10:
+        self.string = ''
       else:
         self.string += 'A'
+      yield True
+
+      if len(self.textview) >= 200:
+        self.textview = ''
+      else:
+        self.textview += 'line of text, line of text, line of text\n'
+      yield True
+
+      if not self.status:
+        self.status = 'status message'
+      else:
+        self.status = ''
       yield True
 
 

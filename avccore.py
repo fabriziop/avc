@@ -91,7 +91,7 @@ class AVCCore(object):
     """
     Create a coget for each existing pair of unique part 1 of widget names
     (assumed as coget name) and an application attribute with the same name.
-    Sets a dictionary of cogets, keyed by cogets names.
+    Sets a dictionary of cogets, keyed by coget names.
     """
     # for each widget check if it belongs to a coget, if yes associate it to
     # the coget with a specific widget driver.
@@ -103,11 +103,11 @@ class AVCCore(object):
 
   def _get_widget(self):
     """
-    Widget tree iterator. Get all top level windows known to pygtk and
-    traverse their widgets trees in breath first mode returning for each widget
-    its pointer and name.
+    Widget tree iterator. Get all top level windows and traverse their
+    widgets trees in breath first mode returning for each widget its
+    pointer and name.
     """
-    # get all top level widgets known to pygtk
+    # get all top level widgets
     widgets = self._top_level_widgets()
     while widgets:
       children = []
@@ -136,7 +136,7 @@ class AVCCore(object):
 
 
 class _Coget(object):
-  "A Control object"
+  "A control object"
 
   def __init__(self,control_name,application,widgets):
     "Create the coget control and bind it to one application attribute"
@@ -238,7 +238,7 @@ class WALWidget:
 
 
 class WALButton(WALWidget):
-  "gtk Button widget abstractor"
+  "Button widget abstractor"
 
   def __init__(self,coget,button):
 
@@ -251,8 +251,21 @@ class WALButton(WALWidget):
 	self.coget.control_type
 
 
+class WALComboBox(WALWidget):
+  "ComboBox widget abstractor"
+
+  def __init__(self,coget,combobox):
+
+    WALWidget.__init__(self,coget,combobox)
+
+    # check for supported control type
+    if not self.coget.control_type is int:
+      raise Error,"Control type '%s' not supported with ComboBox widget" % \
+        self.coget.control_type
+
+
 class WALEntry(WALWidget):
-  "gtk Entry widget abstractor"
+  "Entry widget abstractor"
 
   def __init__(self,coget,entry):
 
@@ -277,7 +290,7 @@ class WALEntry(WALWidget):
 
 
 class WALLabel(WALWidget):
-  "gtk Label widget abstractor"
+  "Label widget abstractor"
 
   # control type to format string mapping
   FORMAT_MAP = {bool:'%s',int:'%d',float:'%.2f',str:'%s',list:''}
@@ -308,7 +321,7 @@ class WALLabel(WALWidget):
 
 
 class WALRadioButton(WALWidget):
-  "gtk RadioButton widget abstractor"
+  "RadioButton widget abstractor"
 
   def __init__(self,coget,radiobutton):
 
@@ -320,8 +333,21 @@ class WALRadioButton(WALWidget):
         self.coget.control_type
 
 
+class WALSlider(WALWidget):
+  "Slider widget abstractor"
+
+  def __init__(self,coget,slider):
+
+    WALWidget.__init__(self,coget,slider)
+
+    # check for supported control type
+    if not self.coget.control_type in (float,int):
+      raise Error,"Control type '%s' not supported with Slider widget" % \
+        self.coget.control_type
+ 
+
 class WALSpinButton(WALWidget):
-  "gtk SpinButton widget abstractor"
+  "SpinButton widget abstractor"
 
   def __init__(self,coget,spinbutton):
 
@@ -345,8 +371,41 @@ class WALSpinButton(WALWidget):
     self.coget.__set__(self,value,self.widget)
 
 
+class WALStatusBar(WALWidget):
+  "StatusBar widget abstractor"
+
+  def __init__(self,coget,statusbar):
+
+    WALWidget.__init__(self,coget,statusbar)
+
+    # check for supported control type
+    if self.coget.control_type != str:
+      raise Error, \
+        "Control type '%s' not supported with StatusBar widget" % \
+	self.coget.control_type
+
+
+class WALTextView(WALWidget):
+  "TextView widget abstractor"
+
+  def __init__(self,coget,textview):
+
+    WALWidget.__init__(self,coget,textview)
+
+    # check for supported control type
+    if not self.coget.control_type in (str,):
+      raise Error,"Control type '%s' not supported with TextView widget" % \
+        self.coget.control_type
+
+
+  def _value_changed(self,*args):
+    "TextView value_changed signal handler"
+    # set new value into control variable
+    self.coget.__set__(self,self.get_value(),self.widget)
+
+
 class WALToggleButton(WALWidget):
-  "gtk ToggleButton widget abstractor"
+  "ToggleButton widget abstractor"
 
   def __init__(self,coget,togglebutton):
 

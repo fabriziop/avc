@@ -65,6 +65,26 @@ class _Button(WALButton):
       self.widget.set_state(gtk.STATE_NORMAL)
 
 
+class _ComboBox(WALComboBox):
+  "GTK ComboBox widget abstractor"
+
+  def __init__(self,coget,combobox):
+
+    WALComboBox.__init__(self,coget,combobox) 
+
+    # connect relevant signals
+    self.widget.connect("changed",self._value_changed)
+
+
+  def get_value(self):
+    "Get index of selected item"
+    return self.widget.get_active()
+
+  def set_value(self,value):
+    "Set selected item by its index value"
+    self.widget.set_active(value)
+
+
 class _Entry(WALEntry):
   "GTK Entry widget abstractor"
 
@@ -94,7 +114,7 @@ class _Label(WALLabel):
 
 
   def get_value(self):
-    "Get text into Label"
+    "Get text from Label"
     return self.widget.get_label()
 
   def set_value(self,value):
@@ -114,6 +134,7 @@ class _RadioButton(WALRadioButton):
     # connect relevant signals
     self.widget.connect("clicked",self._value_changed)
 
+
   def get_value(self):
     "Get index of activated button"
     button = self.widget
@@ -130,6 +151,28 @@ class _RadioButton(WALRadioButton):
     rbuttons = button.get_group()
     rbutton = rbuttons[len(rbuttons) - value - 1]
     rbutton.set_active(True)
+
+
+class _Slider(WALSlider):
+  "GTK Slider widget abstractor"
+
+  def __init__(self,coget,slider):
+
+    WALSlider.__init__(self,coget,slider) 
+
+    # connect relevant signals to handlers
+    self.widget.connect("value_changed",self._value_changed)
+ 
+
+  def get_value(self):
+    "Get Slider value"
+    if self.coget.control_type == int:
+      return int(self.widget.get_value())
+    return self.widget.get_value()
+
+  def set_value(self,value):
+    "Set Slider value"
+    self.widget.set_value(value)
 
 
 class _SpinButton(WALSpinButton):
@@ -151,6 +194,41 @@ class _SpinButton(WALSpinButton):
     "Set spinbutton value"
     self.widget.set_value(value)
 
+
+class _StatusBar(WALStatusBar):
+  "GTK StatusBar widget abstractor"
+
+  def __init__(self,coget,statusbar):
+
+    WALStatusBar.__init__(self,coget,statusbar) 
+
+
+  def set_value(self,value):
+    "Set StatusBar value"
+    self.widget.pop(1)
+    self.widget.push(1,value)
+
+
+class _TextView(WALTextView):
+  "GTK TextView widget abstractor"
+
+  def __init__(self,coget,textview):
+
+    WALTextView.__init__(self,coget,textview)
+
+    # connect relevant signals to handlers
+    self.widget.get_buffer().connect("changed",self._value_changed)
+
+
+  def get_value(self):
+    "Get text from TextView"
+    textbuf = self.widget.get_buffer()
+    return textbuf.get_text(textbuf.get_start_iter(),textbuf.get_end_iter())
+    
+  def set_value(self,value):
+    "Set text into TextView"
+    self.widget.get_buffer().set_text(str(value))
+  
 
 class _ToggleButton(WALToggleButton):
   "GTK ToggleButton widget abstractor"
@@ -181,13 +259,18 @@ class AVC(AVCCore):
 
   # mapping between the real widget and the wal widget
   _WIDGETS_MAP = { \
-  gtk.Button: _Button, \
-  gtk.CheckButton: _ToggleButton, \
-  gtk.Entry: _Entry, \
-  gtk.Label: _Label, \
-  gtk.RadioButton: _RadioButton, \
-  gtk.SpinButton: _SpinButton, \
-  gtk.ToggleButton: _ToggleButton}
+  gtk.Button:		_Button, \
+  gtk.CheckButton:	_ToggleButton, \
+  gtk.ComboBox:		_ComboBox,\
+  gtk.Entry:		_Entry, \
+  gtk.Label:		_Label, \
+  gtk.RadioButton:	_RadioButton, \
+  gtk.HScale:		_Slider, \
+  gtk.SpinButton:	_SpinButton, \
+  gtk.Statusbar:	_StatusBar, \
+  gtk.TextView:		_TextView, \
+  gtk.ToggleButton:	_ToggleButton, \
+  gtk.VScale:		_Slider}
  
 
   #### METHODS

@@ -44,11 +44,13 @@ pre {
 <h1>AVC, Application View Controller</h1>
 
 <div class="toc">
+  <a href="#news">News</a> |
   <a href="#what_is">What is</a> |
   <a href="#features">Features</a> |
   <a href="#quick_start">Quick start</a> |
   <a href="#download">Download</a> |
-  <a href="#installation">Installation</a>
+  <a href="#installation">Installation</a> |
+  <a href="#changelog">Change log</a>
   <br><br>
 
   Reference manual:&nbsp;&nbsp;
@@ -72,6 +74,14 @@ pre {
   <a href="#a_counter_example_for_qt4">Counter</a> |
   <a href="#a_complex_example_for_qt4">Complex</a>
 </div>  
+
+
+<h3 id="news">News</h3>
+
+<p><b>30-Jan-2007 released AVC 0.2.0</b><br>
+Added new widgets: combo box, slider, status bar (GTK only),
+text view/edit.</p>
+
 
 
 <h3 id="what_is">What is</h3>
@@ -105,10 +115,10 @@ variable changes value, a notify handler must be added to the application.</p>
 <a href="http://www.gnu.org/licenses/gpl.txt">GNU General Public License</a>
 .</p>
 
-<p><em>Current version is AVC 0.1.0, alpha status, released 10-Jan-2007.
+<p><em>Current version is AVC 0.2.0, alpha status, released 30-Jan-2007.
 </em></p>
 
-<p>Tested on Debian GNU/Linux Etch, FP 10-Jan-2007.</p>
+<p>Tested on Debian GNU/Linux Etch, FP 30-Jan-2007.</p>
 
 <p>For any question, suggestion, contribution contact the author
 <b>Fabrizio Pollastri</b>, e-mail: pollastri (at) iriti.cnr.it.</p>
@@ -124,8 +134,9 @@ variable changes value, a notify handler must be added to the application.</p>
   <li>Automatic connection by matching widgets and variables names</li>
   <li>No application redesign</li>
   <li>Multiple widget toolkits support: GTK, Qt3, Qt4.</li>
-  <li>Widgets support: button, check button, radio button, spin button,
-      toggle button, text entry, text label.</li>
+  <li>Widgets support: button, check button, combo box, entry,
+      label, radio button, slider, spin button, status bar,
+      text view/edit, toggle button.</li>
   <li>Variable types support: boolean, integer, float, string, list, tuple.</li>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or
@@ -212,6 +223,22 @@ It contains a distutils setup file "setup.py".</p>
     specify the complete path, such as /usr/local/bin/python.</p>
   </li>
 </ol>
+
+
+<h3 id="changelog">Change log</h3>
+
+<p><b>AVC 0.2.0 released 30-Jan-2007</b><br>
+<ul>
+  <li>Added new widgets: combo box, slider, status bar (GTK only),
+  text view/edit.</li>
+</ul>
+
+<p><b>AVC 0.1.0 released 10-Jan-2007</b><br>
+<ul>
+  <li>First release.</li>
+</ul>
+
+
 
 
 <hr>
@@ -306,6 +333,14 @@ Names for check button widget in supported toolkits:
 GTK "CheckButton", Qt3 and Qt4 "CheckBox".</p>
 
 
+<h4>Combo box widget</h4>
+
+<p>The combo box, an item selector. The connected variable must be of
+type integer, its value is the index of the selected item. When no item
+is selected index is -1. Names for combo box widget in supported toolkits:
+GTK, Qt3 and Qt4 "ComboBox".</p>
+
+
 <h4>Entry widget</h4>
 
 <p>The text entry, its connected variable can be integer, float or
@@ -341,6 +376,14 @@ can be connected to each group of radio buttons, its value is the index
 of the checked radio button in the group.</p>
 
 
+<h4>Slider widget</h4>
+
+<p>The slider, its connected variable can be integer or float.
+The GTK "HScale" and "VScale" support both types. On the contrary, Qt3 and Qt4
+support only integer with "Slider" widget.
+Remember that in python floats are always doubles.</p>
+
+
 <h4>Spin button widget</h4>
 
 <p>The spin button, its connected variable can be integer or float.
@@ -350,6 +393,20 @@ and "DoubleSpinBox".
 Names for spin button widget in supported toolkits:
 GTK "SpinButton", Qt3 and Qt4 "SpinBox" for integer and "DoubleSpinBox"
 for float. Remember that in python floats are always doubles.</p>
+
+
+<h4>Status bar widget</h4>
+
+<p>The status bar, its connected variable is a string.
+Names for text view/edit widget in supported toolkits:
+GTK "StatusBar", Qt3 and Qt4 not supported.</p>
+
+
+<h4>Text view/edit widget</h4>
+
+<p>The text view/edit, its connected variable is a string.
+Names for text view/edit widget in supported toolkits:
+GTK "TextView", Qt3 and Qt4 "TextEdit".</p>
 
 
 <h4 id="toggle_button">Toggle button widget</h4>
@@ -384,6 +441,12 @@ from PyGTK.</p>
 <h4>Widget namimg</h4>
 
 <p>Glade a GTK allow duplicated naming of widgets.</p>
+
+
+<h4>Status bar widget</h4>
+
+<p>AVC uses the GTK status bar widget as a simple output label.
+Only context #1 with one or none message on status bar stack is used.</p>
 
 
 <h3 id="qt3">Qt3</h3>
@@ -441,7 +504,7 @@ following modules from PyQt.</p>
 
 <h4>Widget namimg</h4>
 
-<p>Qt3 Designer and Qt3 <b>do not</b> allow duplicated naming of widgets.
+<p>Qt4 Designer and Qt4 <b>do not</b> allow duplicated naming of widgets.
 So use the 'double underscore' mechanism to differentiate widgets names.</p>
 
 
@@ -679,11 +742,14 @@ Row 1: memoryless button with boolean variable, pressed = True,
 unpressed = False.
 Row 2: buttons with memory, toggle and check buttons, pressed = True,
 unpressed = False.
-Row 3: radiobuttons numbered from 0 to 3, index variable = number
-of checked radiobutton.
-Row 4: integer input/output widgets, spin button and text entry.
-Row 5: float input/output widgets, spin button and text entry.
-Row 6: string input/output widget, text entry.
+Row 3: mutually exclusive choices widgets, radiobuttons numbered from
+0 to 2 and a combo box with 3 items, index variable = number
+of checked radiobutton and selected item of combo box.
+Row 4: integer input/output widgets, spin button, entry and slider.
+Row 5: float input/output widgets, spin button, entry and slider.
+Row 6: string input/output widget, entry.
+Row 7: string input/output widget, text view/edit.
+Row 8: status messages, status bar.
 The text label widget is used in all output modes for the column of
 the connected variable values.
 The program increment the value of each connected variable looping
@@ -725,6 +791,8 @@ class Example(<em>AVC</em>):
     self.integer = 0
     self.float = 0.0
     self.string = ''
+    self.textview = ''
+    self.status = ''
 
     # start variables incrementer
     increment = self.incrementer()
@@ -735,7 +803,9 @@ class Example(<em>AVC</em>):
     """
     Booleans are toggled, radio button index is rotated from first to last,
     integer is incremented by 1, float by 0.5, string is appended a char
-    untill maxlen when string is cleared. Return True to keep timer alive.
+    untill maxlen when string is cleared, text view/edit is appended a line
+    of text untill maxlen when it is cleared. Status bar message is toggled.
+    Return True to keep timer alive.
     """
     while True:
 
@@ -757,10 +827,22 @@ class Example(<em>AVC</em>):
       self.float += 0.5
       yield True
 
-      if len(self.string) >= 20:
+      if len(self.string) >= 10:
         self.string = 'A'
       else:
         self.string += 'A'
+      yield True
+
+      if len(self.textview) >= 200:
+        self.textview = ''
+      else:
+        self.textview += 'line of text, line of text, line of text\n'
+      yield True
+
+      if not self.status:
+        self.status = 'status message'
+      else:
+        self.status = ''
       yield True
 
 
@@ -798,25 +880,33 @@ the following.</p>
       <tr><td>radiobutton0</td><td><b>radio__radiobutton0</b></td></tr>
       <tr><td>radiobutton1</td><td><b>radio__radiobutton1</b></td></tr>
       <tr><td>radiobutton2</td><td><b>radio__radiobutton2</b></td></tr>
+      <tr><td>combobox</td><td><b>radio__combobox</b></td></tr>
       <tr><td>output value label</td><td><b>radio__var</b></td></tr>
       <tr><td>Row 4:</td></tr>
       <tr><td>spinbutton</td><td><b>integer__spinbutton</b></td></tr>
       <tr><td>entry</td><td><b>integer__entry</b></td></tr>
+      <tr><td>slider</td><td><b>integer__slider</b></td></tr>
       <tr><td>output value label</td><td><b>integer__var</b></td></tr>
       <tr><td>Row 5:</td></tr>
       <tr><td>spinbutton</td><td><b>float__spinbutton</b></td></tr>
       <tr><td>entry</td><td><b>float__entry</b></td></tr>
+      <tr><td>slider</td><td><b>float__slider</b></td></tr>
       <tr><td>output value label</td><td><b>float__var</b></td></tr>
       <tr><td>Row 6:</td></tr>
       <tr><td>entry</td><td><b>string__entry</b></td></tr>
       <tr><td>output value label</td><td><b>string__var</b></td></tr>
+      <tr><td>Row 7:</td></tr>
+      <tr><td>textview</td><td><b>textview__textview</b></td></tr>
+      <tr><td>output value label</td><td><b>textview__var</b></td></tr>
+      <tr><td>Row 8:</td></tr>
+      <tr><td>statusbar</td><td><b>status__statusbar</b></td></tr>
+      <tr><td>output value label</td><td><b>status__var</b></td></tr>
       </table>
   <li>The specific <b>AVC</b> module for GTK is imported
       at program begin <br>
       (<span class="ilcode"><em>from avc.avcgtk import *</em></span>).</li>
   <li>The application class is derived from the <b>AVC</b> class
       (<span class="ilcode">class Example(<em>AVC</em>):</span>).</li>
-  <li>A integer variable with an initial value of 0 a name '<b>spin_value</b>'
   <li>The following variables are declared in the application.
       <pre class="ilcode">
       self.boolean1 = False
@@ -824,7 +914,9 @@ the following.</p>
       self.radio = 0
       self.integer = 0
       self.float = 0.0
-      self.string = ''</pre>
+      self.string = ''
+      self.textview = ''
+      self.status = ''</pre>
   <li>The avc_init method is called after the instantation of the
       application class, to realize the connections of all widegts/variable
       combinations and to initialize the widgets values with the initial
@@ -1055,11 +1147,13 @@ Row 1: memoryless button with boolean variable, pressed = True,
 unpressed = False.
 Row 2: buttons with memory, toggle and check buttons, pressed = True,
 unpressed = False.
-Row 3: radiobuttons numbered from 0 to 3, index variable = number
-of checked radiobutton.
-Row 4: integer input/output widgets, spin button and text entry.
-Row 5: float input/output widgets, spin button and text entry.
-Row 6: string input/output widget, text entry.
+Row 3: mutually exclusive choices widgets, radiobuttons numbered from
+0 to 2 and a combo box with 3 items, index variable = number
+of checked radiobutton and selected item of combo box.
+Row 4: integer input/output widgets, spin button, entry and slider.
+Row 5: float input/output widgets, spin button and entry.
+Row 6: string input/output widget, entry.
+Row 7: string input/output widget, text view/edit.
 The text label widget is used in all output modes for the column of
 the connected variable values.
 The program increment the value of each connected variable looping
@@ -1102,6 +1196,7 @@ class Example(<em>QApplication,AVC</em>):
     self.integer = 0
     self.float = 0.0
     self.string = ''
+    self.textview = ''
     
     # start variables incrementer
     self.increment = self.incrementer()
@@ -1118,7 +1213,8 @@ class Example(<em>QApplication,AVC</em>):
     """
     Booleans are toggled, radio button index is rotated from first to last,
     integer is incremented by 1, float by 0.5, string is appended a char
-    untill maxlen when string is cleared.
+    untill maxlen when string is cleared, text view/edit is appended a line
+    of text untill maxlen when it is cleared.
     """
     while True:
 
@@ -1140,10 +1236,16 @@ class Example(<em>QApplication,AVC</em>):
       self.float += 0.5
       yield True
 
-      if len(self.string) >= 20:
+      if len(self.string) >= 10:
         self.string = 'A'
       else:
         self.string += 'A'
+      yield True
+
+      if len(self.textview) >= 200:
+        self.textview = ''
+      else:
+        self.textview += 'line of text, line of text, line of text\n'
       yield True
 
 
@@ -1162,8 +1264,7 @@ file 'example3_qt3.ui'.</p>
 the following.</p>
 
 <ul>
-  <li>During Qt3 Designer editing, the following names were given to the
-      widgets.
+  <li>During Glade editing, the following names were given to the widgets.
       <table class="ilcode">
       <tr><th>widget</th><th>name</th></tr>
       <tr><td>Row 1:</td></tr>
@@ -1177,10 +1278,12 @@ the following.</p>
       <tr><td>radiobutton0</td><td><b>radio__radiobutton0</b></td></tr>
       <tr><td>radiobutton1</td><td><b>radio__radiobutton1</b></td></tr>
       <tr><td>radiobutton2</td><td><b>radio__radiobutton2</b></td></tr>
+      <tr><td>combobox</td><td><b>radio__combobox</b></td></tr>
       <tr><td>output value label</td><td><b>radio__var</b></td></tr>
       <tr><td>Row 4:</td></tr>
       <tr><td>spinbutton</td><td><b>integer__spinbutton</b></td></tr>
       <tr><td>entry</td><td><b>integer__entry</b></td></tr>
+      <tr><td>slider</td><td><b>integer__slider</b></td></tr>
       <tr><td>output value label</td><td><b>integer__var</b></td></tr>
       <tr><td>Row 5:</td></tr>
       <tr><td>spinbutton</td><td><b>float__spinbutton</b></td></tr>
@@ -1189,6 +1292,9 @@ the following.</p>
       <tr><td>Row 6:</td></tr>
       <tr><td>entry</td><td><b>string__entry</b></td></tr>
       <tr><td>output value label</td><td><b>string__var</b></td></tr>
+      <tr><td>Row 7:</td></tr>
+      <tr><td>textview</td><td><b>textview__textview</b></td></tr>
+      <tr><td>output value label</td><td><b>textview__var</b></td></tr>
       </table>
   <li>The specific <b>AVC</b> module for Qt3 is imported
       at program begin <br>
@@ -1205,7 +1311,8 @@ the following.</p>
       self.radio = 0
       self.integer = 0
       self.float = 0.0
-      self.string = ''</pre>
+      self.string = ''
+      self.textview = ''</pre>
   <li>The avc_init method is called after the instantation of the
       application class, to realize the connections of all widegts/variable
       combinations and to initialize the widgets values with the initial
@@ -1255,7 +1362,7 @@ class Example(<em>QApplication,AVC</em>):
     # create GUI
     QApplication.__init__(self,sys_argv)
     self.root = loadUi(UI_FILE)
-    #self.root.show()
+    self.root.show()
     
     # the variable holding the spin box value
     self.spin_value = 0
@@ -1349,6 +1456,7 @@ class Example(<em>QApplication,AVC</em>):
     # create GUI
     QApplication.__init__(self,sys_argv)
     self.root = loadUi(UI_FILE)
+    self.root.show()
     
     # the counter variable and its speed status
     self.counter = 0
@@ -1436,11 +1544,13 @@ Row 1: memoryless button with boolean variable, pressed = True,
 unpressed = False.
 Row 2: buttons with memory, toggle and check buttons, pressed = True,
 unpressed = False.
-Row 3: radiobuttons numbered from 0 to 3, index variable = number
-of checked radiobutton.
-Row 4: integer input/output widgets, spin button and text entry.
-Row 5: float input/output widgets, spin button and text entry.
-Row 6: string input/output widget, text entry.
+Row 3: mutually exclusive choices widgets, radiobuttons numbered from
+0 to 2 and a combo box with 3 items, index variable = number
+of checked radiobutton and selected item of combo box.
+Row 4: integer input/output widgets, spin button, entry and slider.
+Row 5: float input/output widgets, spin button and entry.
+Row 6: string input/output widget, entry.
+Row 7: string input/output widget, text view/edit.
 The text label widget is used in all output modes for the column of
 the connected variable values.
 The program increment the value of each connected variable looping
@@ -1492,6 +1602,7 @@ class Example(<em>QApplication,AVC</em>):
     self.integer = 0
     self.float = 0.0
     self.string = ''
+    self.textview = ''
     
     # start variables incrementer
     self.increment = self.incrementer()
@@ -1508,7 +1619,8 @@ class Example(<em>QApplication,AVC</em>):
     """
     Booleans are toggled, radio button index is rotated from first to last,
     integer is incremented by 1, float by 0.5, string is appended a char
-    untill maxlen when string is cleared.
+    untill maxlen when string is cleared, text view/edit is appended a line
+    of text untill maxlen when it is cleared.
     """
     while True:
 
@@ -1536,6 +1648,12 @@ class Example(<em>QApplication,AVC</em>):
         self.string += 'A'
       yield True
 
+      if len(self.textview) >= 200:
+        self.textview = ''
+      else:
+        self.textview += 'line of text, line of text, line of text\n'
+      yield True
+
 
 #### MAIN
 
@@ -1552,8 +1670,7 @@ file 'example3_qt4.ui'.</p>
 the following.</p>
 
 <ul>
-  <li>During Qt4 Designer editing, the following names were given to the
-      widgets.
+   <li>During Glade editing, the following names were given to the widgets.
       <table class="ilcode">
       <tr><th>widget</th><th>name</th></tr>
       <tr><td>Row 1:</td></tr>
@@ -1567,10 +1684,12 @@ the following.</p>
       <tr><td>radiobutton0</td><td><b>radio__radiobutton0</b></td></tr>
       <tr><td>radiobutton1</td><td><b>radio__radiobutton1</b></td></tr>
       <tr><td>radiobutton2</td><td><b>radio__radiobutton2</b></td></tr>
+      <tr><td>combobox</td><td><b>radio__combobox</b></td></tr>
       <tr><td>output value label</td><td><b>radio__var</b></td></tr>
       <tr><td>Row 4:</td></tr>
       <tr><td>spinbutton</td><td><b>integer__spinbutton</b></td></tr>
       <tr><td>entry</td><td><b>integer__entry</b></td></tr>
+      <tr><td>slider</td><td><b>integer__slider</b></td></tr>
       <tr><td>output value label</td><td><b>integer__var</b></td></tr>
       <tr><td>Row 5:</td></tr>
       <tr><td>spinbutton</td><td><b>float__spinbutton</b></td></tr>
@@ -1579,6 +1698,9 @@ the following.</p>
       <tr><td>Row 6:</td></tr>
       <tr><td>entry</td><td><b>string__entry</b></td></tr>
       <tr><td>output value label</td><td><b>string__var</b></td></tr>
+      <tr><td>Row 7:</td></tr>
+      <tr><td>textview</td><td><b>textview__textview</b></td></tr>
+      <tr><td>output value label</td><td><b>textview__var</b></td></tr>
       </table>
   <li>The specific <b>AVC</b> module for Qt4 is imported
       at program begin <br>
@@ -1595,7 +1717,8 @@ the following.</p>
       self.radio = 0
       self.integer = 0
       self.float = 0.0
-      self.string = ''</pre>
+      self.string = ''
+      self.textview = ''</pre>
   <li>The avc_init method is called after the instantation of the
       application class, to realize the connections of all widegts/variable
       combinations and to initialize the widgets values with the initial

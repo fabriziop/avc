@@ -2,7 +2,7 @@
 # .+
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : AVC GTK bindings
+# .title      : AVC Qt3 bindings
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
@@ -39,7 +39,7 @@ from avc.avccore import *	# AVC core
 #### WIDGETS ABSTRACTION LAYER (widget toolkit side)
 
 class _Button(WALButton):
-  "Qt Button widget abstractor"
+  "Qt3 Button widget abstractor"
 
   def __init__(self,coget,button):
 
@@ -61,8 +61,29 @@ class _Button(WALButton):
     self.widget.setDown(value)
 
 
+class _ComboBox(WALComboBox):
+  "Qt3 ComboBox widget abstractor"
+
+  def __init__(self,coget,combobox):
+
+    WALComboBox.__init__(self,coget,combobox) 
+
+    # connect relevant signals to handlers
+    self.coget.application.connect(
+        self.widget,qt.SIGNAL("activated(int)"),self._value_changed)
+
+
+  def get_value(self):
+    "Get index of selected item"
+    return self.widget.currentItem()
+
+  def set_value(self,value):
+    "Set selected item by its index value"
+    self.widget.setCurrentItem(value)
+
+
 class _Entry(WALEntry):
-  "Qt Entry widget abstractor"
+  "Qt3 Entry widget abstractor"
 
   def __init__(self,coget,entry):
 
@@ -83,7 +104,7 @@ class _Entry(WALEntry):
  
 
 class _Label(WALLabel):
-  "Qt Label widget abstractor"
+  "Qt3 Label widget abstractor"
 
   def __init__(self,coget,label):
 
@@ -102,7 +123,7 @@ class _Label(WALLabel):
 
 
 class _RadioButton(WALRadioButton):
-  "Qt RadioButton widget abstractor"
+  "Qt3 RadioButton widget abstractor"
 
   def __init__(self,coget,radiobutton):
 
@@ -121,8 +142,29 @@ class _RadioButton(WALRadioButton):
     self.widget.group().setButton(value)
 
  
+class _Slider(WALSlider):
+  "Qt3 Slider widget abstractor"
+
+  def __init__(self,coget,slider):
+
+    WALSlider.__init__(self,coget,slider) 
+
+    # connect relevant signals to handlers
+    self.coget.application.connect(
+        self.widget,qt.SIGNAL("valueChanged(int)"),self._value_changed)
+ 
+
+  def get_value(self):
+    "Get Slider value"
+    return self.widget.value()
+
+  def set_value(self,value):
+    "Set Slider value"
+    self.widget.setValue(value)
+
+
 class _SpinButton(WALSpinButton):
-  "Qt SpinButton widget abstractor"
+  "Qt3 SpinButton widget abstractor"
 
   def __init__(self,coget,spinbutton):
 
@@ -142,8 +184,29 @@ class _SpinButton(WALSpinButton):
     self.widget.setValue(value)
 
 
+class _TextView(WALTextView):
+  "Qt3 TextView/Edit widget abstractor"
+
+  def __init__(self,coget,textview):
+
+    WALTextView.__init__(self,coget,textview)
+
+    # connect relevant signals
+    self.coget.application.connect(
+        self.widget,qt.SIGNAL("returnPressed()"),self._value_changed)
+
+
+  def get_value(self):
+    "Get text from TextView"
+    return str(self.widget.text())
+    
+  def set_value(self,value):
+    "Set text into TextView"
+    self.widget.setText(str(value))
+ 
+
 class _ToggleButton(WALToggleButton):
-  "Qt ToggleButton widget abstractor"
+  "Qt3 ToggleButton widget abstractor"
 
   def __init__(self,coget,togglebutton):
 
@@ -163,21 +226,24 @@ class _ToggleButton(WALToggleButton):
     self.widget.setChecked(value)
 
 
-#### AVC Qt interface
+#### AVC Qt3 interface
 
 class AVC(AVCCore):
-  "AVC GTK bindings"
+  "AVC Qt3 bindings"
 
   #### PARAMETERS
 
-  # mapping between the real widget and the wal widget
+  # mapping between real widget and the wal widget
   _WIDGETS_MAP = { \
-  qt.QPushButton: _Button, \
-  qt.QCheckBox: _ToggleButton, \
-  qt.QLineEdit: _Entry, \
-  qt.QLabel: _Label, \
-  qt.QRadioButton: _RadioButton, \
-  qt.QSpinBox: _SpinButton}
+  qt.QPushButton:	_Button, \
+  qt.QCheckBox:		_ToggleButton, \
+  qt.QComboBox:		_ComboBox, \
+  qt.QLineEdit:		_Entry, \
+  qt.QLabel:		_Label, \
+  qt.QRadioButton:	_RadioButton, \
+  qt.QSlider:		_Slider, \
+  qt.QSpinBox:		_SpinButton, \
+  qt.QTextEdit:		_TextView}
  
 
   #### METHODS
