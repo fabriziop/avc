@@ -1,0 +1,45 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: changelog
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 31-Oct-2007
+# .copyright	: (c) 2007 Fabrizio Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>Changelog</h3>
+
+<p><b>AVC 0.3.0 released 30-Sep-2007</b>
+<ul>
+<li>Added support for TK widget toolkit, widgets: button,
+  check button, entry, label, radio button, scale, spin box, text.</li>
+<li>Fixed input from Qt4 QdoubleSpinBox.</li>
+<li>Fixed wrong type of formatting string for Qt3 and Qt4 label widget.</li>
+<li>Added control type casting to string returned by entry widget.</li>
+<li>New web site structure, user documentation moved from one html
+  page to "User Manual"  in different formats: pdf, html.</li>
+</ul></p>
+
+<p><b>AVC 0.2.0 released 30-Jan-2007</b>
+<ul>
+<li>Added new widgets: combo box, slider, status bar (GTK only),
+  text view/edit.</li>
+</ul></p>
+
+<p><b>AVC 0.1.0 released 10-Jan-2007</b>
+<ul>
+<li>First release.</li>
+</ul></p>
+
+:##}

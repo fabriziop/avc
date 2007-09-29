@@ -1,0 +1,70 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>example</class>
+<author>Copyright (c) 2006 Fabrizio Pollastri</author>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>example</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>280</width>
+            <height>70</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>AVC Qt3 spin box example</string>
+    </property>
+    <hbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="spacing">
+            <number>0</number>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>spin_value__label</cstring>
+            </property>
+            <property name="font">
+                <font>
+                    <bold>1</bold>
+                </font>
+            </property>
+            <property name="text">
+                <string>label</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+        <widget class="QSpinBox">
+            <property name="name">
+                <cstring>spin_value__spinbox</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>10</width>
+                    <height>10</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>1000</width>
+                    <height>1000</height>
+                </size>
+            </property>
+            <property name="maxValue">
+                <number>1000000</number>
+            </property>
+            <property name="minValue">
+                <number>-1000000</number>
+            </property>
+        </widget>
+    </hbox>
+</widget>
+<toolbars>
+</toolbars>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

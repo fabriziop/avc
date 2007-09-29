@@ -1,0 +1,15 @@
+AVC 0.3.0 released 30-Sep-2007
+	* Added support for TK widget toolkit, widgets: button,
+	  check button, entry, label, radio button, scale, spin box, text.
+	* Fixed input from Qt4 QdoubleSpinBox.
+	* Fixed wrong type of formatting string for Qt3 and Qt4 label widget.
+	* Added control type casting to string returned by entry widget.
+	* New web site structure, user documentation moved from one html
+	  page to "User Manual"  in different formats: pdf, html.
+
+AVC 0.2.0 released 30-Jan-2007
+	* Added new widgets: combo box, slider, status bar (GTK only),
+	  text view/edit. 
+
+AVC 0.1.0 released 10-Jan-2007
+	* First release. 

@@ -1,0 +1,5 @@
+include changes
+include copyright
+include COPYING
+include doc/user_manual.pdf
+include examples/*.*

@@ -1,0 +1,27 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: author contact
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 20-Sep-2007
+# .copyright	: (c) 2007 Fabrizio Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>Author contact</h3>
+
+<p>Please, feel free to send comments, corrections, usage notifications to the
+mail address below.</p>
+
+<p class="center"><img src="../images/author_mail.png"></p>
+:##}

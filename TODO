@@ -1,0 +1,21 @@
+TODO
+
+fp20070822
+* Example with value changed handler provided by application.
+
+fp20070908
+* uniformare l'interfaccia generata dalle versioni progui di tk
+* aggiungere il widget text alla version progui di tk showcase
+* fare un capitolo quick reference con mappa dei widget, user api.
+
+=======================================================================
+
+DONE
+
+fp20070710
+* Change from GPL to LGPL
+* Restructure HTML pages
+* Where to put reserverd files: e.g. the odt originals of ducomentation.
+* Move site from ghirolo avc.iriti.cnr.it to inrim.it
+* Virtualize site with UML
+* How to point to site? avc.inrim.it? virtual server or link pointer.

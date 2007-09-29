@@ -1,0 +1,46 @@
+NOTES
+
+fp20070122
+
+Keep the design concept that AVC maps a python mental model of data,
+the way you like to define data into the application, to GUI widgets.
+Not viceversa.
+
+fp20071106
+Initial injection, inside dist dir give the following command
+	svn-inject -o python-avc_0.3.0-1.dsc \
+	svn+ssh://fabrizio-guest@svn.debian.org/svn/python-modules/packages
+
+To get a working local copy:
+	svn checkout svn+ssh://fabrizio-guest@svn.debian.org/svn/python-modules/packages/python-avc
+
+To tag it at version 0.3.0-1:
+	cd python-avc
+	svn copy trunk tags/0.3.0-1
+
+To commit changes:
+	svn ci
+
+NOTICE: SSH queries the password several times, it is not a password mismatch.
+
+fp20071116
+Micro CVS how to
+-repository init as .cvs in current directory
+  CMD: cvs `pwd`/.cvs init
+-initial import
+  CMD: cvs -d `pwd`/.cvs import -I .cvs avc FabrizioPollastri START
+
+fp20071117
+Version Control Systems and mtime preservation
+- Git, mtime not saved, an external hook script can set the commit time, see
+  answers on git mailing list.
+- CVS, checkout set checkout time
+- CVSNT, import switch -d sets mtime as checkin time, checkout switch -t sets
+  checkin time to checkedout files, checkin sets checkin time.
+- Subversion, checkout set checkout time, an external hook script can set
+  the commit time.
+- Aegis, checkout set the checkout time.
+- Bazaar, no mtime switches not found.
+- Darcs, no mtime switches not found.
+- TLA,  no mtime switches not found.
+

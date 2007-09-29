@@ -1,0 +1,58 @@
+Package: python-avc
+Version: 0.3.0-1
+Upstream Author: Fabrizio Pollastri <pollastri@inrim.it>
+URL: http://avc.inrim.it/
+License: GPL
+Owner: Fabrizio Pollastri <pollastri@inrim.it>
+Severity: wishlist
+Subject: ITP: python-avc -- live connection among widgets and application variables
+
+AVC is a multiplatform, fully automatic, live connection among graphical 
+interface widgets and application variables for the python language. AVC 
+supports in a uniform way the most popular widget toolkits: GTK, Qt3, 
+Qt4, Tk. AVC is a python module that can be imported by any python 
+application.
+
+Graphical User Interfaces (GUIs) are the easy way to input data to an 
+application sofware and to view data produced by the application. The 
+management of data exchanges between GUI and application is a central 
+problem in GUI programming, it absorbs a relevant part of the 
+programming effort. AVC makes the programming of this data exchanges 
+very easy.
+
+Features
+
+    * Fully transparent widget-variable connections
+    * Automatic connection by matching widgets and variables names
+    * No design pattern, no application redesign
+    * Multiple widget toolkits support: GTK, Qt3, Qt4, Tk.
+    * Full compatibility and support for Glade, Qt Designer and Visual 
+      Tcl interface design tools.
+    * Widgets support: button, check button, combo box, entry, label, 
+      radio button, slider, spin button, status bar, text view/edit,  
+      toggle button.
+    * Variable types support: boolean, integer, float, string, list, 
+      tuple.
+    * Multiple widgets to one variable connection
+    * Dual update timing of variable value views: immediate or periodic.
+    * Python module written in pure python
+    * Free software ( GNU GPL license )
+
+
+-- System Information:
+Debian Release: lenny/sid
+  APT prefers testing
+  APT policy: (500, 'testing')
+Architecture: i386 (i686)
+
+Kernel: Linux 2.6.21-2-686 (SMP w/1 CPU core)
+Locale: LANG=en_US.UTF-8, LC_CTYPE=en_US.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/bash
+
+Versions of packages python-avc depends on:
+ii  python                        2.4.4-6    An interactive high-level object-o
+ii  python-support                0.7.4      automated rebuilding support for p
+
+python-avc recommends no packages.
+
+-- no debconf information

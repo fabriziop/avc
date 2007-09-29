@@ -1,0 +1,40 @@
+<VirtualHost *>
+
+  ServerName avc.inrim.it
+  ServerAdmin pollastri@inrim.it
+  DocumentRoot /var/www/avc
+
+  <Directory />
+    Options FollowSymLinks
+    AllowOverride None
+  </Directory>
+
+  <Directory /var/www/avc>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Order allow,deny
+    allow from all
+    # This directive allows us to have avc default start page
+    # in /html/, but still have / go to the right place
+    RedirectMatch ^/$ /html/
+  </Directory>
+
+  <Directory /var/www/avc/dist>
+    ForceType application/octet-stream
+  </Directory>
+
+  <Directory /var/www/avc/examples>
+    ForceType application/octet-stream
+  </Directory>
+
+  ErrorLog /var/log/apache2/error.log
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+
+  CustomLog /var/log/apache2/access.log combined
+
+  ServerSignature On
+
+</VirtualHost>

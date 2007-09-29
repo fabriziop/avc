@@ -1,0 +1,103 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: Terms of Use
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 20-Sep-2007
+# .copyright	: (c) 2007 Fabrizio Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<p>
+The terms of use of this web site are inspired to the principle of
+the freedoom of contents use, while reserving to the author the right to
+have credit of his work and the right to the widest disclaimer against any
+responsabilitity.<br>
+In short, anybody is granted to copy and distribute the
+contents of this site under these terms of use.<br>
+The author will be glad to be notified about any use of this site.
+<P><h2 class="center">Terms of Use of this web site</h2>
+<ol>
+<li><strong>Applicability</strong><br>
+
+THIS TERMS OF USE APPLIES TO ANYBODY USING THIS WEB SITE FOR ANY
+POURPOSE. THE USE OF THIS WEB SITE INDICATES THE INTEGRAL AND
+UNCODITIONED ACCEPTANCE OF THIS TERMS OF USE BY THE USER. IF SOMEBODY DO
+NOT ACCEPT THIS TERMS OF USE, IT MUST DO NOT USE THIS WEB SITE.
+
+<li><strong>Definitions</strong><br>
+<ul>
+<li><strong>Author:</strong>
+Fabrizio Pollastri e-mail: &nbsp<img src="../images/author_mail.png"
+style="vertical-align: bottom">,
+the author of this web site.
+
+<li><strong>Site:</strong>
+
+this web site, the set of web pages gathered under the title
+"AVC, Application View Controller",
+including its contents (such as texts, tables, figures and links),
+its graphic layout and the services (such as the file download)
+realized locally as a part of this web site.
+<li><strong>Terms:</strong>
+the terms of use of this web site.<li><strong>User:</strong>
+anybody using this web site for any pourpose.
+</ul>
+<li><strong>General</strong><br>
+
+This Terms may be revised at any time by updating this page. The User
+must visit this web page from time to time to be updated.<br>
+This Site is placed and administered in Torino, Italy. The applicable
+laws are the laws of the Republic of Italy.<br>
+Into each copy extracted from this Site, a copy of this Terms must be kept.
+
+<li id="COPYRIGHT"><strong>Copyright</strong><br>
+
+Otherwise specified, the following copyright applies to the Site
+contents.
+<br>
+Permission is granted to copy and distribute the contents of this
+Site under the terms of the
+
+<p class="center">
+Copyright (c) 2006-2007 Fabrizio Pollastri.<br>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+<img alt="Creative Commons License" style="border-width:0"
+  src="http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png" /></a><br>
+<!--Creative Commons License-->
+<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">
+Creative Commons Attribution - NonCommercial - No Derivative works 3.0 License
+</a>.
+<!--/Creative Commons License-->
+
+<li><strong>Disclaimer</strong><br>
+
+<strong>USERS ARE WARNED</strong> THAT, AT ANY TIME AND
+WITHOUT NOTICE, THIS SITE MAY CHANGE, MAY BE INCORRECT, INCOMPLETE AND
+ITS USABILITY MAY BE DISCONTINUOS OR TERMINATE ONCE FOR ALL.<br>
+THE USE OF THIS SITE IS PROHIBITED FOR THOSE POURPOSES THAT MAY
+ARISE A DAMAGE OF ANY KIND TO THE USER AND/OR TO THIRD PARTIES.
+IF THE USER VIOLATES THE PREVOIUS RULE, THE USER WILL BE THE
+ONLY RESPONSIBLE FOR ANY KIND OF DAMAGE THAT MAY ARISE.
+<li><strong>Link to third party sites</strong><br>
+
+The Author has no responsibility concerning third party sites pointed by
+the hypertextual links of this Site.
+<li><strong>Communications to the Author</strong><br>
+
+The delivery of communications containing suggestions, corrections,
+comments or anything else to the Author of this web site, will
+authomatically grant to him the unlimited and irrevocable rigth to
+use them at his will.
+</ol>
+:##}

@@ -1,19 +1,2 @@
-# .+
-#
-# .identifier :	$Id:$
-# .context    : Application View Controller
-# .title      : AVC readme
-# .kind	      : text
-# .author     : Fabrizio Pollastri <pollastri@iriti.cnr.it>
-# .site	      : Revello - Italy
-# .creation   :	11-Nov-2006
-# .copyright  :	(c) 2006 Fabrizio Pollastri
-# .license    : GNU General Public License 
-#
-# .-
-
-For complete documentation about AVC, please see html/index.html in AVC
-distribution or www site http://avc.iriti.cnr.it/ .
-
-
-#### END
+For complete documentation about AVC, please see user manual in AVC
+distribution or www site http://avc.inrim.it/ .
