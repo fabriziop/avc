@@ -1,0 +1,32 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.7
+Date: Tue, 15 Dec 2007 12:00:00 +0100
+Source: python-avc
+Binary: python-avc
+Architecture: source all
+Version: 0.4.0-1
+Distribution: UNSTABLE
+Urgency: low
+Maintainer: Fabrizio Pollastri <pollastri@inrim.it>
+Changed-By: Fabrizio Pollastri <pollastri@inrim.it>
+Description: 
+ python-avc - live connection among widgets and application variables
+Changes: 
+ python-avc (0.4.0-1) UNSTABLE; urgency=low
+ .
+   * New upstream
+Files: 
+ e176fe123b96dbde8ad1317cb656192d 914 python optional python-avc_0.4.0-1.dsc
+ 78a4fb16ed69191eb5c5c9a95b6d9153 470196 python optional python-avc_0.4.0.orig.tar.gz
+ 38c5b8a42321642c08c166cc6a7fc790 1826 python optional python-avc_0.4.0-1.diff.gz
+ 1915a06d6958b774d4f8846539241358 463162 python optional python-avc_0.4.0-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.6 (GNU/Linux)
+
+iD8DBQFHZlhEDiyphMdoNxMRAouEAKC98fUsz9kSGCJhBJ32QzW0FWNzFgCfaJAu
+Q9za9X3W03DOJ94i7dK1Apg=
+=agFX
+-----END PGP SIGNATURE-----

@@ -8,6 +8,13 @@ fp20070908
 * aggiungere il widget text alla version progui di tk showcase
 * fare un capitolo quick reference con mappa dei widget, user api.
 
+fp20071127
+WIP status
+* Swing support: waiting for jython support for yield instruction
+* wx support: ok spinctrl example, to complete other widgets,
+  wxGlade is immature for showcase design, to discover how to simulate
+  button click graphically without event emission.
+
 =======================================================================
 
 DONE

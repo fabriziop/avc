@@ -1,6 +1,13 @@
-python-avc (0.3.0-1) UNRELEASED; urgency=low
+python-avc (0.4.0-1) unstable; urgency=low
+
+  * New upstream
+  * "python-wxgtk2.6 | python-wxgtk2.8" added to Suggests
+  * Standards-Version bumped to 3.7.3 (no changes needed)
+
+ -- Fabrizio Pollastri <pollastri@inrim.it>  Tue, 15 Dec 2007 12:00:00 +0100
+
+python-avc (0.3.0-1) unstable; urgency=low
 
   * Initial release (Closes: #448646)
 
  -- Fabrizio Pollastri <pollastri@inrim.it>  Tue, 30 Oct 2007 12:07:23 +0100
-

@@ -29,24 +29,29 @@
 
 # parameters
 NAME="avc"
-VERSION="0.3.0"
+VERSION="0.4.0"
 
 # computed parameters
 SOURCE_ROOT="$NAME-$VERSION"
 
 
 #### build web site tar
+touch robots.txt
+cp -dp doc/favicon.ico .
 echo -n "building web site tar ..."
 cat <<-EOF > site_file_list
 COPYING
 copyright
 examples
+doc/user_manual.pdf
 dist/${NAME}-${VERSION}.tar.gz
+favicon.ico
 html
 images
+robots.txt
 EOF
 tar -T site_file_list -jcvf ${SOURCE_ROOT}_site.tbz
-rm site_file_list
+rm favicon.ico robots.txt site_file_list
 echo "Done"
 
 #### END

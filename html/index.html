@@ -28,8 +28,8 @@ AVC, Application View Controller
 <div class="leftbar">
 <div class="item">
 <h3 class="itemhead"><a name="ToC1">OUTLINE</a></h3>
-<p><strong>Current:</strong> 0.3.0</p>
-<p><strong>Released:</strong> 30 Sep 2007</p>
+<p><strong>Current:</strong> 0.4.0</p>
+<p><strong>Released:</strong> 15-Dec-2007</p>
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
 <p><strong>Common Requirements:</strong><br>
@@ -39,7 +39,9 @@ AVC, Application View Controller
 <strong>Qt requirements:</strong><br>
 <a href="http://www.riverbankcomputing.co.uk/pyqt/">Pyqt v3 - v4</a><br>
 <strong>Tk requirements:</strong><br>
-<a href="http://effbot.org/tkinterbook/">Tkinter</a><br></p>
+<a href="http://effbot.org/tkinterbook/">Tkinter 2.4</a><br>
+<strong>wxWidgets requirements:</strong><br>
+<a href="http://www.wxpython.org/">wxPython 2.6</a><br></p>
 <p><strong>Author:</strong>
 <a href="contact.html">Fabrizio Pollastri</a></p>
 </div>
@@ -54,11 +56,12 @@ AVC, Application View Controller
 <p><a href="qt3_screenshots.html">Qt3 examples</a></p>
 <p><a href="qt4_screenshots.html">Qt4 examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
+<p><a href="wx_screenshots.html">wxWidgets examples</a></p>
 </div>
 <div class="item">
 <h3 class="itemhead"><a name="ToC4">DOWNLOAD</a></h3>
 <p>Source:<br>
--&nbsp;<a href="../dist/avc-0.3.0.tar.gz">avc-0.3.0.tar.gz</a></p>
+-&nbsp;<a href="../dist/avc-0.4.0.tar.gz">avc-0.4.0.tar.gz</a></p>
 <p>Debian package:<br>
 -&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
 <p>Quick start examples:<br>
@@ -69,7 +72,9 @@ AVC, Application View Controller
 -&nbsp;<a href="../examples/qt4_spinbox.py">Qt4 spinbox</a> +
 <a href="../examples/qt4_spinbox.ui">ui file</a><br>
 -&nbsp;<a href="../examples/tk_spinbox.py">Tk spinbox</a> +
-<a href="../examples/tk_spinbox.tcl">tcl file</a></p>
+<a href="../examples/tk_spinbox.tcl">tcl file</a><br>
+-&nbsp;<a href="../examples/wx_spinctrl.py">wx spincontrol</a> +
+<a href="../examples/wx_spinctrl.xrc">xrc file</a></p>
 <p><a href="../examples">All examples</a><p>
 </div>
 <br>
@@ -83,7 +88,8 @@ language.
 <a href="http://www.gtk.org/">GTK</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt3</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
-<a href="http://www.tcl.tk/">Tk</a>.
+<a href="http://www.tcl.tk/">Tk</a>,
+<a href="http://www.wxwidgets.org/">wxWidgets</a>.
 <b>AVC</b> is a python module that can be imported by any python
 application.<br>
 <br>
@@ -93,19 +99,23 @@ management of data exchanges between GUI and application is a central
 problem in GUI programming, it absorbs a relevant part of the programming
 effort. <b>AVC</b> makes the programming of this data exchanges very easy.<br>
 <h4><a name="ToC5">News</a></h4>
-<b>13-Nov-2007</b>: AVC is now available as
-<a href="http://packages.debian.org/python-avc">Debian package</a>.
+<p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
+<a href="http://www.wxwidgets.org">wxWidgets</a>
+toolkit.</p>
+<p><b>13-Nov-2007</b>: AVC is now available as
+<a href="http://packages.debian.org/python-avc">Debian package</a>.</p>
 <h4><a name="ToC6">Features</a></h4>
 <ul>
   <li>Fully transparent widget-variable connections</li>
   <li>Automatic connection by matching widgets and variables names</li>
   <li>No design pattern, no application redesign</li>
-  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk.</li>
+  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk, wxWidgets.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
-  <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>
-  and
+  <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,
   <a href="http://vtcl.sourceforge.net/">Visual Tcl</a>
+  and
+  <a href="http://wxglade.sourceforge.net/">wxGlade</a>
   interface design tools.
   <li>Widgets support: button, check button, combo box, entry, label,
   radio button, slider, spin button, status bar, text view/edit,

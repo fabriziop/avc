@@ -26,7 +26,8 @@ language.
 <a href="http://www.gtk.org/">GTK</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt3</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
-<a href="http://www.tcl.tk/">Tk</a>.
+<a href="http://www.tcl.tk/">Tk</a>,
+<a href="http://www.wxwidgets.org/">wxWidgets</a>.
 <b>AVC</b> is a python module that can be imported by any python
 application.<br>
 <br>
@@ -38,20 +39,26 @@ effort. <b>AVC</b> makes the programming of this data exchanges very easy.<br>
 
 <h4>News</h4>
 
-<b>13-Nov-2007</b>: AVC is now available as
-<a href="http://packages.debian.org/python-avc">Debian package</a>.
+
+<p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
+<a href="http://www.wxwidgets.org">wxWidgets</a>
+toolkit.</p>
+
+<p><b>13-Nov-2007</b>: AVC is now available as
+<a href="http://packages.debian.org/python-avc">Debian package</a>.</p>
 
 <h4>Features</h4>
 <ul>
   <li>Fully transparent widget-variable connections</li>
   <li>Automatic connection by matching widgets and variables names</li>
   <li>No design pattern, no application redesign</li>
-  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk.</li>
+  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk, wxWidgets.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
-  <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>
-  and
+  <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,
   <a href="http://vtcl.sourceforge.net/">Visual Tcl</a>
+  and
+  <a href="http://wxglade.sourceforge.net/">wxGlade</a>
   interface design tools. 
   <li>Widgets support: button, check button, combo box, entry, label,
   radio button, slider, spin button, status bar, text view/edit,

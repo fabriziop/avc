@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.3.0</p>
+<p><strong>Current:</strong> 0.4.0</p>
 
-<p><strong>Released:</strong> 30 Sep 2007</p>
+<p><strong>Released:</strong> 15-Dec-2007</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -105,7 +105,9 @@ AVC, Application View Controller
 <strong>Qt requirements:</strong><br>
 <a href="http://www.riverbankcomputing.co.uk/pyqt/">Pyqt v3 - v4</a><br>
 <strong>Tk requirements:</strong><br>
-<a href="http://effbot.org/tkinterbook/">Tkinter</a><br></p>
+<a href="http://effbot.org/tkinterbook/">Tkinter 2.4</a><br>
+<strong>wxWidgets requirements:</strong><br>
+<a href="http://www.wxpython.org/">wxPython 2.6</a><br></p>
 
 <p><strong>Author:</strong>
 <a href="contact.html">Fabrizio Pollastri</a></p>
@@ -124,12 +126,13 @@ AVC, Application View Controller
 <p><a href="qt3_screenshots.html">Qt3 examples</a></p>
 <p><a href="qt4_screenshots.html">Qt4 examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
+<p><a href="wx_screenshots.html">wxWidgets examples</a></p>
 </div>
 
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;<a href="../dist/avc-0.3.0.tar.gz">avc-0.3.0.tar.gz</a></p>
+-&nbsp;<a href="../dist/avc-0.4.0.tar.gz">avc-0.4.0.tar.gz</a></p>
 <p>Debian package:<br>
 -&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
 <p>Quick start examples:<br>
@@ -140,7 +143,9 @@ AVC, Application View Controller
 -&nbsp;<a href="../examples/qt4_spinbox.py">Qt4 spinbox</a> +
 <a href="../examples/qt4_spinbox.ui">ui file</a><br>
 -&nbsp;<a href="../examples/tk_spinbox.py">Tk spinbox</a> +
-<a href="../examples/tk_spinbox.tcl">tcl file</a></p>
+<a href="../examples/tk_spinbox.tcl">tcl file</a><br>
+-&nbsp;<a href="../examples/wx_spinctrl.py">wx spincontrol</a> +
+<a href="../examples/wx_spinctrl.xrc">xrc file</a></p>
 <p><a href="../examples">All examples</a><p>
 </div>
 <br>

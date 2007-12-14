@@ -1,0 +1,51 @@
+AVC (Application View Controller), a GUI buster for python
+
+A new python module that makes GUI programming very easy
+
+--
+Are you a programmer of python applications with GUIs (Graphical User
+Interfaces)? Here there is something that can boost your productivity.
+
+Imagine a python module that can remove from your application any code involved
+in displaying some value coming from the application or, vice versa,
+involved in reading some value or event coming from the GUI. A module
+that allow you to ignore completely the burden of widget signal
+connection and management. A module that let you to forget the set and
+get value methods of any widget. A module that can do all this in a
+uniform way among the 5 most popular widget toolkits.
+Now stop imaging, because this module is here, it is AVC.
+
+Before to show you a quick start example, let me to point out a few
+concepts that are the corner stones of AVC.
+
+1. A GUI can be seen as a set
+of widgets that display values stored in variables of the application
+program, for example a label widget can display a string variable,
+a check button can display a boolean, a spin button can display an
+integer, etc. This functionality is called "View" in computer programming.
+
+2. The vast majority of the "View" widgets have also the capability to
+change the displayed value by user interaction, for example a check
+button can be checked/unchecked by clicking over it with the mouse pointer,
+a spin button can be increased/decreased by clicking over its up/down
+arrows, etc. This functionality is called "Control" in computer programming.
+
+In such a model of relations between GUI and application, it comes natural
+to think of each widget displaying a value as "connected" to a corresponding
+application variable. But which criteria to use for connecting widgets with
+variables? Of course the simplest possible: names matching.
+
+In the following example, we will see how AVC implements this model in a
+completely transparent way.
+
+
+# Quick start example
+
+Let
+
+====IMAGE QUICK START
+
+
+====AVC LOGO IMAGE
+
+# Conclusions

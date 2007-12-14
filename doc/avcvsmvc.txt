@@ -1,0 +1,23 @@
+FP20071207
+
+AVC versus MVC
+
+Graphical User Interfaces (GUI) have whidely improved the usability
+of most application programs. The benefits for the user have an heavy
+conterweight in the increased developping effort for the application that has a bigger and more complex code.
+
+Several programming tecniques were developed to simplify this task. One of the most whidely used is the Model VIew Controller (MVC).
+
+- AVC has an high simplification potential
+- AVC goes beyond ... AVC ambition is to go beyond MVC having an even
+  simplified code ... to undestand AVC let introduce some concepts ...
+  Programming model of AVC
+
+- Some conceptsover which AVC realy on
+- Python introspective programming
+
+Boxes
+-MVC cronistoria + concetti
+-GUI      "           "
+-Widget
+-COntrol Widgets

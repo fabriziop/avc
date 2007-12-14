@@ -1,3 +1,8 @@
+AVC 0.4.0 released 15-Dec-2007
+	* Added support for wxWidgets widget toolkit, widgets: button,
+	  bitmap button, check button, choice, combo box, radio box, slider,
+	  spin control, static text, status bar, text control, toggle button.
+
 AVC 0.3.0 released 30-Sep-2007
 	* Added support for TK widget toolkit, widgets: button,
 	  check button, entry, label, radio button, scale, spin box, text.
