@@ -81,6 +81,13 @@ class Example(AVC):
     "Terminate program at window destroy"
     gtk.main_quit()
 
+  def high_speed_changed(self,value):
+    "Notify change of counting speed to terminal"
+    if value:
+      print 'counting speed changed to high'
+    else:
+      print 'counting speed changed to low'
+
 
 #### MAIN
 

@@ -3,7 +3,7 @@
 #
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : A spin control replicated into a label (wx)
+# .title      : A spin control replicated into a static text (wx)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
@@ -52,7 +52,7 @@ class Example(wx.PySimpleApp,AVC):
     self.root = xml_resource.LoadFrame(None,'frame_1')
     self.root.Show()
  
-    ## the variable holding the spin button value
+    ## the variable holding the spin control value
     self.spin_value = 0
 
 

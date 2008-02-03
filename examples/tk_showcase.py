@@ -38,7 +38,9 @@ INCREMENTER_PERIOD = 0.333		# seconds
 
 
 class Example(AVC):
-  "A table of all supported widget/control type combinations"
+  """
+  A table of all supported widget/control type combinations
+  """
 
   def __init__(self):
 

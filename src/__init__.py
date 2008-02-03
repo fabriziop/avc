@@ -24,3 +24,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # .-
+
+
+version = '0.5.0'
+__version__ = '0.5.0'
+__all__=[__version__]
+#print "__version__=",__version__

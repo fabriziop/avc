@@ -36,7 +36,7 @@ import string
 import sys
 
 classifiers = """\
-Development Status :: 3 - Alpha
+Development Status :: 4 - Beta
 Intended Audience :: Developers
 License :: OSI Approved :: GNU General Public License (GPL)
 Programming Language :: Python
@@ -54,7 +54,7 @@ if sys.version_info < (2, 3):
 
 setup (
   name = 'avc',
-  version = '0.4.0',
+  version = '0.5.0',
   author = 'Fabrizio Pollastri',
   author_email = 'pollastri@inrim.it',
   maintainer = 'Fabrizio Pollastri',

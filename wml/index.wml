@@ -31,14 +31,20 @@ language.
 <b>AVC</b> is a python module that can be imported by any python
 application.<br>
 <br>
-Graphical User Interfaces (GUIs) are the easy way to input data to an
-application sofware and to view data produced by the application. The
-management of data exchanges between GUI and application is a central
-problem in GUI programming, it absorbs a relevant part of the programming
-effort. <b>AVC</b> makes the programming of this data exchanges very easy.<br>
+The display and the control of some application data through
+a GUI (Graphical User Interface) is a central problem in GUI programming,
+it absorbs a relevant part of the programming effort. <b>AVC</b> makes
+this programming very easy, far more easy than traditional solutions
+based on MVC (Model View Controller). 
 
 <h4>News</h4>
 
+
+<p><b>4-Feb-2008</b>: released AVC 0.5.0, extended the output formatting
+capabilities of the label widget, new label formatting examples for each
+supported toolkit, new programmatic version of the spin button/box/control
+examples, added activity logging capability with selectable verbosity
+level, internal optimizations.</p>
 
 <p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
 <a href="http://www.wxwidgets.org">wxWidgets</a>
@@ -51,7 +57,8 @@ toolkit.</p>
 <ul>
   <li>Fully transparent widget-variable connections</li>
   <li>Automatic connection by matching widgets and variables names</li>
-  <li>No design pattern, no application redesign</li>
+  <li>No design pattern, no application redesign, no widget toolkit
+  dependent code.</li>
   <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk, wxWidgets.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
@@ -67,15 +74,12 @@ toolkit.</p>
   tuple.</li>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or periodic.</li>
+  <li>Testing printout logging activity with selectable verbosity</li>
   <li>Python module written in pure python</li>
   <li>Free software (
   <a href="http://www.gnu.org/copyleft/gpl.html">GNU GPL license</a>
   )</li>
 </ul>
 
-<h4>Quick Start</h4>
-
-For a quick start, please see the user manual "Quick Start" section and
-the "Spinbutton/Spinbox Example" section of the widget toolkit of interest.
 </div>
 :##}

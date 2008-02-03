@@ -39,7 +39,9 @@ INCREMENTER_PERIOD = 333		# ms
 
 
 class Example(wx.PySimpleApp,AVC):
-  "A table of all supported widget/control type combinations"
+  """
+  A table of all supported widget/control type combinations
+  """
 
   def __init__(self):
 

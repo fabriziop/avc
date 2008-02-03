@@ -19,7 +19,7 @@ AVC, Application View Controller
 :##}
 
 {#COPYRIGHT#:\
-Copyright &copy; 2006-2007 Fabrizio Pollastri -
+Copyright &copy; 2006-2008 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 :##}
 
@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.4.0</p>
+<p><strong>Current:</strong> 0.5.0</p>
 
-<p><strong>Released:</strong> 15-Dec-2007</p>
+<p><strong>Released:</strong> 4-Feb-2008</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -116,7 +116,13 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">DOCUMENTATION</h3>
-<p><a href="../doc/user_manual.pdf">AVC User Manual</a>
+<p>Quick start examples: <img src="../images/newl.png"><br>
+<a href="gtk_quickstart.html">GTK</a>,
+<a href="qt3_quickstart.html">Qt3</a>,
+<a href="qt4_quickstart.html">Qt4</a>,
+<a href="tk_quickstart.html">Tk</a>,<br>
+<a href="wx_quickstart.html">wxWidgets</a>.<br>
+<a href="../doc/user_manual.pdf">AVC User Manual</a>
 <p><a href="changelog.html">AVC Changelog</a></p>
 </div>
 
@@ -132,7 +138,8 @@ AVC, Application View Controller
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;<a href="../dist/avc-0.4.0.tar.gz">avc-0.4.0.tar.gz</a></p>
+-&nbsp;current <a href="../dist/avc-0.5.0.tar.gz">avc-0.5.0.tar.gz</a><br>
+-&nbsp;<a href="../dist">all sources</a></p>
 <p>Debian package:<br>
 -&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
 <p>Quick start examples:<br>

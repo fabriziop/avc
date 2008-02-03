@@ -28,24 +28,50 @@
 
 #### IMPORT REQUIRED MODULES
 
-import copy
+import copy				# object deep copy
+import sys				# command line option reading
 
 
-#### AVC core
+#### AVC CORE
 
 class AVCCore(object):
   "Application View Controller Core"
 
+  # command line option switches
+  _OPT_VERBOSITY = '--avc-verbosity'
+
   # separator between widget name part 1 and 2
-  _WIDGET_NAME_SEP	= '__'
+  _WIDGET_NAME_SEP = '__'
 
 
-  def avc_init(self,view_period=0.1):
+  def avc_init(self,verbosity=0,view_period=0.1):
     "Init AVC core logic"
+
+    # save parameters
+    self._verbosity = verbosity
+    self._view_period = view_period
+
+    # if any, get options from command line and override init arguments
+    try:
+      opt_switch_index = sys.argv.index(self._OPT_VERBOSITY)
+      self._verbosity = int(sys.argv[opt_switch_index+1])
+    except:
+      pass
+
+    # if verbosity > 0 , print header
+    if self._verbosity > 0:
+      print '++++\nAVC ' + '0.5.0' + ' - Activity Report'
+      print 'widget toolkit binding: ' + self._binding
+      print 'program: ' + sys.argv[0]  
+      print 'verbosity: ' + str(self._verbosity)
+      if self._view_period:
+        print 'connection update mode: periodic, period=' + \
+	  str(self._view_period) + ' sec'
+      else:
+        print 'connection update mode: immediate'
 
     # if a sampled (periodic) update of all controls views is required,
     # start a periodic call to view update function.
-    self._view_period = view_period
     if self._view_period:
       self._coget_updates = {}
       self.avc_timer(self._view_update,view_period) 
@@ -56,6 +82,9 @@ class AVCCore(object):
     # create all cogets
     self._create_cogets(bindings)
 
+    # if verbosity > 0 , end with a final line
+    if self._verbosity > 0:
+      print '----'
 
   def _bind(self):
     """
@@ -66,6 +95,10 @@ class AVCCore(object):
     is a list of all the widgets associated to the control.
     """
 
+    # if verbosity > 2: print header
+    if self._verbosity > 3:
+      print 'widget tree scansion at init ...'
+
     # bindings by control names
     bindings = {}
     
@@ -75,9 +108,19 @@ class AVCCore(object):
       # control name is the widget name part before WIDGET_NAME_SEP string,
       # if present, otherwise is the whole widget name.
       control_name = widget_name.split(self._WIDGET_NAME_SEP)[0]
-      
+
+      # if widget is not supported: go to next widget
+      if not self._WIDGETS_MAP.has_key(widget.__class__):
+        if self._verbosity > 3:
+	  print '  skip unsupported widget ' + \
+	    widget.__class__.__name__ + ',"' + widget_name + '"'
+        continue
+
       # if no application attribute with the same name: go to next widget. 
       if not hasattr(self,control_name):
+        if self._verbosity > 3:
+	  print '  skip unmatched widget ' + \
+	    widget.__class__.__name__ + ',"' + widget_name + '"'
         continue
 	
       # exists an application attribute with the same name, append widget
@@ -85,6 +128,9 @@ class AVCCore(object):
       widgets = bindings.get(control_name,[])
       widgets.append(widget)
       bindings[control_name] = widgets
+      if self._verbosity > 3:
+        print '  add widget ' + widget.__class__.__name__ + \
+	  ',"' + widget_name + '" to connection "' + control_name + '"'
 
     return bindings
 
@@ -96,11 +142,11 @@ class AVCCore(object):
     Sets a dictionary of cogets, keyed by coget names.
     """
     # for each widget check if it belongs to a coget, if yes associate it to
-    # the coget with a specific widget driver.
+    # the coget with a specific widget abstractor.
     self._cogets = {}			# cogets by control names
     for control_name in bindings.keys():
       self._cogets[control_name] = \
-          _Coget(control_name,self,bindings[control_name])
+          self._Coget(control_name,self,bindings[control_name])
 
 
   def _get_widget(self):
@@ -136,314 +182,332 @@ class AVCCore(object):
     self._coget_updates = {}
 
 
-class _Coget(object):
-  "A control object as data descriptor"
+  class _Coget(object):
+    "A control object as data descriptor"
 
-  def __init__(self,control_name,application,widgets):
-    "Create the coget control and bind it to one application attribute"
+    def __init__(self,control_name,application,widgets):
+      "Create the coget control and bind it to one application attribute"
 
-    # save arguments
-    self.control_name = control_name
-    self.application = application
+      # save arguments
+      self.control_name = control_name
+      self.application = application
 
-    # save initial control value and type
-    self.control_value_initial = getattr(application,control_name)
-    self.control_type = self.control_value_initial.__class__
+      # save initial control value and type
+      self.control_value_initial = getattr(application,control_name)
+      self.control_type = self.control_value_initial.__class__
 
-    # storage for control value
-    self.control_value = None
+      # if verbosity > 1: print header
+      if application._verbosity > 0:
+        print 'creating connection "' + control_name + '" ...'
+	print '  type: ' + str(self.control_type)
+	print '  initial value: ' + str(self.control_value_initial)
 
-    # set control as an application property with get and set functions
-    # as defined below
-    setattr(application.__class__,control_name,self)
+      # storage for control value
+      self.control_value = None
 
-    # map the list of binded widgets into a list of abstract widgets
-    self.wal_widgets = []
-    for widget in widgets:
-      wal_widget = application._WIDGETS_MAP.get(widget.__class__,None)
-      # silently discard unsupported widgets
-      if wal_widget:
+      # set control as an application property with get and set functions
+      # as defined below
+      setattr(application.__class__,control_name,self)
+
+      # map the list of binded widgets into a list of abstract widgets
+      self.wal_widgets = []
+      for widget in widgets:
+        if application._verbosity > 1:
+          print '  widget: ' + str(widget) + ',"' + \
+	    application._widget_name(widget) + '"'
+        wal_widget = application._WIDGETS_MAP.get(widget.__class__,None)
         self.wal_widgets.append(wal_widget(self,widget))
     
-    # if exists an application method with the name control_name+'_changed',
-    # store it, it will be called when a widget set a new control value.
-    if hasattr(application,control_name + '_changed'):
-      self.set_handler = getattr(application,control_name + '_changed')
-    else:
-      self.set_handler = None
-
-    # init all connected widgets with the control initial value 
-    self.__set__(self,self.control_value_initial)
-
-
-  def __get__(self,instance,classinfo):
-    "Get control value"
-
-    return self.control_value
-
-
-  def __set__(self,instance,value,setter=None):
-    """
-    Set a new control value into application control variable. If setter
-    is a widget (setter != None), call the application set handler, if exists.
-    Update control view in all widgets binded to the control, if setter is
-    a widget, do not update it.
-    """
-
-    # if control old value equal to the new one, return immediately.
-    if value == self.control_value:
-      return
-
-    # set new control value: if control is a mutable sequence (list) or
-    # mapping (dict), a full copy inside the coget is needed to test if it
-    # is really changed.
-    if self.control_type in (list,dict):
-      self.control_value = copy.deepcopy(value)
-    else:
-      self.control_value = value
-
-    # if setter is a widget, call the application set handler for this
-    # control, if exists.
-    if setter and self.set_handler:
-      self.set_handler(value)
-
-    # if a sampled view update is required, schedule this coget for view update.
-    if self.application._view_period != 0.0:
-      self.application._coget_updates[self] = setter
-      return
-      
-    # set the new control value in all widgets binded to this control
-    # excluding the setting widget, if setter is a widget.
-    for wal_widget in self.wal_widgets:
-      if wal_widget.widget != setter:
-        wal_widget.set_value(value)
-
-
-  def __delete__(self,instance):
-    "Cogets cannot be deleted"
-    raise Error,"Trying to delete " + str(self) + ": Cogets cannot be deleted."
-
-
-#### WIDGETS ABSTRACTION LAYER (coget side)
-
-class WALWidget:
-  "Widget Abstraction Layer abstract class"
-
-  def __init__(self,coget,widget):
-  
-    # save references
-    self.coget = coget
-    self.widget = widget
-
-
-  def set_value(self,value):
-    raise Error,"Method \"set_value\" of abstract class _Widget is undefined"
-
-  def get_value(self):
-    raise Error,"Method \"get_value\" of abstract class _Widget is undefined"
- 
-  def _value_changed(self,*args):
-    "widget value changed handler"
-    # set new value into control variable
-    self.coget.__set__(self,self.get_value(),self.widget)
-
-
-class WALButton(WALWidget):
-  "Button widget abstractor"
-
-  def __init__(self,coget,button):
-
-    WALWidget.__init__(self,coget,button)
-
-    # check for supported control type
-    if self.coget.control_type != bool:
-      raise Error, \
-        "Control type '%s' not supported with Button widget" % \
-	self.coget.control_type
-
-
-class WALComboBox(WALWidget):
-  "ComboBox widget abstractor"
-
-  def __init__(self,coget,combobox):
-
-    WALWidget.__init__(self,coget,combobox)
-
-    # check for supported control type
-    if not self.coget.control_type is int:
-      raise Error,"Control type '%s' not supported with ComboBox widget" % \
-        self.coget.control_type
-
-
-class WALEntry(WALWidget):
-  "Entry widget abstractor"
-
-  def __init__(self,coget,entry):
-
-    WALWidget.__init__(self,coget,entry)
-
-    # check for supported control type
-    if not self.coget.control_type in (int,float,str):
-      raise Error,"Control type '%s' not supported with Entry widget" % \
-        self.coget.control_type
- 
-
-  def _value_changed(self,*args):
-    "Entry activate signal (return pressed) handler"
-    # read entry value and convert it if required by control type
-    value = self.get_value()
-    if self.coget.control_type == int:
-      value = int(value)
-    if self.coget.control_type == float:
-      value = float(value)
-    # set new value into control variable
-    self.coget.__set__(self,value,self.widget)
-
-
-class WALLabel(WALWidget):
-  "Label widget abstractor"
-
-  # control type to format string mapping
-  FORMAT_MAP = {bool:'%s',int:'%d',float:'%.2f',str:'%s',list:''}
-
-
-  def __init__(self,coget,label):
-
-    WALWidget.__init__(self,coget,label)
-
-    # check for supported control type
-    if not self.FORMAT_MAP.has_key(coget.control_type):
-      raise Error, \
-        "Control type '%s' not supported with Label widget" % \
-	self.coget.control_type
-
-    # first try to use any default text into label as python formatting string 
-    # for output writing
-    self.format = self.get_value()
-    try:
-      if coget.control_type == list:
-        junk = self.format % tuple(coget.control_value_initial)
+      # if exists an application method with the name control_name+'_changed',
+      # store it, it will be called when a widget set a new control value.
+      if hasattr(application,control_name + '_changed'):
+        self.set_handler = getattr(application,control_name + '_changed')
+        if application._verbosity > 1:
+          print '  connected handler ' + '"' + control_name + '_changed"'
       else:
-        junk = self.format % (coget.control_value_initial)
+        self.set_handler = None
 
-    # if default text fails, set format according to control type
-    except:
-       self.format = self.FORMAT_MAP[coget.control_type]
-
-
-class WALRadioButton(WALWidget):
-  "RadioButton widget abstractor"
-
-  def __init__(self,coget,radiobutton):
-
-    WALWidget.__init__(self,coget,radiobutton)
-
-    # check for supported control type
-    if not self.coget.control_type is int:
-      raise Error,"Control type '%s' not supported with RadioButton widget" % \
-        self.coget.control_type
+      # init all connected widgets with the control initial value 
+      self.__set__(self,self.control_value_initial)
 
 
-class WALSlider(WALWidget):
-  "Slider widget abstractor"
+    def __get__(self,instance,classinfo):
+      "Get control value"
 
-  def __init__(self,coget,slider):
-
-    WALWidget.__init__(self,coget,slider)
-
-    # check for supported control type
-    if not self.coget.control_type in (float,int):
-      raise Error,"Control type '%s' not supported with Slider widget" % \
-        self.coget.control_type
- 
-
-class WALSpinButton(WALWidget):
-  "SpinButton widget abstractor"
-
-  def __init__(self,coget,spinbutton):
-
-    WALWidget.__init__(self,coget,spinbutton)
-
-    # check for supported control type
-    if not self.coget.control_type in (float,int):
-      raise Error,"Control type '%s' not supported with SpinButton widget" % \
-        self.coget.control_type
- 
-
-  def _value_changed(self,*args):
-    "Spinbutton value_changed signal handler"
-    # read button value
-    value = self.get_value()
-    # value is float, if control is int convert it
-    if self.coget.control_type is int:
-      value = int(value)
-    # set new value into control variable
-    self.coget.__set__(self,value,self.widget)
+      return self.control_value
 
 
-class WALStatusBar(WALWidget):
-  "StatusBar widget abstractor"
+    def __set__(self,instance,value,setter=None):
+      """
+      Set a new control value into application control variable. If setter
+      is a widget (setter != None), call the application set handler, if exists.
+      Update control view in all widgets binded to the control, if setter is
+      a widget, do not update it.
+      """
 
-  def __init__(self,coget,statusbar):
+      # if control old value equal to the new one, return immediately.
+      if value == self.control_value:
+        return
 
-    WALWidget.__init__(self,coget,statusbar)
+      # set new control value: if control is a mutable sequence (list) or
+      # mapping (dict), a full copy inside the coget is needed to test if it
+      # is really changed.
+      if self.control_type in (list,dict):
+        self.control_value = copy.deepcopy(value)
+      else:
+        self.control_value = value
 
-    # check for supported control type
-    if self.coget.control_type != str:
-      raise Error, \
-        "Control type '%s' not supported with StatusBar widget" % \
-	self.coget.control_type
+      # if setter is a widget, call the application set handler for this
+      # control, if exists.
+      if setter and self.set_handler:
+        self.set_handler(value)
 
-
-class WALTextView(WALWidget):
-  "TextView widget abstractor"
-
-  def __init__(self,coget,textview):
-
-    WALWidget.__init__(self,coget,textview)
-
-    # check for supported control type
-    if not self.coget.control_type in (str,):
-      raise Error,"Control type '%s' not supported with TextView widget" % \
-        self.coget.control_type
-
-
-  def _value_changed(self,*args):
-    "TextView value_changed signal handler"
-    # set new value into control variable
-    self.coget.__set__(self,self.get_value(),self.widget)
-
-
-class WALToggleButton(WALWidget):
-  "ToggleButton widget abstractor"
-
-  def __init__(self,coget,togglebutton):
-
-    WALWidget.__init__(self,coget,togglebutton)
-
-    # check for supported control type
-    if self.coget.control_type != bool:
-      raise Error,"Control type '%s' not supported with ToggleButton widget" \
-          % self.coget.control_type
+      # if a sampled view update is required, schedule this coget for
+      # view update.
+      if self.application._view_period != 0.0:
+        self.application._coget_updates[self] = setter
+        return
+      
+      # if an immediate update is required, set the new control value
+      # in all widgets binded to this control excluding the setting
+      # widget, if setter is a widget.
+      for wal_widget in self.wal_widgets:
+        if wal_widget.widget != setter:
+          wal_widget.set_value(value)
 
 
-class WALNull(WALWidget):
-  "Null Abstraction Layer abstract class (debug aid)"
+    def __delete__(self,instance):
+      "Cogets cannot be deleted"
+      raise error,"Trying to delete "+ str(self) +": Cogets cannot be deleted."
 
-  def __init__(self,coget,widget):
-    WALWidget.__init__(self,coget,widget)
+
+  #### WIDGETS ABSTRACTION LAYER (coget side)
+
+  class _Widget:
+    "Widget Abstraction Layer abstract class"
+
+    def __init__(self,coget,widget,allowed_types=None):
   
-  def set_value(self,value):
-    pass
+      # check for supported control type
+      if allowed_types and not coget.control_type in allowed_types:
+        raise error, \
+          "Control type '%s' not supported with '%s' widget" % \
+	  (coget.control_type.__name__,widget.__class__.__name__)
 
-  def get_value(self):
-    pass
+      # save references
+      self.coget = coget
+      self.widget = widget
+
+
+    def set_value(self,value):
+      raise error,"Method \"set_value\" of abstract class _Widget is undefined"
+
+    def get_value(self):
+      raise error,"Method \"get_value\" of abstract class _Widget is undefined"
+ 
+    def _value_changed(self,*args):
+      "widget value changed handler"
+      # set new value into control variable
+      self.coget.__set__(self,self.get_value(),self.widget)
+
+
+  class _Button(_Widget):
+    "Button widget abstractor"
+
+    def __init__(self,coget,button):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,button,(bool,))
+      
+      # real widget init
+      self._init()
+
+
+  class _ComboBox(_Widget):
+    "ComboBox widget abstractor"
+
+    def __init__(self,coget,combobox):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,combobox,(int,))
+
+      # real widget init
+      self._init()
+
+
+  class _Entry(_Widget):
+    "Entry widget abstractor"
+
+    def __init__(self,coget,entry):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,entry,(float,int,str))
+
+      # real widget init
+      self._init()
+
+    def get_value(self):
+      "Get Entry value"
+      return self.coget.control_type(self._get_value())
+
+
+  class _Label(_Widget):
+    "Label widget abstractor"
+
+    def __init__(self,coget,label):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,label)
+
+      # check for generic python object
+      if coget.control_type in (bool,float,int,list,str,tuple):
+        self.object = False
+	control_value = coget.control_value_initial
+      else:
+        self.object = True
+	control_value = coget.control_value_initial.__dict__
+        
+      # get default format string, if any.
+      self.format = self.get_value()
+
+      # check for a working format
+      try:
+        if coget.control_type == list:
+          junk = self.format % tuple(control_value)
+        else:
+          junk = self.format % control_value
+        if coget.application._verbosity > 2:
+	  print '    valid format string: "' + self.format + '"'
+      except:
+        if coget.application._verbosity > 2:
+	  if self.format:
+	    print '    invalid format string: "' + self.format + '"'
+	  else:
+	    print '    no format string'
+        self.format = None
+
+
+    def get_value(self):
+      "Get value from Label"
+      # if control type is a generic object do not coerce to its type
+      if self.object:
+        return self._get_value()
+      # if control type not a generic object,first try to coerce to control type
+      try:
+        return self.coget.control_type(eval(self._get_value()))
+      # if fail, return value as string, needed for format string initial get.
+      except:
+        return self._get_value()
+
+    def set_value(self,value):
+      "Set text into Label"
+      if self.format:
+        if self.object:
+          self._set_value(self.format % value.__dict__)
+	else:
+          if type(value) == list:
+            value = tuple(value)
+          self._set_value(self.format % value)
+      else:
+        self._set_value(str(value))
+
+
+  class _RadioButton(_Widget):
+    "RadioButton widget abstractor"
+
+    def __init__(self,coget,radiobutton):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,radiobutton,(int,))
+
+      # real widget init
+      self._init()
+
+
+  class _Slider(_Widget):
+    "Slider widget abstractor"
+
+    def __init__(self,coget,slider):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,slider,(float,int))
+
+      # real widget init
+      self._init()
+
+
+    def get_value(self):
+      "Get Slider value"
+      return self.coget.control_type(self._get_value())
+
+
+  class _SpinButton(_Widget):
+    "SpinButton widget abstractor"
+
+    def __init__(self,coget,spinbutton):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,spinbutton,(float,int))
+
+      # real widget init
+      self._init()
+
+
+    def get_value(self):
+      "Get spinbutton value"
+      return self.coget.control_type(self._get_value())
+
+
+  class _StatusBar(_Widget):
+    "StatusBar widget abstractor"
+
+    def __init__(self,coget,statusbar):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,statusbar,(str,))
+
+
+  class _TextView(_Widget):
+    "TextView widget abstractor"
+
+    def __init__(self,coget,textview):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,textview,(str,))
+
+      # real widget init
+      self._init()
+
+
+  class _ToggleButton(_Widget):
+    "ToggleButton widget abstractor"
+
+    def __init__(self,coget,togglebutton):
+
+      # generic abstract widget init
+      AVCCore._Widget.__init__(self,coget,togglebutton,(bool,))
+
+      # real widget init
+      self._init()
+
+
+  class _Null(_Widget):
+    "Null Abstraction Layer abstract class (debug aid)"
+
+    def __init__(self,coget,widget):
+      AVCCore._Widget.__init__(self,coget,widget)
+  
+    def set_value(self,value):
+      pass
+
+    def get_value(self):
+      pass
     
-  def _value_changed(self,value):
-    pass
+    def _value_changed(self,value):
+      pass
 
 
-class Error(Exception):
+class error(Exception):
   "A generic error exception"
 
   def __init__(self, value):

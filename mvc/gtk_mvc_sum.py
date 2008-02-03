@@ -1,19 +1,47 @@
-#!//usr/bin/python
+#!/usr/bin/python
+# .+
+#
+# .identifier :	$Id:$
+# .context    : Application View Controller
+# .title      : Sum of 3 sliders with reset and random buttons (GTK)
+# .kind	      : python source
+# .author     : Fabrizio Pollastri
+# .site	      : Revello - Italy
+# .creation   :	11-Dec-2007
+# .copyright  : (c) 2007 Fabrizio Pollastri.
+# .license    : GNU General Public License (see below)
+#
+# This file is part of "AVC, Application View Controller".
+#
+# AVC is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# AVC is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# .-
 
-import gtk
 
-from gtkmvc import Model
-from gtkmvc import Controller
-from gtkmvc import View
+import gtk				# gimp tool kit bindings
 
-from random import randint
+from gtkmvc import Model		#---
+from gtkmvc import Controller		#--
+from gtkmvc import View			#- MVC support
+
+from random import randint		# random integer generator
 
 
 class ExampleModel(Model):
   """
-  Our model contains a numeric counter and a numeric value that
-  holds the value that the counter must be assigned to when we the
-  model is reset
+  The model contains the integer values of 3 sliders and the sum of these
+  3 values.
   """
 
   __properties__ = {
@@ -36,8 +64,9 @@ class ExampleModel(Model):
 
 class ExampleController(Controller):
   """
-  Handles signal processing, and keeps alignment of model and view
+  MVC processing, keep model values coherent with view. Widgets handlers.
   """
+
   def __init__(self, model):
     Controller.__init__(self, model)
     return
@@ -54,10 +83,13 @@ class ExampleController(Controller):
     return
 
 
-  # gtk signals
+  ## gtk signals
+
   def on_destroy(self, window):
     gtk.main_quit()
     return True
+
+  ## widgets handlers
 
   def on_button_reset_clicked(self, button):
     self.model.reset()
@@ -90,7 +122,7 @@ class ExampleController(Controller):
     return
 
     
-  # observable properties
+  ## observable properties
     
   def property_slider1_value_change(self, model, old, new):
     self.view.set_slider1_value(new)
@@ -110,10 +142,11 @@ class ExampleController(Controller):
     
 
 class ExampleView(View):
-    """This handles only the graphical representation of the
-    application. The widgets set is loaded from glade file"""
+    """
+    Create GUI from Glade descriptor. Widgets setting values methods.
+    """
     
-    GLADE = "gtk_sum.glade"
+    GLADE = "gtk_sum.glade"		# GUI glade descriptor
 
     def __init__(self, ctrl):
         View.__init__(self, ctrl, self.GLADE)

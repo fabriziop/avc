@@ -40,7 +40,9 @@ UI_FILE = 'qt4_spinbox.ui'		# qt ui descriptor
 
 
 class Example(QApplication,AVC):
-  "A spin box whose value is replicated into a text label"
+  """
+  A spin box whose value is replicated into a text label
+  """
 
   def __init__(self):
 

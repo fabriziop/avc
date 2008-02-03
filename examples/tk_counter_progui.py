@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # .+
 #
-# .identifier :	$Id: mdgY.py,v 1.6 2005/01/04 10:00:13 fabrizio Exp $
+# .identifier :	$Id:$
 # .context    : Application View Controller
 # .title      : A counter with count speed control (Tk)
 # .kind	      : python source

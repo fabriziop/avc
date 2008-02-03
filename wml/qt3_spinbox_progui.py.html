@@ -1,0 +1,84 @@
+<!-- Generator: GNU source-highlight 2.4
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">01:</font> <i><font color="#9A1900">#!/usr/bin/python</font></i>
+<font color="#000000">02:</font> <i><font color="#9A1900"># .+</font></i>
+<font color="#000000">03:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">04:</font> <i><font color="#9A1900"># .identifier : $Id:$</font></i>
+<font color="#000000">05:</font> <i><font color="#9A1900"># .context    : Application View Controller</font></i>
+<font color="#000000">06:</font> <i><font color="#9A1900"># .title      : A spin box replicated into a text label (Qt3)</font></i>
+<font color="#000000">07:</font> <i><font color="#9A1900"># .kind       : python source</font></i>
+<font color="#000000">08:</font> <i><font color="#9A1900"># .author     : Fabrizio Pollastri</font></i>
+<font color="#000000">09:</font> <i><font color="#9A1900"># .site       : Revello - Italy</font></i>
+<font color="#000000">10:</font> <i><font color="#9A1900"># .creation   : 9-Jan-2008</font></i>
+<font color="#000000">11:</font> <i><font color="#9A1900"># .copyright  : (c) 2008 Fabrizio Pollastri.</font></i>
+<font color="#000000">12:</font> <i><font color="#9A1900"># .license    : GNU General Public License (see below)</font></i>
+<font color="#000000">13:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">14:</font> <i><font color="#9A1900"># This file is part of "AVC, Application View Controller".</font></i>
+<font color="#000000">15:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">16:</font> <i><font color="#9A1900"># AVC is free software; you can redistribute it and/or modify</font></i>
+<font color="#000000">17:</font> <i><font color="#9A1900"># it under the terms of the GNU General Public License as published by</font></i>
+<font color="#000000">18:</font> <i><font color="#9A1900"># the Free Software Foundation; either version 3 of the License, or</font></i>
+<font color="#000000">19:</font> <i><font color="#9A1900"># (at your option) any later version.</font></i>
+<font color="#000000">20:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">21:</font> <i><font color="#9A1900"># AVC is distributed in the hope that it will be useful,</font></i>
+<font color="#000000">22:</font> <i><font color="#9A1900"># but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<font color="#000000">23:</font> <i><font color="#9A1900"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<font color="#000000">24:</font> <i><font color="#9A1900"># GNU General Public License for more details.</font></i>
+<font color="#000000">25:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">26:</font> <i><font color="#9A1900"># You should have received a copy of the GNU General Public License</font></i>
+<font color="#000000">27:</font> <i><font color="#9A1900"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</font></i>
+<font color="#000000">28:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">29:</font> <i><font color="#9A1900"># .-</font></i>
+<font color="#000000">30:</font> 
+<font color="#000000">31:</font> 
+<font color="#000000">32:</font> <b><font color="#000080">from</font></b> qt <b><font color="#000080">import</font></b> <font color="#990000">*</font>                        <i><font color="#9A1900"># Qt interface</font></i>
+<font color="#000000">33:</font> <b><font color="#000080">import</font></b> sys                              <i><font color="#9A1900"># system support</font></i>
+<font color="#000000">34:</font> 
+<font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc<font color="#990000">.</font>avcqt3 <b><font color="#000080">import</font></b> <font color="#990000">*</font>                <i><font color="#9A1900"># AVC for Qt3</font></i>
+<font color="#000000">36:</font> 
+<font color="#000000">37:</font> 
+<font color="#000000">38:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font><font color="#009900">QApplication</font><font color="#990000">,</font><font color="#009900">AVC</font><font color="#990000">):</font>
+<font color="#000000">39:</font> <i><font color="#9A1900">  """</font></i>
+<font color="#000000">40:</font> <i><font color="#9A1900">  A spin box whose value is replicated into a text label</font></i>
+<font color="#000000">41:</font> <i><font color="#9A1900">  """</font></i>
+<font color="#000000">42:</font> 
+<font color="#000000">43:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">):</font>
+<font color="#000000">44:</font> 
+<font color="#000000">45:</font>     <i><font color="#9A1900">## create GUI</font></i>
+<font color="#000000">46:</font> 
+<font color="#000000">47:</font>     <i><font color="#9A1900"># main window</font></i>
+<font color="#000000">48:</font>     <font color="#009900">QApplication</font><font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">,</font>sys<font color="#990000">.</font>argv<font color="#990000">)</font>
+<font color="#000000">49:</font> 
+<font color="#000000">50:</font>     <i><font color="#9A1900"># horizontal layout for widgets inside main window</font></i>
+<font color="#000000">51:</font>     self<font color="#990000">.</font>hbox <font color="#990000">=</font> <b><font color="#000000">QHBox</font></b><font color="#990000">()</font>
+<font color="#000000">52:</font>     self<font color="#990000">.</font>hbox<font color="#990000">.</font><b><font color="#000000">setCaption</font></b><font color="#990000">(</font><font color="#FF0000">'AVC Qt3 spin box example'</font><font color="#990000">)</font>
+<font color="#000000">53:</font>     self<font color="#990000">.</font>hbox<font color="#990000">.</font><b><font color="#000000">resize</font></b><font color="#990000">(</font><font color="#993399">280</font><font color="#990000">,</font><font color="#993399">70</font><font color="#990000">)</font>
+<font color="#000000">54:</font>     self<font color="#990000">.</font><b><font color="#000000">setMainWidget</font></b><font color="#990000">(</font>self<font color="#990000">.</font>hbox<font color="#990000">)</font>
+<font color="#000000">55:</font> 
+<font color="#000000">56:</font>     <i><font color="#9A1900"># label replicating the spin box value with formatting string</font></i>
+<font color="#000000">57:</font>     self<font color="#990000">.</font>label <font color="#990000">=</font> <b><font color="#000000">QLabel</font></b><font color="#990000">(</font>self<font color="#990000">.</font>hbox<font color="#990000">)</font>
+<font color="#000000">58:</font>     self<font color="#990000">.</font>label<font color="#990000">.</font><b><font color="#000000">setName</font></b><font color="#990000">(</font><font color="#FF0000">'spin_value__label'</font><font color="#990000">)</font>
+<font color="#000000">59:</font>     self<font color="#990000">.</font>label<font color="#990000">.</font><b><font color="#000000">setText</font></b><font color="#990000">(</font><font color="#FF0000">'&lt;b&gt;%d&lt;/b&gt;'</font><font color="#990000">)</font>
+<font color="#000000">60:</font>      
+<font color="#000000">61:</font>     <i><font color="#9A1900"># spin box</font></i>
+<font color="#000000">62:</font>     self<font color="#990000">.</font>spinbox <font color="#990000">=</font> qt<font color="#990000">.</font><b><font color="#000000">QSpinBox</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">100</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font>self<font color="#990000">.</font>hbox<font color="#990000">)</font>
+<font color="#000000">63:</font>     self<font color="#990000">.</font>spinbox<font color="#990000">.</font><b><font color="#000000">setName</font></b><font color="#990000">(</font><font color="#FF0000">'spin_value__spinbox'</font><font color="#990000">)</font>
+<font color="#000000">64:</font> 
+<font color="#000000">65:</font>     <i><font color="#9A1900"># show all widgets</font></i>
+<font color="#000000">66:</font>     self<font color="#990000">.</font>hbox<font color="#990000">.</font><b><font color="#000000">show</font></b><font color="#990000">()</font>
+<font color="#000000">67:</font> 
+<font color="#000000">68:</font> 
+<font color="#000000">69:</font>     <i><font color="#9A1900"># the variable holding the spin box value</font></i>
+<font color="#000000">70:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">71:</font> 
+<font color="#000000">72:</font> 
+<font color="#000000">73:</font> <i><font color="#9A1900">#### MAIN</font></i>
+<font color="#000000">74:</font> 
+<font color="#000000">75:</font> example <font color="#990000">=</font> <b><font color="#000000">Example</font></b><font color="#990000">()</font>                     <i><font color="#9A1900"># instantiate the application</font></i>
+<font color="#000000">76:</font> example<font color="#990000">.</font><b><font color="#000000">avc_init</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># connect widgets with variables</font></i>
+<font color="#000000">77:</font> example<font color="#990000">.</font><b><font color="#000000">exec_loop</font></b><font color="#990000">()</font>                     <i><font color="#9A1900"># run Qt event loop until quit</font></i>
+<font color="#000000">78:</font> 
+<font color="#000000">79:</font> <i><font color="#9A1900">#### END</font></i>
+</tt></pre>

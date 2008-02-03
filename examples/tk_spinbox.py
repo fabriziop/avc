@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # .+
 #
-# .identifier :	$Id: mdgY.py,v 1.6 2005/01/04 10:00:13 fabrizio Exp $
+# .identifier :	$Id:$
 # .context    : Application View Controller
 # .title      : A spin control replicated into a text label (Tk)
 # .kind	      : python source
@@ -38,7 +38,7 @@ TCL_FILE = 'tk_spinbox.tcl'		# GUI description as tcl script
 
 class Example(AVC):
   """
-  A spin control whose value is replicated into a label
+  A spin box whose value is replicated into a label
   """
 
   def __init__(self):

@@ -3,7 +3,7 @@
 #
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : A spin control replicated into a label (wx)
+# .title      : A spin control replicated into a static text (wx)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
@@ -46,22 +46,23 @@ class Example(wx.PySimpleApp,AVC):
     # init wx application base class
     wx.PySimpleApp.__init__(self)
 
-    # create widgets: a top level window, a label and a spin control.
+    # create widgets: a top level window, a static text and a spin control.
     root = wx.Frame(None,title='AVC wx spin control example',size=(320,60))
-    label = wx.StaticText(root,label='%s',name='spin_value__label',
+    statictext = wx.StaticText(root,label='%s',name='spin_value__statictext',
       size=(100,20))
-    spin = wx.SpinCtrl(root,name='spin_value__spin',size=(100,25))
+    spinctrl = wx.SpinCtrl(root,name='spin_value__spin',size=(100,25))
 
-    # layout the label and the spin control horizontally into the window
+    # layout the static text and the spin control horizontally into the window
     hsizer = wx.BoxSizer(wx.HORIZONTAL)
     hsizer.Add((20,10),proportion=1)
-    hsizer.Add(label,proportion=0.5,flag=wx.CENTER)
-    hsizer.Add(spin,proportion=0.5,flag=wx.CENTER)
+    hsizer.Add(statictext,proportion=0.5,flag=wx.CENTER)
+    hsizer.Add(spinctrl,proportion=0.5,flag=wx.CENTER)
     hsizer.Add((20,10),proportion=1)
     root.SetSizer(hsizer)
     root.Show()
 
-    ## the variable holding the spin button value
+
+    # the variable holding the spin control value
     self.spin_value = 0
 
 

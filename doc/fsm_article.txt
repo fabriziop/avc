@@ -1,0 +1,195 @@
+AVC (Application View Controller), a GUI buster for python
+
+A new python module that makes GUI programming very easy
+
+--
+Are you a programmer of python applications with GUIs (Graphical User
+Interfaces)? Here there is something that can boost your productivity.
+
+Imagine a python module that can remove from your application any code involved
+in displaying some value coming from the application or, vice versa,
+involved in reading some value or event coming from the GUI. A module
+that allow you to ignore completely the burden of widget signal
+connection and management. A module that let you to forget the set and
+get value methods of any widget. A module that can do all this in a
+uniform way among the 5 most popular widget toolkits: GTK, Qt3, Qt4,
+Tk, wxWidgets.
+Now stop imaging, because this module is here, it is AVC.
+
+
+# AVC essentials
+
+Before to show you a quick start example, let me to point out a few
+concepts that are the corner stones of AVC.
+
+1. A GUI can be seen as a set
+of widgets that display values stored in variables of the application
+program, for example, a label widget can display a string variable,
+a check button can display a boolean, a spin button can display an
+integer, etc. This functionality is called "view" in computer programming.
+
+2. The vast majority of the "view" widgets have also the capability to
+change the displayed value by user interaction, for example a check
+button can be checked/unchecked by clicking over it with the mouse pointer,
+a spin button can be increased/decreased by clicking over its up/down
+arrows, etc. This functionality is called "control" in computer programming.
+
+3. In such a model of relations between GUI and application, it comes natural
+to think of each widget displaying a value as "connected" to a corresponding
+application variable. But which criteria to use for connecting widgets with
+variables? Of course, the simplest possible: names matching.
+
+Before to see names matching rule details, it must be
+considered that a single application variable can have more than one view,
+in other words, it can be displayed by more than one widget. While a
+widget can be connected to only one variable. So, the elements partecipating
+to a "connection" are one or more widgets and one application variable.
+
+The names matching rule states that you have to give the same
+matching name to all the elements of a "connection". The matching name
+for the application variable is the variable name itself. The matching
+name for a widget is the widget name itself, if it does not contains a double
+underscore "__", otherwise the matching name is the widget name part
+before the double underscore. This rule allows the differention of widgets
+names belonging to the same connection. This feature is mandatory for
+those toolkits (Qt3, Qt4) that do not tolerate duplicated widget names.
+
+
+# Quick start example
+
+In the following example, you will see how AVC implements the model above
+in a completely automatic and transparent way.
+
+Let suppose to have a GUI with two widgets: a spin button and a label. The
+scope of this application example is to replicate the value of the
+spin box into the label. Among the 5 widget toolkits supported by AVC,
+I choosed GTK for the example code. The code for the other toolkits is
+very similar to the GTK example and you can find them in the
+"quick start examples" section of AVC web site http://avc.inrim.it/.
+
+In this example, the GUI layout was previously edited 
+with Glade, a popular interface design tool for GTK. The spin button widget
+was named "spin_value__spinbutton" and the label widget was named
+"spin_value__label".
+
+The usage of a GUI editor has the big advantage to free the application
+code from lots and lots of statements normally needed to build up a GUI.
+In this way, you can focus better on the application logic.
+
+====IMAGE QUICK START
+
+
+==== CODE
+
+In the code above, the points regarding AVC are the following.
+First, the AVC module for GTK (avc.avcgtk) is imported.
+Then, the application class (Example) is derived from the AVC class.
+The variable to be connected (self.spin_value) is assigned to its initial
+value into the __init__ method of the application class.
+Finally, just after the creation of the application instance, the call to
+the avc_init method (example.avc_init()) initializes AVC connecting the
+application variable to the label and to the spin button widgets.
+
+The connection comes alive when the application enters the GTK event loop
+(gtk.main_loop()): any change of value in the variable is reflected into
+the connected widgets and viceversa.
+
+
+# A comparison: the AVC advantage
+
+The real advantage of AVC usage can be highlighted by a comparison with
+the python package PyGTK MVC. This package addresses the same scope of AVC
+and is widely used among GUI developpers even if it supports GTK only.
+
+PyGTK MVC is based on the classical MVC (Model View Controller) programming
+model. In short, MVC requires the application to be divided into three parts:
+the model containing the application data, the view responsible of
+displaying data into widgets and the controller performing the processing
+needed by the application scope.
+
+This comparison is held on the application example shown in the figure below.
+The example computes the sum of the values of three sliders moved by the
+user. The sliders can be set to a random position by clicking on a "random"
+button. They can be set to zero position by clicking on a "reset" button.
+
+==== example image
+
+In this case, the choice of the GTK toolkit is mandatory, since PyGTK MVC
+supports GTK only.
+Also for this example, the GUI layout was prevoiusly edited with Glade.
+The widgets/variables name matching scheme is the following. The label
+widget displaying the sum was named "sliders_sum". The three sliders
+were named respectively "slider1","slider2","slider3". The random
+button was named "random" and the reset button was named "reset".
+
+## The AVC solution
+
+Now, let us see the sliders sum example coded using AVC.
+
+==== AVC code
+
+Apart the general requirements of AVC, already pointed out in the quick
+start example, you can notice the code for the connected variables and
+their change handlers. The connected variables (sliders_sum,slider1,
+slider2,slider3,random,reset) have the same names of the respective
+connected widget. The sliders change handlers are called when the user
+moves one of the sliders. They compute the new sliders sum and set it
+into the the variable (sliders_sum) connected to the label widget
+displaying the sum. The random change handler is called whenthe user
+clicks the "random" button. It computes three new random values one for
+each slider and assign them to the variables connected to the sliders.
+In a similar way, the reset handler assigns zero the to sliders variables.
+
+## The PyGTK MVC solution
+
+Now, let us see the sliders sum example coded using PyGTK MVC. The same GUI
+description generated with Glade for the AVC coding is reused here.
+
+==== PyGTK MVC code
+
+The three parts required by MVC model are implemented in the example
+by the python classes "ExampleModel","ExampleView","ExampleController".
+The ExampleModel contains the variables representing the sliders values
+and their sum. The ExampleController sets the initial values
+into the sliders and into the label displaying their sum, it provides also
+the widgets handlers and the observable properties handlers.
+The widgets handlers respond to user actions over widgets.
+The reset and the random buttons handlers update sliders values and their sum.
+The slider handlers read the new position of the slider moved by the user
+and update the sum.
+The observable properties handlers are called each time a variable of the
+ExampleModel is updated, they set the new value into the widget displaying
+the variable. There are four handlers, one for each slider and one for
+their sum.
+The ExampleView provides four methods for setting a new value respectively
+in the label widget displaying the sum and in the three sliders.
+
+It cames evident that the application with such a logic structure is not easy
+to understand because of the several cross relations among the three
+parts of the application. In addition, both the controller and the view parts
+have calls to widget methods: the controller to get new values from
+widgets and the view to set new values into widgets. This require a specific
+programming knowledge about the widget toolkit and makes the code toolkit
+dependent.
+
+All these drawbacks are overcamed by AVC. In fact, AVC does not
+impose any specific structure to the application, producing a simpler
+structure. Among the 5 supported toolkits, the code written with AVC is
+completely toolkit independent. Last but not least, AVC gives a great code
+saving: it is 50% shorter the the PyGTK MVC solution.
+
+====AVC LOGO IMAGE
+
+# Conclusion
+
+You where introduced to AVC, a new solution for the management of data
+exchanges between a GUI and an application program written in python.
+AVC is very easy to use, it is base on the simple and powerful concept
+of widget-variable connection created by names matching. AVC supports
+several widget toolkits and do not require any specific knowledge about
+them: no specific widget code appears in the application. As seen in
+the sliders sum example, AVC generates a code that is 50% shorter and
+much more simpler then an equivalent solution based on the MVC model
+of PyGTK MVC.
+
+You can find full documentation, examples and downloads on the AVC web site.

@@ -1,13 +1,13 @@
 #!/usr/bin/python
 # .+
 #
-# .identifier :	$Id: mdgY.py,v 1.6 2005/01/04 10:00:13 fabrizio Exp $
+# .identifier :	$Id:$
 # .context    : Application View Controller
 # .title      : A spin control replicated into a text label (Tk)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
-# .creation   :	1-Jun_2007
+# .creation   :	1-Jun-2007
 # .copyright  : (c) 2007 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
@@ -36,21 +36,28 @@ from avc.avctk import *			# AVC for Tk
 
 class Example(AVC):
   """
-  A spin control whose value is replicated into a label
+  A spin box whose value is replicated into a label
   """
 
   def __init__(self):
 
-    # create GUI
+    ## create GUI
+
+    # main window
     self.root = Tk()
     self.root.title('AVC Tk spin box example')
     self.frame = Frame(self.root,name='frame')
     self.frame.pack()
-    self.label = Label(self.frame,name='spin_value__label')
+
+    # label replicating the spin box value
+    self.label = Label(self.frame,name='spin_value__label',width=16,height=3)
     self.label.pack(side=LEFT)
-    self.spin_box = Spinbox(self.frame,name='spin_value__spinbox',
+
+    # spin box
+    self.spinbox = Spinbox(self.frame,name='spin_value__spinbox',
       increment=1.0,to=100)
-    self.spin_box.pack(side=RIGHT)
+    self.spinbox.pack(side=RIGHT)
+
 
     # the variable holding the spin control value
     self.spin_value = 0

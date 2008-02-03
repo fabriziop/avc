@@ -33,189 +33,7 @@ import Tkinter				# Tk interface
 from avc.avccore import *		# AVC core
 
 
-#### WIDGETS ABSTRACTION LAYER (widget toolkit side)
-
-class _Button(WALButton):
-  "Tk Button widget abstractor"
-
-  def __init__(self,coget,button):
-
-    WALButton.__init__(self,coget,button)
-
-    # create button press status variable
-    self.widget.value = False
-
-    # connect relevant signals
-    self.widget.bind("<ButtonPress-1>",
-      lambda dummy: self.coget.__set__(self,True,self.widget))
-    self.widget.bind("<ButtonRelease-1>",
-      lambda dummy: self.coget.__set__(self,False,self.widget))
-
-
-  def get_value(self):
-    "Get button status"
-    return self.widget.value
-
-  def set_value(self,value):
-    "Set button status"
-    self.widget.value = value
-
-
-class _Entry(WALEntry):
-  "Tk Entry widget abstractor"
-
-  def __init__(self,coget,entry):
-
-    WALEntry.__init__(self,coget,entry)
-
-    # connect relevant signals to handlers
-    self.widget.bind("<Return>",self._value_changed)
-
-
-  def get_value(self):
-    "Get text from Entry"
-    return self.coget.control_type(self.widget.get())
-    
-  def set_value(self,value):
-    "Set text into Entry"
-    self.widget.delete(0,Tkinter.END)
-    self.widget.insert(0,str(value))
-
- 
-class _Label(WALLabel):
-  "Tk Label widget abstractor"
-
-  def __init__(self,coget,label):
-
-    WALLabel.__init__(self,coget,label)
-
-
-  def get_value(self):
-    "Get value into Label"
-    # first try to coerce to control type
-    try:
-      return self.coget.control_type(self.widget.cget('text'))
-    # if fail, return value as string, needed for initial get of format string.
-    except:
-      return self.widget.cget('text')
-
-  def set_value(self,value):
-    "Set text into Label"
-    self.widget.config(text=self.format % value)
-
-
-class _RadioButton(WALRadioButton):
-  "Tk RadioButton widget abstractor"
-
-  def __init__(self,coget,radiobutton):
-
-    WALRadioButton.__init__(self,coget,radiobutton) 
-
-    # if not yet done, get existing (by default) variable with pressed
-    # button index.
-    if not hasattr(coget,'active_index_name'):
-      coget.active_index_name = str(self.widget.cget("variable"))
-    
-    # connect relevant signals
-    self.widget.bind("<ButtonRelease-1>",self._value_changed)
-
-
-  def get_value(self):
-    "Get index of activated button"
-    return int(str(self.widget.getvar(self.coget.active_index_name)))
-
-  def set_value(self,value):
-    "Set activate button indexed by value"
-    self.widget.setvar(self.coget.active_index_name,value)
-
-
-class _Slider(WALSlider):
-  "Tk Scale widget abstractor"
-
-  def __init__(self,coget,slider):
-
-    WALSlider.__init__(self,coget,slider) 
-
-    # connect relevant signals to handlers
-    slider.config(command=self._value_changed)
- 
-
-  def get_value(self):
-    "Get Slider value"
-    return self.coget.control_type(self.widget.get())
-
-  def set_value(self,value):
-    "Set Slider value"
-    self.widget.set(str(value))
-
-
-class _SpinButton(WALSpinButton):
-  "Tk SpinButton widget abstractor"
-
-  def __init__(self,coget,spinbutton):
-
-    WALSpinButton.__init__(self,coget,spinbutton) 
-
-    # connect relevant signals to handlers
-    spinbutton.bind("<Return>",self._value_changed)
-    spinbutton.config(command=self._value_changed)
-
-
-  def get_value(self):
-    "Get spin button value"
-    return self.coget.control_type(self.widget.get())
-
-  def set_value(self,value):
-    "Set spinbutton value"
-    self.widget.delete(0,Tkinter.END)
-    self.widget.insert(0,str(value))
- 
-
-class _TextView(WALTextView):
-  "GTK TextView widget abstractor"
-
-  def __init__(self,coget,textview):
-
-    WALTextView.__init__(self,coget,textview)
-
-    # connect relevant signals to handlers
-    self.widget.bind("<Return>",self._value_changed)
-
-
-  def get_value(self):
-    "Get text from TextView"
-    return self.widget.get("1.0",Tkinter.END)
-    
-  def set_value(self,value):
-    "Set text into TextView"
-    self.widget.delete("1.0",Tkinter.END)
-    self.widget.insert("1.0",str(value))
-
-
-class _ToggleButton(WALToggleButton):
-  "Tk ToggleButton widget abstractor"
-
-  def __init__(self,coget,togglebutton):
-
-    WALToggleButton.__init__(self,coget,togglebutton)
-
-    # get and save button value variable name
-    self.value_name = str(self.widget.cget('variable'))
-
-    # connect relevant signals
-    togglebutton.bind("<ButtonRelease-1>",self._value_changed)
-
-
-  def get_value(self):
-    "Get button status"
-    return bool(int(self.widget.getvar(self.value_name)))
-
-  def set_value(self,value):
-    "Set button status"
-    self.widget.setvar(self.value_name,int(value))
-
-
-#### AVC Tk interface
+#### AVC TK INTERFACE
 
 ## redifinition of BaseWidget __init__ in Tkinter with a "monkey patch".
 # The same as the original, but without any call to tcl interpreter.
@@ -238,21 +56,10 @@ def _basewidget_new_init(self, master, widgetName, cnf={}, kw={}, extra=()):
 class AVC(AVCCore):
   "AVC Tk bindings"
 
-  #### PARAMETERS
-
-  # mapping between the real widget and the wal widget
-  _WIDGETS_MAP = { \
-  Tkinter.Button: _Button,\
-  Tkinter.Checkbutton: _ToggleButton, \
-  Tkinter.Entry: _Entry, \
-  Tkinter.Label: _Label, \
-  Tkinter.Radiobutton: _RadioButton, \
-  Tkinter.Scale: _Slider, \
-  Tkinter.Spinbox: _SpinButton,
-  Tkinter.Text: _TextView}
+  _binding = 'Tk'
 
 
-  #### METHODS
+  #### GENERAL ABSTRACTION METHODS
 
   def _complete_widget_tree(self,widget):
     """
@@ -278,7 +85,7 @@ class AVC(AVCCore):
       for child in widget.children.values():
         self._complete_widget_tree(child)
 
-  def avc_init(self,view_period=0.1):
+  def avc_init(self,*args,**kwargs):
     "Init and start all AVC activities"
     # get the root top level widgets and store it in a list
     self._toplevel_widgets = [Tkinter._default_root]
@@ -293,7 +100,7 @@ class AVC(AVCCore):
     Tkinter.BaseWidget.__init__ = basewidget_original_init
     Tkinter.Wm.title = toplevel_original_title
     # do common init
-    AVCCore.avc_init(self,view_period)
+    AVCCore.avc_init(self,*args,**kwargs)
     # if a timer is defined, start a timer calling back 'function' every
     # 'period' seconds. Return timer id.
     try:
@@ -335,6 +142,176 @@ class AVC(AVCCore):
     return self._toplevel_widgets[0].after(int(self._timer_period * 1000.0),
       self._timer_wrap)
 
+
+  #### WIDGETS ABSTRACTION LAYER (widget toolkit side)
+
+  class _Button(AVCCore._Button):
+    "Tk Button widget abstractor"
+
+    def _init(self):
+
+      # create button press status variable
+      self.widget.value = False
+
+      # connect relevant signals
+      self.widget.bind("<ButtonPress-1>",
+        lambda dummy: self.coget.__set__(self,True,self.widget))
+      self.widget.bind("<ButtonRelease-1>",
+        lambda dummy: self.coget.__set__(self,False,self.widget))
+
+
+    def get_value(self):
+      "Get button status"
+      return self.widget.value
+
+    def set_value(self,value):
+      "Set button status"
+      self.widget.value = value
+
+
+  class _Entry(AVCCore._Entry):
+    "Tk Entry widget abstractor"
+
+    def _init(self):
+
+      # connect relevant signals to handlers
+      self.widget.bind("<Return>",self._value_changed)
+
+
+    def _get_value(self):
+      "Get text from Entry"
+      return self.widget.get()
+    
+    def set_value(self,value):
+      "Set text into Entry"
+      self.widget.delete(0,Tkinter.END)
+      self.widget.insert(0,str(value))
+
+ 
+  class _Label(AVCCore._Label):
+    "Tk Label widget abstractor"
+
+    def _get_value(self):
+      "Get value into Label"
+      return self.widget.cget('text')
+
+    def _set_value(self,value):
+      "Set text into Label"
+      self.widget.config(text=value)
+
+
+  class _RadioButton(AVCCore._RadioButton):
+    "Tk RadioButton widget abstractor"
+
+    def _init(self):
+
+      # if not yet done, get existing (by default) variable with pressed
+      # button index.
+      if not hasattr(self.coget,'active_index_name'):
+        self.coget.active_index_name = str(self.widget.cget("variable"))
+    
+      # connect relevant signals
+      self.widget.bind("<ButtonRelease-1>",self._value_changed)
+
+
+    def get_value(self):
+      "Get index of activated button"
+      return int(str(self.widget.getvar(self.coget.active_index_name)))
+
+    def set_value(self,value):
+      "Set activate button indexed by value"
+      self.widget.setvar(self.coget.active_index_name,value)
+
+
+  class _Slider(AVCCore._Slider):
+    "Tk Scale widget abstractor"
+
+    def _init(self):
+
+      # connect relevant signals to handlers
+      self.widget.config(command=self._value_changed)
+ 
+
+    def _get_value(self):
+      "Get Slider value"
+      return self.widget.get()
+
+    def set_value(self,value):
+      "Set Slider value"
+      self.widget.set(str(value))
+
+
+  class _SpinButton(AVCCore._SpinButton):
+    "Tk SpinButton widget abstractor"
+
+    def _init(self):
+
+      # connect relevant signals to handlers
+      self.widget.bind("<Return>",self._value_changed)
+      self.widget.config(command=self._value_changed)
+
+
+    def _get_value(self):
+      "Get spin button value"
+      return self.widget.get()
+
+    def set_value(self,value):
+      "Set spinbutton value"
+      self.widget.delete(0,Tkinter.END)
+      self.widget.insert(0,str(value))
+ 
+
+  class _TextView(AVCCore._TextView):
+    "Tk TextView widget abstractor"
+
+    def _init(self):
+
+      # connect relevant signals to handlers
+      self.widget.bind("<Return>",self._value_changed)
+
+
+    def get_value(self):
+      "Get text from TextView"
+      return self.widget.get("1.0",Tkinter.END)
+    
+    def set_value(self,value):
+      "Set text into TextView"
+      self.widget.delete("1.0",Tkinter.END)
+      self.widget.insert("1.0",str(value))
+
+
+  class _ToggleButton(AVCCore._ToggleButton):
+    "Tk ToggleButton widget abstractor"
+
+    def _init(self):
+
+      # get and save button value variable name
+      self.value_name = str(self.widget.cget('variable'))
+
+      # connect relevant signals
+      self.widget.bind("<ButtonRelease-1>",self._value_changed)
+
+
+    def get_value(self):
+      "Get button status"
+      return bool(int(self.widget.getvar(self.value_name)))
+
+    def set_value(self,value):
+      "Set button status"
+      self.widget.setvar(self.value_name,int(value))
+
+
+  ## mapping between the real widget and the wal widget
+
+  _WIDGETS_MAP = { \
+  Tkinter.Button: _Button,\
+  Tkinter.Checkbutton: _ToggleButton, \
+  Tkinter.Entry: _Entry, \
+  Tkinter.Label: _Label, \
+  Tkinter.Radiobutton: _RadioButton, \
+  Tkinter.Scale: _Slider, \
+  Tkinter.Spinbox: _SpinButton,
+  Tkinter.Text: _TextView}
 
 #### END
 
