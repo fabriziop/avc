@@ -34,7 +34,7 @@ from PyQt4.QtGui import *		# Qt GUI interface
 from PyQt4.uic import *			# ui files realizer
 import sys				# system support
 
-from avc.avcqt4 import *		# AVC for Qt4
+from avc import *			# AVC
 
 UI_FILE = 'qt4_showcase.ui'		# qt ui descriptor
 INCREMENTER_PERIOD = 333		# ms

@@ -33,7 +33,7 @@ from qt import * 			# Qt interface
 from qtui import *			# ui files realizer
 import sys				# system support
 
-from avc.avcqt3 import *		# AVC for Qt3
+from avc import *			# AVC
 
 UI_FILE = 'qt3_label.ui'		# qt ui descriptor
 

@@ -33,18 +33,15 @@ from qt import * 			# Qt interface
 from qtui import *			# ui files realizer
 import sys				# system support
 
-from avc.avcqt3 import *		# AVC for Qt3
+from avc import *			# AVC
 
 UI_FILE = 'qt3_counter.ui'		# qt ui descriptor
-LOW_SPEED = 500				#--
-HIGH_SPEED = 100			#- low and high speed period (ms)
+LOW_SPEED = 0.5				#--
+HIGH_SPEED = 0.1			#- low and high speed period (secs)
 
 
-class Example(QApplication,AVC):
-  """
-  A counter displayed in a Label widget whose count speed can be
-  accelerated by checking a check box.
-  """
+class ExampleGUI(QApplication):
+  "Counter GUI creation"
 
   def __init__(self):
 
@@ -53,15 +50,36 @@ class Example(QApplication,AVC):
     self.root = QWidgetFactory.create(UI_FILE)
     self.setMainWidget(self.root)
     self.root.show()
-    
+
+  def timer(self,period,function):
+    "Start a Qt timer calling back 'function' every 'period' seconds."
+    self.timer1 = QTimer()
+    QObject.connect(self.timer1,SIGNAL("timeout()"),function)
+    self.timer1.start(int(period * 1000.0))
+  
+  def timer_set_period(self,period):
+    "Set a new period to timer"
+    self.timer1.stop()
+    self.timer1.start(int(period * 1000.0))
+
+
+class ExampleMain(AVC):
+  """
+  A counter displayed in a Label widget whose count speed can be
+  accelerated by checking a check box.
+  """
+
+  def __init__(self,gui):
+
+    # save GUI
+    self.gui = gui
+
     # the counter variable and its speed status
     self.counter = 0
     self.high_speed = False
 
-    # start counter incrementer at low speed
-    self.timer = qt.QTimer(self)
-    self.connect(self.timer,qt.SIGNAL("timeout()"),self.incrementer)
-    self.timer.start(LOW_SPEED)
+    # start incrementer timer
+    self.gui.timer(LOW_SPEED,self.incrementer)
 
 
   def incrementer(self):
@@ -74,14 +92,21 @@ class Example(QApplication,AVC):
       period = HIGH_SPEED
     else:
       period = LOW_SPEED
-    self.timer.stop()
-    self.timer.start(period) 
+    self.gui.timer_set_period(period)
+
+  def high_speed_changed(self,value):
+    "Notify change of counting speed to terminal"
+    if value:
+      print 'counting speed changed to high'
+    else:
+      print 'counting speed changed to low'
 
 
 #### MAIN
 
-example = Example()			# instantiate the application
+example_gui = ExampleGUI()		# create the application GUI
+example = ExampleMain(example_gui)	# instantiate the application
 example.avc_init()			# connect widgets with variables
-example.exec_loop()			# run Qt event loop until quit
+example_gui.exec_loop()			# run Qt event loop until quit
 
 #### END

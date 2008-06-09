@@ -1,0 +1,39 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>example</class>
+<author>Copyright (c) 2006 Fabrizio Pollastri</author>
+<widget class="QMainWindow">
+    <property name="name">
+        <cstring>countdown</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>280</width>
+            <height>75</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>AVC Qt3 countdown example</string>
+    </property>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>close_all</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>40</x>
+                <y>10</y>
+                <width>200</width>
+                <height>36</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>CLOSE ALL WINDOWS</string>
+        </property>
+    </widget>
+</widget>
+<toolbars>
+</toolbars>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

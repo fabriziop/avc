@@ -29,7 +29,8 @@ For full details see the "wxWidgwts examples" chapter of the
 <p class="center"><img src="../images/wx_spinctrl.png"></p>
 
 <h5>Source code: wxGlade version (file
-<a href="../examples/wx_spinctrl.py">wx_spinctrl.py</a>)</h5>
+<a href="../examples/wx_spinctrl.py">wx_spinctrl.py</a>, needs also
+<a href="../examples/wx_spinctrl.xrc">wx_spinctrl.xrc</a>)</h5>
 #include 'wx_spinctrl.py.html'
 
 <h5>Source code: programmatic version (file

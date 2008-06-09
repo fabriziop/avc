@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.5.0</p>
+<p><strong>Current:</strong> 0.6.0</p>
 
-<p><strong>Released:</strong> 4-Feb-2008</p>
+<p><strong>Released:</strong>10-Jun-2008</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -100,14 +100,14 @@ AVC, Application View Controller
 <p><strong>Common Requirements:</strong><br>
 <a href="http://www.python.org/">python 2.2 - 2.5</a></p>
 
-<p><strong>GTK requirements:</strong><br>
+<p><strong>GTK+ requirements:</strong><br>
 <a href="http://www.pygtk.org/">Pygtk 2.8 - 2.10</a><br>
 <strong>Qt requirements:</strong><br>
 <a href="http://www.riverbankcomputing.co.uk/pyqt/">Pyqt v3 - v4</a><br>
 <strong>Tk requirements:</strong><br>
 <a href="http://effbot.org/tkinterbook/">Tkinter 2.4</a><br>
 <strong>wxWidgets requirements:</strong><br>
-<a href="http://www.wxpython.org/">wxPython 2.6</a><br></p>
+<a href="http://www.wxpython.org/">wxPython 2.6 - 2.8</a><br></p>
 
 <p><strong>Author:</strong>
 <a href="contact.html">Fabrizio Pollastri</a></p>
@@ -116,19 +116,30 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">DOCUMENTATION</h3>
-<p>Quick start examples: <img src="../images/newl.png"><br>
-<a href="gtk_quickstart.html">GTK</a>,
+<p>Quick start examples:<br>
+<a href="gtk_quickstart.html">GTK+</a>,
 <a href="qt3_quickstart.html">Qt3</a>,
 <a href="qt4_quickstart.html">Qt4</a>,
 <a href="tk_quickstart.html">Tk</a>,<br>
 <a href="wx_quickstart.html">wxWidgets</a>.<br>
-<a href="../doc/user_manual.pdf">AVC User Manual</a>
-<p><a href="changelog.html">AVC Changelog</a></p>
+<a href="../doc/user_manual.pdf">User Manual</a>
+<p><a href="relnotes.html">Release Notes</a></p>
+<p><a href="changelog.html">Changelog</a></p>
+<p><a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">
+Mailing List</a> <img src="../images/newl.png"></p>
+<p><a href="allnews.html">All News</a></p>
 </div>
 
 <div class="item">
+<h3 class="itemhead">ARTICLES</h3>
+<p><a href="http://pymag.phparch.com/c/issue/view/71">
+AVC-Simplifying your GUI Code</a></p>
+</div>
+
+
+<div class="item">
 <h3 class="itemhead">SCREENSHOTS</h3>
-<p><a href="gtk_screenshots.html">GTK examples</a></p>
+<p><a href="gtk_screenshots.html">GTK+ examples</a></p>
 <p><a href="qt3_screenshots.html">Qt3 examples</a></p>
 <p><a href="qt4_screenshots.html">Qt4 examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
@@ -138,12 +149,12 @@ AVC, Application View Controller
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.5.0.tar.gz">avc-0.5.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.6.0.tar.gz">avc-0.6.0.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Debian package:<br>
 -&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
 <p>Quick start examples:<br>
--&nbsp;<a href="../examples/gtk_spinbutton.py">GTK spinbutton</a> +
+-&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
 <a href="../examples/gtk_spinbutton.glade">glade file</a><br>
 -&nbsp;<a href="../examples/qt3_spinbox.py">Qt3 spinbox</a> +
 <a href="../examples/qt3_spinbox.ui">ui file</a><br>

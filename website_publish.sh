@@ -29,7 +29,7 @@
 
 # parameters
 NAME="avc"
-VERSION="0.5.0"
+VERSION="0.6.0"
 
 # computed parameters
 SOURCE_ROOT="$NAME-$VERSION"

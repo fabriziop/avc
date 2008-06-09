@@ -31,7 +31,7 @@
 
 import gtk				# gimp tool kit bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC
 
 
 class Example(AVC):

@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	7-Nov-2006
-# .copyright  :	(c) 2006 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2008 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -21,12 +21,16 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# along with AVC.  If not, see <http://www.gnu.org/licenses/>.
 #
 # .-
 
+# import core module
+import avccore
 
-version = '0.5.0'
-__version__ = '0.5.0'
-__all__=[__version__]
-#print "__version__=",__version__
+# expose user interface
+AVC = avccore.AVC
+__all__ = ['AVC']
+
+
+del avccore

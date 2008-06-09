@@ -36,7 +36,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">32:</font> <b><font color="#000080">from</font></b> qt <b><font color="#000080">import</font></b> <font color="#990000">*</font>                        <i><font color="#9A1900"># Qt interface</font></i>
 <font color="#000000">33:</font> <b><font color="#000080">import</font></b> sys                              <i><font color="#9A1900"># system support</font></i>
 <font color="#000000">34:</font> 
-<font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc<font color="#990000">.</font>avcqt3 <b><font color="#000080">import</font></b> <font color="#990000">*</font>                <i><font color="#9A1900"># AVC for Qt3</font></i>
+<font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">36:</font> 
 <font color="#000000">37:</font> 
 <font color="#000000">38:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font><font color="#009900">QApplication</font><font color="#990000">,</font><font color="#009900">AVC</font><font color="#990000">):</font>
@@ -63,7 +63,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">59:</font>     self<font color="#990000">.</font>label<font color="#990000">.</font><b><font color="#000000">setText</font></b><font color="#990000">(</font><font color="#FF0000">'&lt;b&gt;%d&lt;/b&gt;'</font><font color="#990000">)</font>
 <font color="#000000">60:</font>      
 <font color="#000000">61:</font>     <i><font color="#9A1900"># spin box</font></i>
-<font color="#000000">62:</font>     self<font color="#990000">.</font>spinbox <font color="#990000">=</font> qt<font color="#990000">.</font><b><font color="#000000">QSpinBox</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">100</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font>self<font color="#990000">.</font>hbox<font color="#990000">)</font>
+<font color="#000000">62:</font>     self<font color="#990000">.</font>spinbox <font color="#990000">=</font> <b><font color="#000000">QSpinBox</font></b><font color="#990000">(</font><font color="#993399">0</font><font color="#990000">,</font><font color="#993399">100</font><font color="#990000">,</font><font color="#993399">1</font><font color="#990000">,</font>self<font color="#990000">.</font>hbox<font color="#990000">)</font>
 <font color="#000000">63:</font>     self<font color="#990000">.</font>spinbox<font color="#990000">.</font><b><font color="#000000">setName</font></b><font color="#990000">(</font><font color="#FF0000">'spin_value__spinbox'</font><font color="#990000">)</font>
 <font color="#000000">64:</font> 
 <font color="#000000">65:</font>     <i><font color="#9A1900"># show all widgets</font></i>

@@ -1,0 +1,24 @@
+== AVC, Application View Controller ==
+
+'''[http://avc.inrim.it AVC]''' is a [[Python_(programming_language)|python]] module that makes very easy the display and the input of some data of an [[Application_software|application program]] through a [[GUI]].
+
+'''AVC''' allow you to:
+*free the [[Application_software|application program]] from any code involved in setting or getting [[widget]] values;
+*avoid [[widget]] signals connections and management;
+*have a uniform support for the 5 most popular widgets toolkits, [[GTK]], [[Qt_toolkit|Qt3]], [[Qt4]], [[Tk_(framework)|Tk]], [[WxWidgets|wxWidget]]. 
+*have a shorter (50% less) and simpler code than solutions based on [[MVC]].
+
+==== AVC essential concepts ====
+
+1. Any [[GUI]] has a subset of [[widgets]] that display values stored in variables of the application program, for example, a text widget can display a string, a spin button can display a float, etc. This functionality is called "view" in computer programming.
+
+2. Almost all "view" widgets can change the displayed value by user interaction, for example, a text widget can edit its content, a spin button can increase/decrease its value by clicking over its up/down arrows, etc. This functionality is called "control" in computer programming.
+
+3. In such a frame of relations between [[GUI]] and [[Application_software|application]], each widget displaying a value can be considered as "connected" to a corresponding application variable.
+
+4. A single application variable can have more than one "view", in other words, it can be displayed by more than one widget. While a widget can be connected to only one variable. So, the elements belonging to a "connection" are one or more widgets and one application variable.
+
+5.  But which criteria to use for connecting widgets with variables? Of course, the simplest possible: names matching. It works by giving the same matching name to all the elements of a "connection".
+
+==References==
+*[http://avc.inrim.it/ AVC web site]

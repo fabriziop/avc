@@ -31,7 +31,7 @@
 
 from Tkinter import *			# Tk interface
 
-from avc.avctk import *			# AVC for Tk
+from avc import *			# AVC
 
 LOW_SPEED = 500				#--
 HIGH_SPEED = 100			#- low and high speed count period (ms)
@@ -76,12 +76,19 @@ class Example(AVC):
       period = LOW_SPEED
     self.root.after(period,self.incrementer) 
 
+  def high_speed_changed(self,value):
+    "Notify change of counting speed to terminal"
+    if value:
+      print 'counting speed changed to high'
+    else:
+      print 'counting speed changed to low'
+
 
 #### MAIN
 
 example = Example()			# instantiate the application
 example.avc_init()			# connect widgets with variables
-Tkinter.mainloop()		 	# run Tk event loop until quit
+mainloop()			 	# run Tk event loop until quit
 
 
 #### END

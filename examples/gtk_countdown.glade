@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE glade-interface SYSTEM "glade-2.0.dtd">
+<!--*- mode: xml -*-->
+<glade-interface>
+  <widget class="GtkWindow" id="countdown">
+    <property name="visible">True</property>
+    <property name="title" translatable="yes">AVC GTK countdown example</property>
+    <property name="default_width">300</property>
+    <property name="default_height">50</property>
+    <property name="gravity">GDK_GRAVITY_CENTER</property>
+    <signal name="destroy" handler="on_destroy"/>
+    <child>
+      <widget class="GtkLabel" id="counter">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">&lt;b&gt;%d&lt;/b&gt;</property>
+        <property name="use_markup">True</property>
+      </widget>
+    </child>
+  </widget>
+</glade-interface>

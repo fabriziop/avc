@@ -33,7 +33,7 @@ import gobject				#--
 import gtk				#- gimp tool kit bindings
 import gtk.glade			# glade bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC
 
 GLADE_XML = 'gtk_showcase.glade'	# GUI glade descriptor
 INCREMENTER_PERIOD = 333		# ms

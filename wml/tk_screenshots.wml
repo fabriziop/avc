@@ -23,6 +23,8 @@
 Some screenshots from the Tk examples included in AVC distribution.
 For full details see the "Tk examples" chapter of the
 <a href="../doc/user_manual.pdf">user manual</a>.
+<p class="center"><img src="../images/tk_countdown_main.png">
+<img src="../images/tk_countdown.png"></p>
 <p class="center"><img src="../images/tk_spinbox.png"></p>
 <p class="center"><img src="../images/tk_counter.png"></p>
 <p class="center"><img src="../images/tk_label.png"></p>

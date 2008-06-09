@@ -18,18 +18,20 @@
 # page contents
 
 {#main_bar#:
-<h3>GTK quick start</h3>
+<h3>GTK+ quick start</h3>
 
-This is the GTK spin button example included in AVC distribution.
+This is the GTK+ spin button example included in AVC distribution.
 It comes into two versions. The first has the GUI generated from
 a Glade UI description. The second has the GUI generated directly
 by program instructions.
-For full details see the "GTK examples" chapter of the
+For full details see the "GTK+ examples" chapter of the
 <a href="../doc/user_manual.pdf">user manual</a>.
 <p class="center"><img src="../images/gtk_spinbutton.png"></p>
 
 <h5>Source code: Glade version (file
-<a href="../examples/gtk_spinbutton.py">gtk_spinbutton.py</a>)</h5>
+<a href="../examples/gtk_spinbutton.py">gtk_spinbutton.py</a>,
+needs also <a  href="../examples/gtk_spinbutton.glade">
+gtk_spinbutton.glade)</h5>
 #include 'gtk_spinbutton.py.html'
 
 <h5>Source code: programmatic version (file

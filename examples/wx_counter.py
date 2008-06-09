@@ -32,18 +32,15 @@
 import wx				# wx tool kit bindings
 from wx import xrc			# xml resource support
 
-from avc.avcwx import *			# AVC for wx
+from avc import *			# AVC
 
 WXGLADE_XML = 'wx_counter.xrc'		# GUI wxGlade descriptor
-LOW_SPEED = 500				#--
-HIGH_SPEED = 100			#- low and high speed period (ms)
+LOW_SPEED = 0.5				#--
+HIGH_SPEED = 0.1			#- low and high speed period (ms)
 
 
-class Example(wx.PySimpleApp,AVC):
-  """
-  A counter displayed in a Label widget whose count speed can be
-  accelerated by checking a check button.
-  """
+class ExampleGUI(wx.PySimpleApp):
+  "Counter GUI creation"
 
   def __init__(self):
 
@@ -55,14 +52,35 @@ class Example(wx.PySimpleApp,AVC):
     self.root = xml_resource.LoadFrame(None,'frame_1')
     self.root.Show()
 
-    ## the counter variable and its speed status
+    # timer
+    self.timer1 = None
+
+
+  def timer(self,period,function):
+    "Start a wx timer calling back 'function' every 'period' seconds."
+    if not self.timer1:
+      self.timer1 = wx.Timer(self.root,wx.NewId())
+      self.root.Bind(wx.EVT_TIMER,function,self.timer1)
+    self.timer1.Start(period * 1000,oneShot=True)
+
+
+class ExampleMain(AVC):
+  """
+  A counter displayed in a Label widget whose count speed can be
+  accelerated by checking a check button.
+  """
+
+  def __init__(self,gui):
+
+    # save gui
+    self.gui = gui
+
+    # the counter variable and its speed status
     self.counter = 0
     self.high_speed = False
 
-    # start counter incrementer at low speed
-    self.timer = wx.Timer(self.root,wx.NewId())
-    self.root.Bind(wx.EVT_TIMER,self.incrementer,self.timer)
-    self.timer.Start(LOW_SPEED,oneShot=True)
+    # start incrementer timer
+    self.gui.timer(LOW_SPEED,self.incrementer)
 
 
   def incrementer(self,event):
@@ -76,7 +94,7 @@ class Example(wx.PySimpleApp,AVC):
       period = HIGH_SPEED
     else:
       period = LOW_SPEED
-    self.timer.Start(period,oneShot=True)
+    self.gui.timer(period,self.incrementer)
 
   def high_speed_changed(self,value):
     "Notify change of counting speed to terminal"
@@ -88,8 +106,9 @@ class Example(wx.PySimpleApp,AVC):
 
 #### MAIN
 
-example = Example()			# instantiate the application
+example_gui = ExampleGUI()		# create the application GUI
+example = ExampleMain(example_gui)	# instantiate the application
 example.avc_init()			# connect widgets with variables
-example.MainLoop()		 	# run wx event loop until quit
+example_gui.MainLoop()			# run wx event loop until quit
 
 #### END

@@ -1,0 +1,47 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: All news 
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 3-Jun-2008
+# .copyright	: (c) 2008 Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>All News</h3>
+
+<p><b>10-Jun-2008</b>: released AVC 0.6.0, new main features are multiple
+matching namespaces and dynamic connections, changed package importing
+adding automatic widget toolkit detection, extended separation between
+program logic and GUI to all toolkits, new "countdown" example
+demonstrating multiple matching namespaces and dynamic connections,
+updated all examples to new api, internal optimizations.</p>
+
+<p><b>10-Jun-2008</b>: created a
+<a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">mailing list</a>
+for AVC users.</p>
+
+<p><b>4-Feb-2008</b>: released AVC 0.5.0, extended the output formatting
+capabilities of the label widget, new label formatting examples for each
+supported toolkit, new programmatic version of the spin button/box/control
+examples, added activity logging capability with selectable verbosity
+level, internal optimizations.</p>
+
+<p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
+<a href="http://www.wxwidgets.org">wxWidgets</a>
+toolkit.</p>
+
+<p><b>13-Nov-2007</b>: AVC is now available as
+<a href="http://packages.debian.org/python-avc">Debian package</a>.</p>
+
+:##}

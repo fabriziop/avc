@@ -28,51 +28,60 @@ AVC, Application View Controller
 <div class="leftbar">
 <div class="item">
 <h3 class="itemhead"><a name="ToC1">OUTLINE</a></h3>
-<p><strong>Current:</strong> 0.5.0</p>
-<p><strong>Released:</strong> 4-Feb-2008</p>
+<p><strong>Current:</strong> 0.6.0</p>
+<p><strong>Released:</strong>10-Jun-2008</p>
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
 <p><strong>Common Requirements:</strong><br>
 <a href="http://www.python.org/">python 2.2 - 2.5</a></p>
-<p><strong>GTK requirements:</strong><br>
+<p><strong>GTK+ requirements:</strong><br>
 <a href="http://www.pygtk.org/">Pygtk 2.8 - 2.10</a><br>
 <strong>Qt requirements:</strong><br>
 <a href="http://www.riverbankcomputing.co.uk/pyqt/">Pyqt v3 - v4</a><br>
 <strong>Tk requirements:</strong><br>
 <a href="http://effbot.org/tkinterbook/">Tkinter 2.4</a><br>
 <strong>wxWidgets requirements:</strong><br>
-<a href="http://www.wxpython.org/">wxPython 2.6</a><br></p>
+<a href="http://www.wxpython.org/">wxPython 2.6 - 2.8</a><br></p>
 <p><strong>Author:</strong>
 <a href="contact.html">Fabrizio Pollastri</a></p>
 </div>
 <div class="item">
 <h3 class="itemhead"><a name="ToC2">DOCUMENTATION</a></h3>
-<p>Quick start examples: <img src="../images/newl.png" alt="" width="28" height="13"><br>
-<a href="gtk_quickstart.html">GTK</a>,
+<p>Quick start examples:<br>
+<a href="gtk_quickstart.html">GTK+</a>,
 <a href="qt3_quickstart.html">Qt3</a>,
 <a href="qt4_quickstart.html">Qt4</a>,
 <a href="tk_quickstart.html">Tk</a>,<br>
 <a href="wx_quickstart.html">wxWidgets</a>.<br>
-<a href="../doc/user_manual.pdf">AVC User Manual</a>
-<p><a href="changelog.html">AVC Changelog</a></p>
+<a href="../doc/user_manual.pdf">User Manual</a>
+<p><a href="relnotes.html">Release Notes</a></p>
+<p><a href="changelog.html">Changelog</a></p>
+<p><a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">
+Mailing List</a> <img src="../images/newl.png" alt="" width="28" height="13"></p>
+<p><a href="allnews.html">All News</a></p>
 </div>
 <div class="item">
-<h3 class="itemhead"><a name="ToC3">SCREENSHOTS</a></h3>
-<p><a href="gtk_screenshots.html">GTK examples</a></p>
+<h3 class="itemhead"><a name="ToC3">ARTICLES</a></h3>
+<p><a href="http://pymag.phparch.com/c/issue/view/71">
+AVC-Simplifying your GUI Code</a></p>
+</div>
+<div class="item">
+<h3 class="itemhead"><a name="ToC4">SCREENSHOTS</a></h3>
+<p><a href="gtk_screenshots.html">GTK+ examples</a></p>
 <p><a href="qt3_screenshots.html">Qt3 examples</a></p>
 <p><a href="qt4_screenshots.html">Qt4 examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
 <p><a href="wx_screenshots.html">wxWidgets examples</a></p>
 </div>
 <div class="item">
-<h3 class="itemhead"><a name="ToC4">DOWNLOAD</a></h3>
+<h3 class="itemhead"><a name="ToC5">DOWNLOAD</a></h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.5.0.tar.gz">avc-0.5.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.6.0.tar.gz">avc-0.6.0.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Debian package:<br>
 -&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
 <p>Quick start examples:<br>
--&nbsp;<a href="../examples/gtk_spinbutton.py">GTK spinbutton</a> +
+-&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
 <a href="../examples/gtk_spinbutton.glade">glade file</a><br>
 -&nbsp;<a href="../examples/qt3_spinbox.py">Qt3 spinbox</a> +
 <a href="../examples/qt3_spinbox.ui">ui file</a><br>
@@ -92,12 +101,12 @@ graphical interface widgets and application variables for the
 <a href="http://www.python.org/">python</a>
 language.
 <b>AVC</b> supports in a uniform way the most popular widget toolkits:
-<a href="http://www.gtk.org/">GTK</a>,
+<a href="http://www.gtk.org/">GTK+</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt3</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
 <a href="http://www.tcl.tk/">Tk</a>,
 <a href="http://www.wxwidgets.org/">wxWidgets</a>.
-<b>AVC</b> is a python module that can be imported by any python
+<b>AVC</b> is a python package that can be imported by any python
 application.<br>
 <br>
 The display and the control of some application data through
@@ -105,24 +114,26 @@ a GUI (Graphical User Interface) is a central problem in GUI programming,
 it absorbs a relevant part of the programming effort. <b>AVC</b> makes
 this programming very easy, far more easy than traditional solutions
 based on MVC (Model View Controller).
-<h4><a name="ToC5">News</a></h4>
-<p><b>4-Feb-2008</b>: released AVC 0.5.0, extended the output formatting
-capabilities of the label widget, new label formatting examples for each
-supported toolkit, new programmatic version of the spin button/box/control
-examples, added activity logging capability with selectable verbosity
-level, internal optimizations.</p>
-<p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
-<a href="http://www.wxwidgets.org">wxWidgets</a>
-toolkit.</p>
-<p><b>13-Nov-2007</b>: AVC is now available as
-<a href="http://packages.debian.org/python-avc">Debian package</a>.</p>
-<h4><a name="ToC6">Features</a></h4>
+<h4><a name="ToC6">News</a></h4>
+<p><b>10-Jun-2008</b>: released AVC 0.6.0, new main features are multiple
+matching namespaces and dynamic connections, changed package importing
+adding automatic widget toolkit detection, extended separation between
+program logic and GUI to all toolkits, new "countdown" example
+demonstrating multiple matching namespaces and dynamic connections,
+updated all examples to new api, internal optimizations.
+<a href="relnotes.html#0_6_0">Release note</a>.</p>
+<p><b>10-Jun-2008</b>: created a
+<a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">mailing list</a>
+for AVC users.</p>
+<h4><a name="ToC7">Features</a></h4>
 <ul>
   <li>Fully transparent widget-variable connections</li>
   <li>Automatic connection by matching widgets and variables names</li>
+  <li>Multiple matching namespaces</li>
+  <li>Dynamic connections</li>
   <li>No design pattern, no application redesign, no widget toolkit
-  dependent code.</li>
-  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk, wxWidgets.</li>
+  dependent code, separation between application logic and GUI.</li>
+  <li>Multiple widget toolkits support: GTK+, Qt3, Qt4, Tk, wxWidgets.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
   <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,
@@ -138,7 +149,7 @@ toolkit.</p>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or periodic.</li>
   <li>Testing printout logging activity with selectable verbosity</li>
-  <li>Python module written in pure python</li>
+  <li>Python package written in pure python</li>
   <li>Free software (
   <a href="http://www.gnu.org/copyleft/gpl.html">GNU GPL license</a>
   )</li>

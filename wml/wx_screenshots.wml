@@ -23,6 +23,8 @@
 Some screenshots from the wxWidgets examples included in AVC distribution.
 For full details see the "wxWidgets examples" chapter of the
 <a href="../doc/user_manual.pdf">user manual</a>.
+<p class="center"><img src="../images/wx_countdown_main.png">
+<img src="../images/wx_countdown.png"></p>
 <p class="center"><img src="../images/wx_spinctrl.png"></p>
 <p class="center"><img src="../images/wx_counter.png"></p>
 <p class="center"><img src="../images/wx_label.png"></p>

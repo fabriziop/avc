@@ -29,7 +29,8 @@ For full details see the "Qt4 examples" chapter of the
 <p class="center"><img src="../images/qt4_spinbox.png"></p>
 
 <h5>Source code: Designer version (file
-<a href="../examples/qt4_spinbox.py">qt4_spinbox.py</a>)</h5>
+<a href="../examples/qt4_spinbox.py">qt4_spinbox.py</a>, needs also
+<a href="../examples/qt4_spinbox.ui">qt4_spinbox.ui</a>)</h5>
 #include 'qt4_spinbox.py.html'
 
 <h5>Source code: programmatic version (file

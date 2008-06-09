@@ -36,7 +36,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">32:</font> <b><font color="#000080">import</font></b> gtk                              <i><font color="#9A1900"># gimp tool kit bindings</font></i>
 <font color="#000000">33:</font> <b><font color="#000080">import</font></b> gtk<font color="#990000">.</font>glade                        <i><font color="#9A1900"># glade bindings</font></i>
 <font color="#000000">34:</font> 
-<font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc<font color="#990000">.</font>avcgtk <b><font color="#000080">import</font></b> <font color="#990000">*</font>                <i><font color="#9A1900"># AVC for GTK</font></i>
+<font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">36:</font> 
 <font color="#000000">37:</font> <font color="#009900">GLADE_XML</font> <font color="#990000">=</font> <font color="#FF0000">'gtk_spinbutton.glade'</font>      <i><font color="#9A1900"># GUI glade descriptor</font></i>
 <font color="#000000">38:</font> 
@@ -51,11 +51,11 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">47:</font>     <i><font color="#9A1900"># create GUI</font></i>
 <font color="#000000">48:</font>     self<font color="#990000">.</font>glade <font color="#990000">=</font> gtk<font color="#990000">.</font>glade<font color="#990000">.</font><b><font color="#000000">XML</font></b><font color="#990000">(</font><font color="#009900">GLADE_XML</font><font color="#990000">)</font>
 <font color="#000000">49:</font> 
-<font color="#000000">50:</font>     <i><font color="#9A1900"># autoconnect GUI signal handlers</font></i>
-<font color="#000000">51:</font>     self<font color="#990000">.</font>glade<font color="#990000">.</font><b><font color="#000000">signal_autoconnect</font></b><font color="#990000">(</font>self<font color="#990000">)</font>
+<font color="#000000">50:</font>     <i><font color="#9A1900"># the variable holding the spin button value</font></i>
+<font color="#000000">51:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
 <font color="#000000">52:</font> 
-<font color="#000000">53:</font>     <i><font color="#9A1900"># the variable holding the spin button value</font></i>
-<font color="#000000">54:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">53:</font>     <i><font color="#9A1900"># autoconnect GUI signal handlers</font></i>
+<font color="#000000">54:</font>     self<font color="#990000">.</font>glade<font color="#990000">.</font><b><font color="#000000">signal_autoconnect</font></b><font color="#990000">(</font>self<font color="#990000">)</font>
 <font color="#000000">55:</font> 
 <font color="#000000">56:</font> 
 <font color="#000000">57:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">on_destroy</font></b><font color="#990000">(</font>self<font color="#990000">,</font>window<font color="#990000">):</font>

@@ -35,7 +35,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">31:</font> 
 <font color="#000000">32:</font> <b><font color="#000080">from</font></b> <font color="#009900">Tkinter</font> <b><font color="#000080">import</font></b> <font color="#990000">*</font>                   <i><font color="#9A1900"># Tk interface</font></i>
 <font color="#000000">33:</font> 
-<font color="#000000">34:</font> <b><font color="#000080">from</font></b> avc<font color="#990000">.</font>avctk <b><font color="#000080">import</font></b> <font color="#990000">*</font>                 <i><font color="#9A1900"># AVC for Tk</font></i>
+<font color="#000000">34:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">35:</font> 
 <font color="#000000">36:</font> <font color="#009900">TCL_FILE</font> <font color="#990000">=</font> <font color="#FF0000">'tk_spinbox.tcl'</font>             <i><font color="#9A1900"># GUI description as tcl script</font></i>
 <font color="#000000">37:</font> 
@@ -47,24 +47,26 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">43:</font> 
 <font color="#000000">44:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">):</font>
 <font color="#000000">45:</font> 
-<font color="#000000">46:</font>     <i><font color="#9A1900"># create GUI</font></i>
-<font color="#000000">47:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> <b><font color="#000000">Tk</font></b><font color="#990000">()</font>
-<font color="#000000">48:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">eval</font></b><font color="#990000">(</font><font color="#FF0000">'set argc {}; set argv {}; proc ::main {argc argv} {};'</font><font color="#990000">)</font>
-<font color="#000000">49:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font>tk<font color="#990000">.</font><b><font color="#000000">evalfile</font></b><font color="#990000">(</font><font color="#009900">TCL_FILE</font><font color="#990000">)</font>
-<font color="#000000">50:</font> 
-<font color="#000000">51:</font>     <i><font color="#9A1900"># terminate program at toplevel window destroy: connect toplevel</font></i>
-<font color="#000000">52:</font>     <i><font color="#9A1900"># destroy signal to termination handler.</font></i>
-<font color="#000000">53:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">bind_class</font></b><font color="#990000">(</font><font color="#FF0000">'Toplevel'</font><font color="#990000">,</font><font color="#FF0000">'&lt;Destroy&gt;'</font><font color="#990000">,</font><b><font color="#0000FF">lambda</font></b> event<font color="#990000">:</font> self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">quit</font></b><font color="#990000">())</font>
-<font color="#000000">54:</font> 
-<font color="#000000">55:</font>     <i><font color="#9A1900"># the variable holding the spin control value</font></i>
-<font color="#000000">56:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
-<font color="#000000">57:</font> 
-<font color="#000000">58:</font> 
-<font color="#000000">59:</font> <i><font color="#9A1900">#### MAIN</font></i>
+<font color="#000000">46:</font> 
+<font color="#000000">47:</font> 
+<font color="#000000">48:</font>     <i><font color="#9A1900"># create GUI</font></i>
+<font color="#000000">49:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> <b><font color="#000000">Tk</font></b><font color="#990000">()</font>
+<font color="#000000">50:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">eval</font></b><font color="#990000">(</font><font color="#FF0000">'set argc {}; set argv {}; proc ::main {argc argv} {};'</font><font color="#990000">)</font>
+<font color="#000000">51:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font>tk<font color="#990000">.</font><b><font color="#000000">evalfile</font></b><font color="#990000">(</font><font color="#009900">TCL_FILE</font><font color="#990000">)</font>
+<font color="#000000">52:</font> 
+<font color="#000000">53:</font>     <i><font color="#9A1900"># terminate program at toplevel window destroy: connect toplevel</font></i>
+<font color="#000000">54:</font>     <i><font color="#9A1900"># destroy signal to termination handler.</font></i>
+<font color="#000000">55:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">bind_class</font></b><font color="#990000">(</font><font color="#FF0000">'Toplevel'</font><font color="#990000">,</font><font color="#FF0000">'&lt;Destroy&gt;'</font><font color="#990000">,</font><b><font color="#0000FF">lambda</font></b> event<font color="#990000">:</font> self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">quit</font></b><font color="#990000">())</font>
+<font color="#000000">56:</font> 
+<font color="#000000">57:</font>     <i><font color="#9A1900"># the variable holding the spin control value</font></i>
+<font color="#000000">58:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">59:</font> 
 <font color="#000000">60:</font> 
-<font color="#000000">61:</font> example <font color="#990000">=</font> <b><font color="#000000">Example</font></b><font color="#990000">()</font>                     <i><font color="#9A1900"># instantiate the application</font></i>
-<font color="#000000">62:</font> example<font color="#990000">.</font><b><font color="#000000">avc_init</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># connect widgets with variables</font></i>
-<font color="#000000">63:</font> <font color="#009900">Tkinter</font><font color="#990000">.</font><b><font color="#000000">mainloop</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># run Tk event loop until quit</font></i>
-<font color="#000000">64:</font> 
-<font color="#000000">65:</font> <i><font color="#9A1900">#### END</font></i>
+<font color="#000000">61:</font> <i><font color="#9A1900">#### MAIN</font></i>
+<font color="#000000">62:</font> 
+<font color="#000000">63:</font> example <font color="#990000">=</font> <b><font color="#000000">Example</font></b><font color="#990000">()</font>                     <i><font color="#9A1900"># instantiate the application</font></i>
+<font color="#000000">64:</font> example<font color="#990000">.</font><b><font color="#000000">avc_init</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># connect widgets with variables</font></i>
+<font color="#000000">65:</font> <b><font color="#000000">mainloop</font></b><font color="#990000">()</font>                              <i><font color="#9A1900"># run Tk event loop until quit</font></i>
+<font color="#000000">66:</font> 
+<font color="#000000">67:</font> <i><font color="#9A1900">#### END</font></i>
 </tt></pre>

@@ -29,7 +29,8 @@ For full details see the "Tk examples" chapter of the
 <p class="center"><img src="../images/tk_spinbox.png"></p>
 
 <h5>Source code: Visual Tcl version (file
-<a href="../examples/tk_spinbox.py">tk_spinbox.py</a>)</h5>
+<a href="../examples/tk_spinbox.py">tk_spinbox.py</a>, needs also
+<a href="../examples/tk_spinbox.tcl">tk_spinbox.tcl</a>)</h5>
 #include 'tk_spinbox.py.html'
 
 <h5>Source code: programmatic version (file

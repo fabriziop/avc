@@ -1,3 +1,10 @@
+python-avc (0.6.0-1) unstable; urgency=low
+
+  * New upstream
+  * Standards-Version bumped to 3.8.0 (no changes needed)
+
+ -- Fabrizio Pollastri <f.pollastri@inrim.it>  Tue, 10 Jun 2008 12:00:00 +0100
+
 python-avc (0.5.0-1) unstable; urgency=low
 
   * New upstream

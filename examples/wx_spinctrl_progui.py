@@ -31,7 +31,7 @@
 
 import wx				# wx tool kit bindings
 
-from avc.avcwx import *			# AVC for wx
+from avc import *			# AVC
 
 
 class Example(wx.PySimpleApp,AVC):

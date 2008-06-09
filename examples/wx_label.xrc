@@ -393,7 +393,7 @@
             </object>
             <object class="sizeritem">
                 <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxADJUST_MINSIZE</flag>
-                <object class="wxStaticText" name="tiple_value__1">
+                <object class="wxStaticText" name="tuple_value__1">
                     <label>%d,%d,%d</label>
                 </object>
             </object>

@@ -23,12 +23,12 @@ graphical interface widgets and application variables for the
 <a href="http://www.python.org/">python</a>
 language.
 <b>AVC</b> supports in a uniform way the most popular widget toolkits:
-<a href="http://www.gtk.org/">GTK</a>,
+<a href="http://www.gtk.org/">GTK+</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt3</a>,
 <a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
 <a href="http://www.tcl.tk/">Tk</a>,
 <a href="http://www.wxwidgets.org/">wxWidgets</a>.
-<b>AVC</b> is a python module that can be imported by any python
+<b>AVC</b> is a python package that can be imported by any python
 application.<br>
 <br>
 The display and the control of some application data through
@@ -39,27 +39,27 @@ based on MVC (Model View Controller).
 
 <h4>News</h4>
 
+<p><b>10-Jun-2008</b>: released AVC 0.6.0, new main features are multiple
+matching namespaces and dynamic connections, changed package importing
+adding automatic widget toolkit detection, extended separation between
+program logic and GUI to all toolkits, new "countdown" example
+demonstrating multiple matching namespaces and dynamic connections,
+updated all examples to new api, internal optimizations.
+<a href="relnotes.html#0_6_0">Release note</a>.</p>
 
-<p><b>4-Feb-2008</b>: released AVC 0.5.0, extended the output formatting
-capabilities of the label widget, new label formatting examples for each
-supported toolkit, new programmatic version of the spin button/box/control
-examples, added activity logging capability with selectable verbosity
-level, internal optimizations.</p>
-
-<p><b>15-Dec-2007</b>: released AVC 0.4.0, added support for the
-<a href="http://www.wxwidgets.org">wxWidgets</a>
-toolkit.</p>
-
-<p><b>13-Nov-2007</b>: AVC is now available as
-<a href="http://packages.debian.org/python-avc">Debian package</a>.</p>
+<p><b>10-Jun-2008</b>: created a
+<a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">mailing list</a>
+for AVC users.</p>
 
 <h4>Features</h4>
 <ul>
   <li>Fully transparent widget-variable connections</li>
   <li>Automatic connection by matching widgets and variables names</li>
+  <li>Multiple matching namespaces</li>
+  <li>Dynamic connections</li>
   <li>No design pattern, no application redesign, no widget toolkit
-  dependent code.</li>
-  <li>Multiple widget toolkits support: GTK, Qt3, Qt4, Tk, wxWidgets.</li>
+  dependent code, separation between application logic and GUI.</li>
+  <li>Multiple widget toolkits support: GTK+, Qt3, Qt4, Tk, wxWidgets.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
   <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,
@@ -75,7 +75,7 @@ toolkit.</p>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or periodic.</li>
   <li>Testing printout logging activity with selectable verbosity</li>
-  <li>Python module written in pure python</li>
+  <li>Python package written in pure python</li>
   <li>Free software (
   <a href="http://www.gnu.org/copyleft/gpl.html">GNU GPL license</a>
   )</li>

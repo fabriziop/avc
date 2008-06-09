@@ -31,7 +31,7 @@
 
 from Tkinter import *			# Tk interface
 
-from avc.avctk import *			# AVC for Tk
+from avc import *			# AVC for Tk
 
 TCL_FILE = 'tk_label.tcl'		# GUI description as tcl script
 
@@ -71,6 +71,6 @@ class Example(AVC):
 
 example = Example()			# instantiate the application
 example.avc_init()			# connect widgets with variables
-Tkinter.mainloop()		 	# run Tk event loop until quit
+mainloop()			 	# run Tk event loop until quit
 
 #### END

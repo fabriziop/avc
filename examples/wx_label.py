@@ -32,7 +32,7 @@
 import wx				# wx tool kit bindings
 from wx import xrc			# xml resource support
 
-from avc.avcwx import *			# AVC for wx
+from avc import *			# AVC for wx
 
 WXGLADE_XML = 'wx_label.xrc'		# GUI wxGlade descriptor
 

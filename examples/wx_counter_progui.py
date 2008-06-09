@@ -31,7 +31,7 @@
 
 import wx				# wx tool kit bindings
 
-from avc.avcwx import *			# AVC for wx
+from avc import *			# AVC
 
 LOW_SPEED = 500				#--
 HIGH_SPEED = 100			#- low and high speed period (ms)

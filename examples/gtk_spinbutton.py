@@ -32,7 +32,7 @@
 import gtk				# gimp tool kit bindings
 import gtk.glade			# glade bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC
 
 GLADE_XML = 'gtk_spinbutton.glade'	# GUI glade descriptor
 
@@ -47,11 +47,11 @@ class Example(AVC):
     # create GUI
     self.glade = gtk.glade.XML(GLADE_XML)
 
-    # autoconnect GUI signal handlers
-    self.glade.signal_autoconnect(self)
-
     # the variable holding the spin button value
     self.spin_value = 0
+
+    # autoconnect GUI signal handlers
+    self.glade.signal_autoconnect(self)
 
 
   def on_destroy(self,window):

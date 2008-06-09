@@ -1,0 +1,68 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: Release notes
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 4-Jun-2008
+# .copyright	: (c) 2008 Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>Release Notes</h3>
+<hr>
+<h3 name="0_6_0">AVC 0.6.0</h3>
+<p>This release comes with a big code rewrite and a step up in
+internal complexity for the introduction of multiple matching
+namespaces and dynamic connections. A small change in user api is
+also introduced.</p>
+
+<p><b>Multiple matching namespaces</b><br>
+Now, each python object (class instance) in the application program has
+its own matching namespace. This means that AVC can search for matching
+names in the attributes of a given object, from the application side, and
+in the widget names of a given widget tree or subtree, from the GUI side.
+Each name space is independent from the others, this allows different
+connections belonging to different objects to have the same matching name.<br>
+For example, AVC can create and manage all the widget-variable connections
+required by an application that needs to instantiate a number
+of object from a class that creates its own GUI or a part of a GUI and
+interacts with it by connecting some of its attributes to some widgets of
+its GUI (see "countdown" example).<p>
+
+<p><b>Dynamic connections</b><br>
+Widget-variable connections can be created at any run time, in this
+way, AVC can connect widgets that are created later than application start
+up time. When the application deletes a widget that belongs to a connection,
+AVC automatically removes it from the connection and if the connection has
+no more widgets, the connection is also removed (see "countdown" example).</p>
+
+<p><b>Small changes in user api</b><br>
+Now, AVC detects automatically the widget toolkit imported in the applcation,
+so the same import statement is used for AVC
+<span class="code">import avc</span> or
+<span class="code">from avc import *</span>,
+this behaviour is incompatible with older AVC releases.<br>
+A new method ("avc_connect") is introduced to cope with multiple namespaces
+and dynamic connections. As usual, any application using AVC first has to
+call "avc_init" at init time, then, if other connections are required, all
+subsequent AVC calls must be done to "avc_connect".
+</p>
+
+<p><b>Uniform separation between application logic and GUI</b><br>
+AVC allows to structure the application with program logic separated from
+GUI statements for all supported toolkits. For example, program logic can
+be put in one class and GUI management in another class (see "counter"
+example). Older releases allowed this separation for GTK+ and Tk toolkits only.
+</p>
+
+:##}

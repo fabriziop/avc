@@ -9,7 +9,7 @@ Subject: ITP: python-avc -- live connection among widgets and application variab
 
 AVC is a multiplatform, fully automatic, live connection among graphical 
 interface widgets and application variables for the python language. AVC 
-supports in a uniform way the most popular widget toolkits: GTK, Qt3, 
+supports in a uniform way the most popular widget toolkits: GTK+, Qt3, 
 Qt4, Tk. AVC is a python module that can be imported by any python 
 application.
 

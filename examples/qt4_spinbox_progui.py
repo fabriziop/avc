@@ -33,7 +33,7 @@ from PyQt4.QtCore import *		# Qt core
 from PyQt4.QtGui import *		# Qt GUI interface
 import sys				# system support
 
-from avc.avcqt4 import *		# AVC for Qt4
+from avc import *			# AVC
 
 
 class Example(QApplication,AVC):
@@ -63,7 +63,7 @@ class Example(QApplication,AVC):
     self.hbox.addWidget(self.label)
      
     # spin box
-    self.spinbox = qt.QSpinBox()
+    self.spinbox = QSpinBox()
     self.spinbox.setRange(0,100)
     self.spinbox.setObjectName('spin_value__spinbox')
     self.hbox.addWidget(self.spinbox)

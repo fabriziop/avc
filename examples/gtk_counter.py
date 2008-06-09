@@ -33,33 +33,51 @@ import gobject				#--
 import gtk				#- gimp tool kit bindings
 import gtk.glade			# glade bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC
 
 GLADE_XML = 'gtk_counter.glade'		# GUI glade descriptor
 LOW_SPEED = 500				#--
 HIGH_SPEED = 100			#- low and high speed period (ms)
 
 
-class Example(AVC):
-  """
-  A counter displayed in a Label widget whose count speed can be
-  accelerated by checking a check button.
-  """
+class ExampleGUI:
+  "Counter GUI creation"
 
   def __init__(self):
 
     # create GUI
-    self.glade = gtk.glade.XML(GLADE_XML)
+    glade = gtk.glade.XML(GLADE_XML)
 
     # autoconnect GUI signal handlers
-    self.glade.signal_autoconnect(self)
+    glade.signal_autoconnect(self)
+
+
+  def timer(self,period,function):
+    "Start a GTK timer calling back 'function' every 'period' seconds."
+    self.timer1 = gobject.timeout_add(period,function)
+  
+  def on_destroy(iself,window):
+    "Terminate program at window destroy"
+    gtk.main_quit()
+
+
+class ExampleMain(AVC):
+  """
+  A counter displayed in a Label widget whose count speed can be
+  accelerated by checking a check box.
+  """
+
+  def __init__(self,gui):
+
+    # save GUI
+    self.gui = gui
 
     # the counter variable and its speed status
     self.counter = 0
     self.high_speed = False
 
-    # start counter incrementer at low speed
-    gobject.timeout_add(LOW_SPEED,self.incrementer) 
+    # start incrementer timer
+    self.gui.timer(LOW_SPEED,self.incrementer)
 
 
   def incrementer(self):
@@ -73,13 +91,8 @@ class Example(AVC):
       period = HIGH_SPEED
     else:
       period = LOW_SPEED
-    gobject.timeout_add(period,self.incrementer) 
+    self.gui.timer(period,self.incrementer)
     return False
-
-
-  def on_destroy(self,window):
-    "Terminate program at window destroy"
-    gtk.main_quit()
 
   def high_speed_changed(self,value):
     "Notify change of counting speed to terminal"
@@ -91,8 +104,9 @@ class Example(AVC):
 
 #### MAIN
 
-example = Example()			# instantiate the application
+example_gui = ExampleGUI()		# create the application GUI
+example = ExampleMain(example_gui)	# instantiate the application
 example.avc_init()			# connect widgets with variables
-gtk.main()			 	# run GTK event loop until quit
+gtk.main()				# run GTK event loop until quit
 
 #### END

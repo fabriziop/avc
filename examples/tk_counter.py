@@ -31,18 +31,15 @@
 
 from Tkinter import *			# Tk interface
 
-from avc.avctk import *			# AVC for Tk
+from avc import *			# AVC
 
 TCL_FILE = 'tk_counter.tcl'		# GUI description as tcl script
 LOW_SPEED = 500				#--
 HIGH_SPEED = 100			#- low and high speed count period (ms)
 
 
-class Example(AVC):
-  """
-  A counter displayed in a Label widget whose count speed can be doubled
-  by pressing a Toggle Button.
-  """
+class ExampleGUI:
+  "Counter GUI creation"
 
   def __init__(self):
 
@@ -55,12 +52,29 @@ class Example(AVC):
     # destroy signal to termination handler.
     self.root.bind_class('Toplevel','<Destroy>',lambda event: self.root.quit())
 
+
+  def timer(self,period,function):
+    "Start a Tk timer calling back 'function' every 'period' seconds."
+    self.root.after(period,function) 
+
+
+class ExampleMain(AVC):
+  """
+  A counter displayed in a Label widget whose count speed can be doubled
+  by pressing a Toggle Button.
+  """
+
+  def __init__(self,gui):
+
+    # save GUI
+    self.gui = gui
+
     # the counter variable and its speed status
     self.counter = 0
     self.high_speed = False
 
-    # start counter incrementer at low speed
-    self.root.after(LOW_SPEED,self.incrementer) 
+    # start incrementer timer
+    self.gui.timer(LOW_SPEED,self.incrementer)
 
 
   def incrementer(self):
@@ -73,13 +87,22 @@ class Example(AVC):
       period = HIGH_SPEED
     else:
       period = LOW_SPEED
-    self.root.after(period,self.incrementer) 
+    self.gui.timer(period,self.incrementer)
+
+  def high_speed_changed(self,value):
+    "Notify change of counting speed to terminal"
+    if value:
+      print 'counting speed changed to high'
+    else:
+      print 'counting speed changed to low'
 
 
 #### MAIN
 
-example = Example()			# instantiate the application
+example_gui = ExampleGUI()		# create the application GUI
+example = ExampleMain(example_gui)	# instantiate the application
 example.avc_init()			# connect widgets with variables
-Tkinter.mainloop()		 	# run Tk event loop until quit
+mainloop()			 	# run Tk event loop until quit
 
 #### END
+

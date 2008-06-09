@@ -32,7 +32,7 @@
 from qt import * 			# Qt interface
 import sys				# system support
 
-from avc.avcqt3 import *		# AVC for Qt3
+from avc import *			# AVC
 
 
 class Example(QApplication,AVC):
@@ -59,7 +59,7 @@ class Example(QApplication,AVC):
     self.label.setText('<b>%d</b>')
      
     # spin box
-    self.spinbox = qt.QSpinBox(0,100,1,self.hbox)
+    self.spinbox = QSpinBox(0,100,1,self.hbox)
     self.spinbox.setName('spin_value__spinbox')
 
     # show all widgets

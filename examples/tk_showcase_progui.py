@@ -31,7 +31,7 @@
 
 from Tkinter import * 			# Tk interface
 
-from avc.avctk import *			# AVC for Tk/Tix
+from avc import *			# AVC
 
 INCREMENTER_PERIOD = 0.333		# seconds
 
@@ -162,7 +162,7 @@ class Example(AVC):
 
 example = Example()			# instantiate the application
 example.avc_init()			# connect widgets with variables
-Tkinter.mainloop()			# run Tk event loop until quit
+mainloop()				# run Tk event loop until quit
 
 #### END
 

@@ -33,7 +33,7 @@ from qt import * 			# Qt interface
 from qtui import *			# ui files realizer
 import sys				# system support
 
-from avc.avcqt3 import *		# AVC for Qt3
+from avc import *			# AVC
 
 UI_FILE = 'qt3_showcase.ui'		# qt ui descriptor
 INCREMENTER_PERIOD = 333		# ms
@@ -63,8 +63,8 @@ class Example(QApplication,AVC):
     
     # start variables incrementer
     self.increment = self.incrementer()
-    self.timer = qt.QTimer(self)
-    self.connect(self.timer,qt.SIGNAL("timeout()"),self.timer_function)
+    self.timer = QTimer(self)
+    self.connect(self.timer,SIGNAL("timeout()"),self.timer_function)
     self.timer.start(INCREMENTER_PERIOD)
 
 

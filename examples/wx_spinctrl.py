@@ -32,7 +32,7 @@
 import wx				# wx tool kit bindings
 from wx import xrc			# xml resource support
 
-from avc.avcwx import *			# AVC for wx
+from avc import *			# AVC
 
 WXGLADE_XML = 'wx_spinctrl.xrc'		# GUI wxGlade descriptor
 
@@ -52,7 +52,7 @@ class Example(wx.PySimpleApp,AVC):
     self.root = xml_resource.LoadFrame(None,'frame_1')
     self.root.Show()
  
-    ## the variable holding the spin control value
+    # the variable holding the spin control value
     self.spin_value = 0
 
 

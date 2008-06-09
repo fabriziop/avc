@@ -18,11 +18,13 @@
 # page contents
 
 {#main_bar#:
-<h3>GTK screenshots</h3>
+<h3>GTK+ screenshots</h3>
 
-Some screenshots from the GTK examples included in AVC distribution.
-For full details see the "GTK examples" chapter of the
+Some screenshots from the GTK+ examples included in AVC distribution.
+For full details see the "GTK+ examples" chapter of the
 <a href="../doc/user_manual.pdf">user manual</a>.
+<p class="center"><img src="../images/gtk_countdown_main.png">
+<img src="../images/gtk_countdown.png"></p>
 <p class="center"><img src="../images/gtk_spinbutton.png"></p>
 <p class="center"><img src="../images/gtk_counter.png"></p>
 <p class="center"><img src="../images/gtk_label.png"></p>
