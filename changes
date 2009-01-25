@@ -1,3 +1,6 @@
+AVC 0.6.1 released 26-Jan-2009
+  * Added PDF documentation sources (ODT file and images).
+
 AVC 0.6.0 released 10-Jun-2008
   * Added multiple matching namespaces: the attributes of each python
     object (class instance) can be matched against any given widget tree

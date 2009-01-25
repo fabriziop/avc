@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # .+
 #
 # .context    : Application View Controller
@@ -29,7 +29,7 @@
 
 # parameters
 NAME="avc"
-VERSION="0.6.0"
+VERSION="0.6.1"
 MANTAINER_ADDRESS="pollastri@inrim.it"
 
 SECTION="python"

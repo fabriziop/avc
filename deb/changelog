@@ -1,3 +1,10 @@
+python-avc (0.6.1-1) unstable; urgency=medium
+
+  * New upstream release:
+    + added PDF documentation sources (ODT file and images)
+
+ -- Fabrizio Pollastri <f.pollastri@inrim.it>  Thu, 29 Jan 2009 19:59:38 +0100
+
 python-avc (0.6.0-1) unstable; urgency=low
 
   * New upstream
