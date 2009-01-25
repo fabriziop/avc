@@ -124,6 +124,11 @@ class Widget:
     widget.bind("<Destroy>",delete_method)
 
 
+class ListTreeView(Widget):
+  "Tk has no list view and tree view support"
+  pass
+
+
 class Button(Widget):
   "Tk Button widget abstractor"
 
@@ -187,6 +192,15 @@ class Label(Widget):
     self.widget.config(text=value)
 
 
+class ListView(ListTreeView):
+  "Tk has no list view support"
+  pass
+
+
+class ProgressBar(Widget):
+  "Tk no prograss bar support"
+  pass
+
 class RadioButton(Widget):
   "Tk RadioButton widget abstractor"
 
@@ -239,7 +253,7 @@ class SpinButton(Widget):
     return self.widget.get()
 
   def write(self,value):
-    "Set spinbutton value"
+    "Set spin button value"
     self.widget.delete(0,Tkinter.END)
     self.widget.insert(0,str(value))
  
@@ -285,6 +299,11 @@ class ToggleButton(Widget):
   def write(self,value):
     "Set button status"
     self.widget.setvar(self.value_name,int(value))
+
+
+class TreeView(ListTreeView):
+  "Tk has no tree view support"
+  pass
 
 
 ## mapping between the real widget and the wal widget

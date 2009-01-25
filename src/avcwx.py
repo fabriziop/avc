@@ -30,6 +30,8 @@
 
 import wx			# wx tool kit bindings
 
+import string			# string operations
+
 
 #### GENERAL ABSTRACTION METHODS
 
@@ -62,14 +64,37 @@ def timer(function,period):
   return timer
 
 
+class error(Exception):
+  "A generic error exception"
+  def __init__(self, value):
+    self.value = value
+  def __str__(self):
+    return repr(self.value)
+
+
 #### WIDGETS ABSTRACTION LAYER (widget toolkit side)
 
 class Widget:
   "wx Widget Abstraction Layer abstract class"
 
+  def delete_method_filter(self,event):
+    "Ignore destroy events not coming from current widget"
+    if self.widget.GetId() == event.GetId():
+      self.delete_method()
+
   def connect_delete(self,widget,delete_method):
-    "Connect widget delete method to wondow destroy event"
-    widget.Bind(wx.EVT_WINDOW_DESTROY,delete_method)
+    "Connect widget delete method to window destroy event"
+    self.delete_method = delete_method
+    #widget.Bind(wx.EVT_WINDOW_DESTROY,delete_method)
+    widget.Bind(wx.EVT_WINDOW_DESTROY,self.delete_method_filter)
+
+
+class ListTreeView(Widget):
+  "Support to ListView and TreeView abstractors"
+
+  def __init__(self):
+    "Init operations common to ListView and TreeView"
+    pass
 
 
 class Button(Widget):
@@ -159,6 +184,79 @@ class Label(Widget):
     "Set text into Label"
     self.widget.SetLabel(value)
 
+
+class ListView(ListTreeView):
+  "wx ListView widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    self.widget.Bind(wx.EVT_LIST_END_LABEL_EDIT,
+      lambda event: wx.CallAfter(self.value_changed) or event.Skip())
+
+  def append_column(self,col_num,text):
+    "Append a column to the ListView"
+    self.widget.InsertColumn(col_num,text)
+   
+  def read(self):
+    "Get values displayed by widget"
+    # get head
+    head = [str(self.widget.GetColumn(col_num).GetText()) \
+      for col_num in range(self.widget.GetColumnCount())]
+    # get data rows
+    body = []
+    for row_num in range(self.widget.GetItemCount()):
+      row = []
+      for col_num in range(self.widget.GetColumnCount()):
+        try:
+          row.append(self.row_types[col_num](
+            self.widget.GetItem(row_num,col_num).GetText()))
+        except:
+          if self.row_types[col_num] == int:
+            row.append(0)
+          elif self.row_types[col_num] == float:
+            row.append(0.0)
+      body.append(row)
+    # return
+    return {'head': head,'body': body}
+
+  def write(self,value):
+    "Set values displayed by widget"
+    # set header
+    if value.has_key('head'):
+      for col_num in range(self.widget.GetColumnCount()):
+        col_item = self.widget.GetColumn(col_num)
+        col_item.SetText(value['head'][col_num])
+    # set data rows
+    body = value['body']
+    self.widget.DeleteAllItems()
+    if type(body[0]) == list:
+      for row_num,row in enumerate(body):
+        index = self.widget.InsertStringItem(row_num,'')
+        for col_num,item in enumerate(row):
+          self.widget.SetStringItem(row_num,col_num,str(item))
+    else:
+      for row_num,row in enumerate(body):
+        self.widget.InsertStringItem(row_num,str(row))
+
+
+class ProgressBar(Widget):
+  "wx ProgressBar widget abstractor"
+
+  def __init__(self):
+    self.widget.SetRange(100)
+
+  def read(self):
+    "Get progress bar position"
+    return self.widget.GetValue() / 100.
+    
+  def write(self,value):
+    "Set progress bar position"
+    # negative values pulse the bar, positive values position the bar. 
+    if value < 0:
+      self.widget.Pulse()
+    else:
+      self.widget.SetValue(int(round(value * 100)))
+ 
 
 class RadioButton(Widget):
   "wx RadioButton widget abstractor"
@@ -262,6 +360,71 @@ class ToggleButton(Widget):
     self.widget.SetValue(value)
 
 
+class TreeView(ListTreeView):
+  "wx TreeView widget abstractor"
+
+  def __init__(self):
+
+    # check for allowed control type
+    if self.connection.control_value.get('head',None):
+      raise error, "%s widget do not support header." \
+        % self.widget.__class__.__name__
+    key,row = self.connection.control_value.get('body',None).iteritems().next()
+    if type(row) == list and not len(row) == 1:
+      raise error,"%s widget do not allow data rows with mode than one column."\
+        % self.widget.__class__.__name__
+
+    # connect relevant signals
+    self.widget.Bind(wx.EVT_TREE_END_LABEL_EDIT,
+      lambda event: wx.CallAfter(self.value_changed) or event.Skip())
+
+  def append_column(self,col_num,text):
+    "wx TreeCtrl has no columns support"
+    pass
+   
+  def read(self):
+    "Get values displayed by widget"
+    # get data rows
+    body = {}
+    # recursive depth first tree data node reader
+    def read_node(node_id,node_path):
+      try:
+        body[string.join(map(str,node_path),'.')] = \
+          self.row_types[0](self.widget.GetItemText(node_id))
+      except:
+        if self.row_types[col_num] == int:
+          body[string.join(map(str,node_path),'.')] = [0]
+        elif self.row_types[col_num] == float:
+          body[string.join(map(str,node_path),'.')] = [0.0]
+      child_id,child = self.widget.GetFirstChild(node_id)
+      child_num = 1
+      while child_id:
+        read_node(child_id,node_path+[child_num])
+        child_id,child = self.widget.GetNextChild(node_id,child)
+        child_num += 1
+    root_id = self.widget.GetRootItem()
+    child_id,child = self.widget.GetFirstChild(root_id)
+    child_num = 1
+    while child_id:
+      read_node(child_id,[child_num])
+      child_id,child = self.widget.GetNextChild(root_id,child)
+      child_num += 1
+    # return
+    return {'body': body}
+
+  def write_head(self,head):
+    "Header not supported"
+    pass
+
+  def root_node(self):
+    "Return the root node of the tree"
+    return self.widget.AddRoot('')
+
+  def add_node(self,parent,last_node,current_depth,data):
+    "Add current node to the tree"
+    return self.widget.AppendItem(parent,str(data))
+
+
 ## mapping between the real widget and the wal widget
 
 WIDGETS_MAP = { \
@@ -270,12 +433,15 @@ WIDGETS_MAP = { \
   wx.CheckBox:		'ToggleButton', \
   wx.ComboBox:		'ComboBox',\
   wx.Choice:		'ComboBox',\
+  wx.Gauge:		'ProgressBar', \
+  wx.ListCtrl:		'ListView', \
   wx.RadioBox:		'RadioButton', \
   wx.Slider:		'Slider', \
   wx.SpinCtrl:		'SpinButton', \
   wx.StaticText:	'Label', \
   wx.StatusBar:		'StatusBar',
   wx.TextCtrl:		'Entry',
-  wx.ToggleButton:	'ToggleButton'}
+  wx.ToggleButton:	'ToggleButton', \
+  wx.TreeCtrl:		'TreeView'}
  
 #### END

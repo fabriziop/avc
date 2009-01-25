@@ -1,0 +1,625 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html><head><title>A
+Visual Guide to Swing Components (Windows Look and Feel) (The Java&#8482;
+Tutorials &gt; Graphical User Interfaces &gt; Swing Features)</title>
+
+    
+        
+<style type="text/css">
+    .FigureCaption   { 
+        margin-left: 1in; 
+        margin-right: 1in; 
+        font-family: sans-serif; 
+        font-size: smaller; 
+        text-align: justify;
+    }
+    #TopBar_bl {
+        background: url(../../images/java_bar_bl.gif) 0 100% no-repeat;
+        width: 100%;
+        height: 60px;
+    }
+    #TopBar_br {
+        background: url(../../images/java_bar_br.gif) 100% 100% no-repeat;
+        width: 100%;
+        height: 60px;
+    }
+    #TopBar_tl {
+        background: url(../../images/java_bar_tl.gif) 0 0 no-repeat;
+        width: 100%;
+        height: 60px;
+    }
+    #TopBar_tr {
+        background: url(../../images/java_bar_tr.gif) 100% 0 no-repeat;
+        width: 100%;
+        height: 60px;
+    }
+    #TopBar {
+        background: #35556B url(../../images/java_bar.gif);
+        margin: 10px 10px 0 10px;
+        height:60px;
+        min-width:700px;
+        color: white;
+        font-family: sans-serif; 
+        font-weight: bold;
+    }
+    @media print {
+        #BreadCrumbs, #Download {
+            display: none;
+        }
+    }
+    #TopBar_right {
+        line-height: 14px;
+        float: right;
+        padding-top: 2px;
+        padding-right: 30px;
+        text-align: center;
+    }
+    @media print {
+        #TopBar_right {
+            display: none;
+        }
+    }
+    #TopBar_right a {
+        font-size: 12px;
+        margin: 3px;
+        padding: 0;
+    }
+    #TopBar a:visited, #TopBar a:link {
+        color: white;
+        text-decoration: none;
+    }
+    #TopBar a:hover, #TopBar a:active  {
+        background-color: white;
+        color: #35556B;
+    }
+    #BreadCrumbs {
+        padding: 4px 5px 0.5em 0;
+        font-family: sans-serif; 
+        float: right;
+    }
+    #BreadCrumbs a {
+        color: blue;
+    }
+    #BreadCrumbs a:visited, #BreadCrumbs a:link {
+        text-decoration: none;
+    }
+    #BreadCrumbs a:hover, #BreadCrumbs a:active {
+        text-decoration: underline;
+    }
+    #PageTitle {
+        margin: 0 5px 0.5em 0;
+        color: #E76F00;
+        font-family: sans-serif; 
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .LeftBar_shown {
+        width: 13em;
+        float: left;
+        margin-left: 10px;
+        margin-top: 4px;
+        margin-bottom: 2em;
+    }
+    @media print {
+        .LeftBar_shown {
+            display: none;
+        }
+    }
+    .LeftBar_hidden {
+        display: none;
+    }
+    #Footer {
+        padding-top: 10px;
+        padding-left: 10px;
+        margin-right: 10px;
+    }
+    .NavBit  {
+        padding: 4px 5px 0.5em 0;
+        font-family: sans-serif; 
+    }
+    @media print {
+        .NavBit {
+            display: none;
+        }
+    }
+    #TagNotes {
+        text-align: right;
+        font-size: smaller;
+        font-family: sans-serif; 
+    }
+    @media print {
+        #TagNotes a:visited, #TagNotes a:link {
+            color: #35556B;
+            text-decoration: none;
+        }
+    }
+    #Contents a, .NavBit a, #TagNotes a {
+        color: blue
+    }
+    #TagNotes a:visited, #TagNotes a:link,
+    #Contents a:visited, #Contents a:link,
+    .NavBit a:visited, .NavBit a:link {
+        text-decoration: none;
+    }
+    #TagNotes a:hover, #TagNotes a:active,   
+    #Contents a:hover, #Contents a:active,   
+    .NavBit a:hover, .NavBit a:active {  
+        text-decoration: underline;
+    }
+    #Contents {
+        float: left;
+        font-family: sans-serif; 
+    }
+    @media print {
+        #Contents {
+            display: none;
+        }
+    }
+    @media screen {
+        div.PrintHeaders {
+            display: none;
+        }
+    }
+    .linkLESSON, .nolinkLESSON {
+        margin-left: 0.5em;
+        text-indent: -0.5em
+    }
+    .linkAHEAD, .nolinkAHEAD, .linkQUESTIONS, .nolinkQUESTIONS   {
+        margin-left: 1.5em; 
+        text-indent: -0.5em
+    }
+    .linkBHEAD, .nolinkBHEAD   {
+        margin-left: 2.5em;
+        text-indent: -0.5em
+    }
+    .linkCHEAD, .nolinkCHEAD   {
+        margin-left: 3.5em;
+        text-indent: -0.5em
+    }
+    .nolinkLESSON, .nolinkAHEAD, .nolinkBHEAD, .nolinkCHEAD,
+    .nolinkQUESTIONS {
+        font-weight: bold;
+        color: #E76F00;
+    }
+    .MainFlow_indented {
+        margin-right: 10px;
+        margin-left: 15em;
+        margin-bottom: 2em;
+
+    }
+    .MainFlow_wide {
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 2em;
+
+    }
+    @media print {
+        .MainFlow_indented, .MainFlow_wide {
+            padding-top: 0;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-left: 0;
+        }
+    }
+    h3, h4, h5 {
+        color: #E76F00;
+        font-family: sans-serif;
+    }
+    #ToggleLeft {
+        display: none;
+    }
+
+    /t
+
+</style>
+<script type="text/javascript">
+    function leftBar() {
+        var nameq = 'tutorial_showLeftBar='
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookieString = cookies[i];
+            while (cookieString.charAt(0) == ' ') {
+                cookieString = cookieString.substring(1, cookieString.length);
+            }
+            if (cookieString.indexOf(nameq) == 0) {
+                cookieValue =  cookieString.substring(nameq.length,
+                        cookieString.length);
+                return cookieValue == 'yes';
+            }
+        }
+        return true;
+    }
+
+    function showLeft(b) {
+        var contents = document.getElementById("LeftBar");
+        var main = document.getElementById("MainFlow");
+        var toggle = document.getElementById("ToggleLeft");
+        if (b) {
+            contents.className = "LeftBar_shown";
+            main.className = "MainFlow_indented";
+            toggle.innerHTML = "Hide the TOC";
+            document.cookie = 'tutorial_showLeftBar=yes; path=/';
+        } else {
+            contents.className = "LeftBar_hidden";
+            main.className = "MainFlow_wide";
+            toggle.innerHTML = "Show the TOC";
+            document.cookie = 'tutorial_showLeftBar=no; path=/';
+        }
+    }
+
+    function toggleLeft() {
+        showLeft(document.getElementById("LeftBar").className ==
+                "LeftBar_hidden");
+        document.getElementById("ToggleLeft").blur();
+    }
+
+    function load() {
+        showLeft(leftBar());
+        document.getElementById("ToggleLeft").style.display="inline";
+    }
+    
+</script></head><body onload="load()">
+    <div id="TopBar"> <div id="TopBar_tr"> <div id="TopBar_tl"> <div id="TopBar_br"> <div id="TopBar_bl"> 
+                        <div id="TopBar_right"> 
+                            <a target="_blank" href="http://java.sun.com/javase/6/download.jsp">Download
+                                the JDK</a>
+                            <br>
+                            <a href="http://java.sun.com/docs/books/tutorial/search.html" target="_blank">Search the
+                                Tutorials</a>
+                            <br>
+                            <a style="display: inline;" href="javascript:toggleLeft()" id="ToggleLeft">Hide the TOC</a>
+                        </div>
+                    </div> </div> </div> </div> </div>
+    <div class="PrintHeaders">
+        <b>Trail:</b> Graphical User Interfaces
+        <br><b>Lesson:</b> Swing Features
+    </div>
+
+    <div id="LeftBar" class="LeftBar_shown">
+        <div id="Contents">
+            <div class="linkLESSON"><a href="http://java.sun.com/docs/books/tutorial/ui/features/index.html">Swing Features</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/components.html">A Visual Guide to Swing Components (Java Look and Feel)</a></div>
+<div class="nolinkAHEAD">A Visual Guide to Swing Components (Windows Look and Feel)</div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/plaf.html">Pluggable Look and Feel</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/dnd.html">Data Transfer</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/i18n.html">Internationalization and Localization</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/access.html">Accessibility</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/desktop.html">Integrating with the Desktop</a></div>
+<div class="linkAHEAD"><a href="http://java.sun.com/docs/books/tutorial/ui/features/tray.html">System Tray Icon Support</a></div>
+<div class="linkQUESTIONS"><a href="http://java.sun.com/docs/books/tutorial/ui/features/QandE/questions.html">Questions and Exercises</a></div>
+</div>
+    </div>
+    <div id="MainFlow" class="MainFlow_indented">
+            <span id="BreadCrumbs">
+                <a href="http://java.sun.com/docs/books/tutorial/index.html" target="_top">Home Page</a>
+                &gt;
+                <a href="http://java.sun.com/docs/books/tutorial/ui/index.html" target="_top">Graphical User Interfaces</a>
+                &gt;
+                <a href="http://java.sun.com/docs/books/tutorial/ui/features/index.html" target="_top">Swing Features</a>
+            </span>
+            <div class="NavBit">
+                <a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/features/components.html">«&nbsp;Previous</a>&nbsp;&#8226;&nbsp;<a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/TOC.html">Trail</a>&nbsp;&#8226;&nbsp;<a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/features/plaf.html">Next&nbsp;»</a>
+            </div>
+            <div id="PageTitle">A Visual Guide to Swing Components (Windows Look and Feel)</div>
+            <blockquote>
+<!-- A Visual Guide to Swing Components, Windows Look and Feel -->
+
+This page shows Swing components in the Windows look and feel.
+The previous page shows the same components in the 
+<a class="TutorialLink" target="_top" href="http://java.sun.com/docs/books/tutorial/ui/features/components.html">Java look and feel</a>.
+
+</blockquote>
+
+<p>
+</p><p><table align="center" border="1" cellpadding="0" cellspacing="2">
+  <tbody><tr>
+    <td bgcolor="#dedeef" width="100%">
+    <font size="+1"><a name="basic"></a>Basic Controls</font>
+<br>Simple components that are used primarily to get input from the user;
+<br>they may also show simple state.
+</td>
+  </tr>
+  <tr>
+    <td width="100%">
+    &nbsp;<table border="0" cellpadding="5" cellspacing="2">
+       
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-ButtonW.png" alt="Button image" align="bottom" height="47" width="95"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/button.html" target="_top">JButton</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-CheckBoxW.png" alt="CheckBox image" align="bottom" height="89" width="147"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/button.html#checkbox" target="_top">JCheckBox</a></td> 
+        <td valign="baseline" width="33%">
+<p></p><center><img src="compWin_files/ui-ComboBoxW.png" alt="Combo box image" align="bottom" height="104" width="177"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/combobox.html" target="_top">JComboBox</a></td> 
+        <td valign="baseline" width="34%">
+<p></p><center><img src="compWin_files/ui-ListW.png" alt="List image" align="bottom" height="112" width="176"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/list.html" target="_top">JList</a></td> 
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline"></td>
+        <td valign="baseline"></td>
+        <td valign="baseline"></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-MenuW.png" alt="Menu image" align="bottom" height="216" width="215"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/menu.html" target="_top">JMenu</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-RadioButtonW.png" alt="Radio Button image" align="bottom" height="121" width="207"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/button.html#radiobutton" target="_top">JRadioButton</a></td> 
+        <td colspan="2" valign="baseline">
+<p></p><center><img src="compWin_files/ui-SliderW.png" alt="Slider image" align="bottom" height="63" width="244"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/slider.html" target="_top">JSlider</a></td>
+         
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+         </td>
+        <td valign="baseline"></td>
+        <td valign="baseline"></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-SpinnerW.png" alt="Spinner image" align="bottom" height="20" width="126"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/spinner.html" target="_top">JSpinner</a></td> 
+        <td colspan="2" valign="baseline">
+<p></p><center><img src="compWin_files/ui-TextFieldW.png" alt="Text field image" align="bottom" height="20" width="159"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/textfield.html" target="_top">JTextField</a></td>
+        <td colspan="2" valign="baseline">
+<p></p><center><img src="compWin_files/ui-PasswordFieldW.png" alt="Password field image" align="bottom" height="20" width="196"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/passwordfield.html" target="_top">JPasswordField</a></td>
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table></p>
+
+<p><table align="center" border="1" cellpadding="0" cellspacing="2">
+  <tbody><tr>
+    <td bgcolor="#dedeef" width="100%">
+    <font size="+1"><a name="complex"></a>Interactive Displays of Highly
+    Formatted Information</font>
+<br>These components display highly formatted information that
+<br>(if you choose) can be modified by the user.
+</td>
+  </tr>
+  <tr>
+    <td width="100%">
+    &nbsp;<table border="0" cellpadding="5" cellspacing="2">
+       
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-ColorChooserW.png" alt="Color Chooser Image" align="bottom" height="345" width="433"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/colorchooser.html" target="_top">JColorChooser</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-TextPaneW.png" alt="Text pane Image" align="bottom" height="271" width="274"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/editorpane.html" target="_top">JEditorPane</a> and
+<a href="http://java.sun.com/docs/books/tutorial/uiswing/components/editorpane.html" target="_top">JTextPane</a></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td>
+         </td>
+        <td colspan="2"></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td colspan="2" valign="baseline">
+<p></p><center><img src="compWin_files/ui-FileChooserW.png" alt="File Chooser Image" align="bottom" height="213" width="391"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/filechooser.html" target="_top">JFileChooser</a></td>
+         
+      </tr>
+      <tr align="center" valign="bottom">
+        <td>
+         </td>
+        <td colspan="2"></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-TableW.png" alt="Table Image" align="bottom" height="102" width="382"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/table.html" target="_top">JTable</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-TextAreaW.png" alt="Text Image" align="bottom" height="136" width="224"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/text.html" target="_top">JTextArea</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-TreeW.png" alt="Tree Image" align="bottom" height="124" width="141"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tree.html" target="_top">JTree</a></td> 
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table>
+
+</p><p><table align="center" border="1" cellpadding="0" cellspacing="2">
+  <tbody><tr>
+    <td bgcolor="#dedeef" width="100%">
+    <font size="+1"><a name="display"></a>Uneditable Information Displays</font>
+<br>These components exist solely to give the user information.
+</td>
+  </tr>
+  <tr>
+    <td width="100%">
+    <table border="0" cellpadding="5" cellspacing="2">
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-LabelW.png" alt="Label image" align="bottom" height="118" width="158"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/label.html" target="_top">JLabel</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-ProgressBarW.png" alt="Progress bar image" align="bottom" height="17" width="100"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/progress.html" target="_top">JProgressBar</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-SeparatorW.png" alt="Separator image" align="bottom" height="24" width="213"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/separator.html" target="_top">JSeparator</a></td> 
+        <td align="center" valign="baseline">
+<p></p><center><img src="compWin_files/ui-ToolTipW.png" alt="Tool tip image" align="bottom" height="128" width="132"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tooltip.html" target="_top">JToolTip</a></td> 
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table></p>
+
+<p><table align="center" border="1" cellpadding="0" cellspacing="2">
+  <tbody><tr>
+    <td bgcolor="#dedeef" width="100%">
+    <font size="+1"><a name="window"></a>Top-Level Containers</font>
+<br>At least one of these components must be present in any Swing
+application.
+</td>
+  </tr>
+  <tr>
+    <td width="100%">
+    <table border="0" cellpadding="5" cellspacing="2">
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-Applet.png" alt="Applet image" align="bottom" height="77" width="85"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/applet.html" target="_top">JApplet</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-DialogW.png" alt="Dialog image" align="bottom" height="122" width="268"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/dialog.html" target="_top">JDialog</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-FrameW.png" alt="Frame image" align="bottom" height="95" width="192"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/frame.html" target="_top">JFrame</a></td> 
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table>
+
+
+</p><p><table align="center" border="1" cellpadding="0" cellspacing="2" height="59">
+  <tbody><tr>
+    <td bgcolor="#dedeef" height="28" width="100%">
+<font size="+1"><a name="generalcontainer"></a>General-Purpose Containers</font>
+<br>These general-purpose containers are used in most Swing applications.
+</td>
+  </tr>
+  <tr>
+    <td height="22" width="100%">
+    <table border="0" cellpadding="5" cellspacing="2">
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-PanelW.png" alt="Panel image" align="bottom" height="83" width="276"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/panel.html" target="_top">JPanel</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-ScrollPaneW.png" alt="Scroll pane image" align="bottom" height="214" width="264"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/scrollpane.html" target="_top">JScrollPane</a></td> 
+      </tr>
+      <tr align="center" valign="bottom">
+        <td height="5"></td>
+        <td></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-SplitPaneW.png" alt="Split pane image" align="bottom" height="145" width="290"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/splitpane.html" target="_top">JSplitPane</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-TabbedPaneW.png" alt="Tabbed pane image" align="bottom" height="77" width="234"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/tabbedpane.html" target="_top">JTabbedPane</a></td> 
+      </tr>
+      <tr align="center" valign="bottom">
+        <td></td>
+        <td></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-ToolBarW.png" alt="ToolBar image" align="bottom" height="31" width="98"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/toolbar.html" target="_top">JToolBar</a></td> 
+        <td width="50%">
+        &nbsp;</td> 
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table></p>
+
+<p><table align="center" border="1" cellpadding="0" cellspacing="2">
+  <tbody><tr>
+    <td bgcolor="#dedeef" width="100%">
+<font size="+1"><a name="specialcontainer"></a>Special-Purpose Containers</font>
+<br>These special-purpose containers play specific roles in the UI.
+</td>
+  </tr>
+  <tr>
+    <td width="100%">
+    <table border="0" cellpadding="5" cellspacing="2">
+      <tbody><tr align="center" valign="bottom">
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-InternalFrameW.png" alt="Internal frame image" align="bottom" height="171" width="263"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/internalframe.html" target="_top">JInternalFrame</a></td> 
+        <td valign="baseline">
+<p></p><center><img src="compWin_files/ui-LayeredPaneW.png" alt="Layered pane image" align="bottom" height="201" width="308"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/layeredpane.html" target="_top">JLayeredPane</a></td> 
+      </tr>
+      <tr align="center" valign="bottom">
+
+        <td valign="baseline"></td>
+        <td valign="baseline"></td>
+      </tr>
+      <tr align="center" valign="bottom">
+        <td colspan="2" valign="baseline">
+<p></p><center><img src="compWin_files/ui-rootPane.gif" alt="Root pane image" align="bottom" height="166" width="367"></center><br>
+        <a href="http://java.sun.com/docs/books/tutorial/uiswing/components/rootpane.html" target="_top">Root pane</a></td>
+         
+      </tr>
+    </tbody></table></td>
+  </tr>
+</tbody></table></p>
+
+
+<p>
+
+        </p><div class="NavBit">
+            <a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/features/components.html">« Previous</a>
+            &#8226;
+            <a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/TOC.html">Trail</a>
+            &#8226;
+            <a target="_top" href="http://java.sun.com/docs/books/tutorial/ui/features/plaf.html">Next »</a>
+        </div>
+    </div>
+    <div id="Footer">
+<hr>
+<div id="TagNotes"><font face="sans-serif" size="1">
+    Problems with the examples? Try <a target="_blank" href="http://java.sun.com/docs/books/tutorial/information/run-examples.html">Compiling and Running
+        the Examples: FAQs</a>.
+    <br>
+    Complaints? Compliments? Suggestions? <a target="_blank" href="http://developer.sun.com/contact/tutorial_feedback.jsp">Give
+    us your feedback</a>.
+</font></div> 
+
+<div id="Footer">
+<p><font face="sans-serif" size="1"><a name="license_info">Your use of this</a> page <a href="http://java.sun.com/docs/books/tutorial/">(http://java.sun.com/docs/books/tutorial</a> (Last Updated <a href="http://java.sun.com/docs/books/tutorial/information/history.html">2/14/2008</a>))
+and all the material on pages under "The Java Tutorials" banner is
+subject to the <a href="http://developers.sun.com/global/termsofuse.html#g2_12">Terms of Use</a>.
+Additionally, (i) any example code contained in any of these Java
+Tutorials pages is also licensed under the
+<a href="http://developers.sun.com/license/berkeley_license.html">Code
+Sample License</a>, and (ii) the entire Java Tutorials content is available for
+download under the Java Tutorials Limited Non-Commercial License
+for limited, non-commercial individual and/or research and instructional use at
+<a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=tutorial-2008_03_14-oth-JPR@CDS-CDS_Developer">Sun Download Center</a>.</font></p>
+
+<!--
+-->
+<table border="0" cellpadding="5" cellspacing="0" width="100%">
+    <tbody><tr>
+         <td width="20%">
+	 <table border="0" cellpadding="5" cellspacing="0" width="100%">
+            <tbody><tr>
+              <td align="center"><img id="duke" src="compWin_files/DukeWave.gif" height="55" width="55"></td>
+              <td align="left" valign="middle"><img id="sun" src="compWin_files/logo_sun_small_sdn.gif" height="29" width="61"></td>
+           </tr>
+          </tbody></table>
+          </td>
+
+          <td align="center" valign="middle" width="55%">
+		<font color="#7e9cb1" size="1"><a href="http://developers.sun.com/global/aboutsun.html">About Sun</a> | <a href="http://developers.sun.com/global/aboutsdn.html">About This Site</a> | <a href="http://developers.sun.com/global/termsofuse.html">Terms of Use</a> | <a href="http://developers.sun.com/global/trademarks.html">Trademarks</a></font><font color="#7e9cb1">&nbsp;</font> 
+	 </td>
+          <td align="right" valign="middle" width="25%">
+		<font color="#4b7592" size="2"><strong>A Sun Developer Network Site</strong></font><br>
+      		<font size="1"><a href="http://java.sun.com/docs/books/tutorial/information/copyright.html">Copyright</a></font> <font color="#4b7592" size="2">1995-2008 Sun Microsystems, Inc.</font>
+	 </td>
+     </tr>     
+</tbody></table>
+</div>
+    </div>
+    <div class="PrintHeaders">
+        <b>Previous page:</b> A Visual Guide to Swing Components (Java Look and Feel)
+        <br><b>Next page:</b> Pluggable Look and Feel
+    </div>
+    <script language="JavaScript" src="compWin_files/s_code_remote.js"></script><script language="JavaScript" src="compWin_files/metrics_group1.js"></script></body></html>

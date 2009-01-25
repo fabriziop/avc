@@ -43,12 +43,12 @@ class error(Exception):
 # imported by application program
 
 # supported toolkit names indexed by python binding module names
-TOOLKITS = { 'gtk':'GTK+','qt':'Qt3','PyQt4':'Qt4','Tkinter':'Tkinter', \
-  'wx':'wxWidgets'}
+TOOLKITS = { 'gtk':'GTK+','qt':'Qt3','PyQt4':'Qt4','javax':'SWING', \
+  'Tkinter':'Tkinter','wx':'wxWidgets'}
 
 # avc toolkit bindings indexed by python binding module names
 AVC_BINDINGS = { 'gtk':'avcgtk','qt':'avcqt3','PyQt4':'avcqt4', \
-  'Tkinter':'avctk', 'wx':'avcwx'}
+  'javax':'avcswing','Tkinter':'avctk', 'wx':'avcwx'}
 
 AVC_PREFIX = 'avc.'
 
@@ -79,7 +79,6 @@ class AVCCD:
     self.connections = {}
     self.connections_updates = {}
     self.connected_widgets = {}
-    self.first_call = True
     self.timer = None
 avccd = AVCCD()
 
@@ -176,11 +175,8 @@ class AVC(object):
 
       # if the connection exists, get it from connections dictionary,
       # if the connection does not exists, create it.
-      if avccd.connections.has_key((control_name,self)):
-        connection = avccd.connections[(control_name,self)]
-      else:
-        connection = avccd.connections[(control_name,self)] = \
-          Connection(getattr(self,control_name))
+      connection = avccd.connections.setdefault((control_name,self), \
+        Connection(getattr(self,control_name)))
 
       # add widget to connection and mark widget as connected
       connection.add_widget(control_name,self,widget,widget_name)
@@ -260,12 +256,7 @@ class Connection:
         self.coget = avccd.cogets[(control_name,object_.__class__)] = \
           Coget(control_name,object_)
         # set coget as an property in place of application variable.
-	# If object_ is a module, set coget directly to object_, else
-	# set coget into object class definition.
-	if object_.__class__ == sys.__class__:
-          setattr(object_,control_name,self.coget)
-	else:
-          setattr(object_.__class__,control_name,self.coget)
+        setattr(object_.__class__,control_name,self.coget)
 	
       # save connection reference into coget
       self.coget.add_connection(self)
@@ -347,16 +338,13 @@ class Coget(object):
     "Add a connection"
     self.connections.append(connection)
 
-
   def remove_connection(self,connection):
     "Remove a connection. If it is the last one, delete coget."
     self.connections.remove(connection)
-
     if not self.connections:
       del avccd.cogets[(self.control_name,connection.object_.__class__)]
       del self.control_name
       del self.connections
-	
 
   def __get__(self,object_,classinfo):
     "Get control value"
@@ -370,7 +358,6 @@ class Coget(object):
     Update control view in all widgets binded to the control, if setter is
     a widget, do not update it.
     """
-
     # if not given, get or create connection
     if not connection:
       # if the connection exists, get it from connections dictionary,
@@ -455,6 +442,40 @@ class Widget:
     self.connection.remove_widget(self)
 
 
+class ListTreeView(Widget,real.ListTreeView):
+
+  def __init__(self,connection,listtreeview):
+    "Common init operations for ListView and TreeView abstractors"
+
+    # generic abstract widget init
+    Widget.__init__(self,connection,listtreeview,(dict,))
+
+    # check for allowed control type
+    head = connection.control_value.get('head',None)
+    if head and type(head) != list:
+      raise error, "%s widget do not allow '%s' type as header, use a list." \
+      % (listtreeview.__class__.__name__,type(head).__name__)
+
+    # save column number
+    self.cols_num = len(self.row_types)
+
+    # check for header size equal to column number
+    if head and len(head) != self.cols_num:
+      raise error, "%s widget require header lenght equal to data row size." \
+      % listtreeview.__class__.__name__
+
+    # real common init
+    real.ListTreeView.__init__(self)
+
+    # add required columns to TreeView widget with title (header), if required.
+    head = self.connection.control_value.get('head',None)
+    if head:
+      map(self.append_column,range(len(self.row_types)),head)
+    else:
+      map(lambda col_num: self.append_column(col_num,''),
+        range(len(self.row_types)))
+
+
 class Button(real.Button,Widget):
   "Button widget abstractor"
 
@@ -498,7 +519,7 @@ class Label(real.Label,Widget):
     Widget.__init__(self,connection,label)
 
     # check for generic python object
-    if connection.control_type in (bool,float,int,list,str,tuple):
+    if connection.control_type in (bool,float,int,list,str,tuple,dict):
       self.is_object = False
       control_value = connection.control_value
     else:
@@ -512,6 +533,10 @@ class Label(real.Label,Widget):
     try:
       if connection.control_type == list:
         junk = self.format % tuple(control_value)
+      elif connection.control_type == dict:
+        junk = self.format % control_value
+        if junk == self.format:
+          raise
       else:
         junk = self.format % control_value
       if avccd.verbosity > 2:
@@ -551,6 +576,39 @@ class Label(real.Label,Widget):
         real.Label.write(self,self.format % value)
     else:
       real.Label.write(self,str(value))
+
+
+class ListView(real.ListView,ListTreeView):
+  "ListView widget abstractor"
+
+  def __init__(self,connection,listview):
+
+    # save data row types
+    body = connection.control_value.get('body',None)
+    if type(body[0]) == list:
+      self.row_types = map(type,body[0])
+    else:
+      self.row_types = [type(body[0])]
+
+    # common init
+    ListTreeView.__init__(self,connection,listview)
+
+    # real widget init
+    real.ListView.__init__(self)
+
+
+class ProgressBar(real.ProgressBar,Widget):
+  "ProgressBar widget abstractor"
+
+  def __init__(self,connection,progressbar):
+    # generic abstract widget init
+    Widget.__init__(self,connection,progressbar,(float,int))
+    # real widget init
+    real.ProgressBar.__init__(self)
+
+  def read(self):
+    "Get Entry value"
+    return self.connection.control_type(real.Entry.read(self))
 
 
 class RadioButton(real.RadioButton,Widget):
@@ -619,6 +677,69 @@ class ToggleButton(real.ToggleButton,Widget):
     Widget.__init__(self,connection,togglebutton,(bool,))
     # real widget init
     real.ToggleButton.__init__(self)
+
+
+class TreeView(real.TreeView,ListTreeView):
+  "TreeView widget abstractor"
+
+  def __init__(self,connection,treeview):
+
+    # save data row types
+    body = connection.control_value.get('body',None)
+    self.row_types = map(type,body.itervalues().next())
+
+    # common init
+    ListTreeView.__init__(self,connection,treeview)
+
+    # real widget init
+    real.TreeView.__init__(self)
+
+
+  def write(self,value):
+    "Set values displayed by widget"
+    # set header
+    if value.has_key('head'):
+      self.write_head(value['head'])
+    # set data rows
+    body = value['body']
+    # sort node ids in depth first order
+    node_ids = body.keys()
+    nodes = zip(map(lambda id: map(int,id.split('.')),node_ids),node_ids)
+    nodes.sort()
+    # depth first tree data node writer
+    current_depth = 1
+    parents = [self.root_node()]
+    last_node = None
+    for node in nodes:
+      node_depth = len(node[0])
+      if node_depth > current_depth:
+        parents.append(last_node)
+        current_depth = node_depth
+      elif node_depth < current_depth:
+        last_node = parents.pop(-1)
+        current_depth = node_depth
+      last_node = self.add_node(parents[-1],last_node,current_depth,
+        body[node[1]])
+ 
+
+## support functions
+
+# support for ListView and TreeView abstractors"
+
+def listtreeview(connection,treeview):
+  """
+  Route real tree view widgets supporting both list and tree data structures
+  to the abstract widgets supporting only list or tree data.
+  """
+  body_type = type(connection.control_value.get('body',None))
+  if body_type == list:
+    return ListView(connection,treeview)
+  elif body_type == dict:
+    return TreeView(connection,treeview)
+  else:
+    raise error, "%s widget do not allow '%s' type as data," \
+    + "use a list for tabular data or a dictionary for tree data." \
+    % (treeview.__class__.__name__,type(body).__name__)
 
 
 #### END

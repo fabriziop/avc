@@ -30,6 +30,8 @@
 
 import qt			# Qt tool kit bindings
 
+import string			# string operations
+
 
 #### GENERAL ABSTRACTION METHODS
 
@@ -65,7 +67,33 @@ class Widget:
   def connect_delete(self,widget,delete_method):
     "Connect widget delete method to destroy event"
     qt.QObject.connect(widget,qt.SIGNAL("destroyed()"),delete_method)
-		       
+       
+
+class ListTreeView(Widget):
+  "Support to ListView and TreeView abstractors"
+
+  def __init__(self):
+    "Init operations common to ListView and TreeView"
+
+    # clear all items and remove all columns, if any
+    self.widget.clear()
+    map(self.widget.removeColumn,range(self.widget.columns()))
+
+    # inhibit autosorting
+    self.widget.setSorting(999999999)
+
+    # connect relevant signals
+    qt.QObject.connect(self.widget,
+      qt.SIGNAL("selectionChanged(QListViewItem*)"),self.value_changed)
+    qt.QObject.connect(self.widget,
+      qt.SIGNAL("currentChanged(QListViewItem*)"),self.value_changed)
+    qt.QObject.connect(self.widget,
+      qt.SIGNAL("itemRenamed(QListViewItem*,int)"),self.value_changed)
+
+  def append_column(self,col_num,text):
+   "Append a column to the TreeView"
+   self.widget.addColumn(text)
+   
 
 class Button(Widget):
   "Qt3 Button widget abstractor"
@@ -78,7 +106,6 @@ class Button(Widget):
       self.widget,qt.SIGNAL("released()"),self.value_changed)
 
   def read(self):
-    "Get button status"
     return self.widget.isDown()
 
   def write(self,value):
@@ -133,6 +160,75 @@ class Label(Widget):
   def write(self,value):
     "Set text into Label"
     self.widget.setText(value)
+
+
+class ListView(ListTreeView):
+  "Qt3 TreeView widget abstractor"
+
+  def __init__(self):
+    pass
+
+  def read(self):
+    "Get values displayed by widget"
+    # get head
+    head = map(lambda col_num: str(self.widget.columnText(col_num)),
+      range(self.widget.columns()))
+    # get data rows
+    body = []
+    item = self.widget.firstChild()
+    while item:
+      row = []
+      for col_num in range(self.cols_num):
+        try:
+          row.append(self.row_types[col_num](item.text(col_num)))
+        except:
+          if self.row_types[col_num] == int:
+            row.append(0)
+          elif self.row_types[col_num] == float:
+            row.append(0.0)
+      body.append(row)
+      item = item.nextSibling()
+    # return
+    return {'head': head,'body': body}
+
+  def write(self,value):
+    "Set values displayed by widget"
+    # set header
+    if value.has_key('head'):
+      map(self.widget.setColumnText,
+        range(self.widget.columns()),value['head'])
+    # set data rows
+    self.widget.clear()
+    self.widget.setSorting(999999999)
+    body = value['body']
+    last_item = None
+    if type(body[0]) == list:
+      for row in body:
+        last_item = qt.QListViewItem(*[self.widget,last_item] + map(str,row))
+    else:
+      for row in body:
+        last_item = qt.QListViewItem(self.widget,last_item,str(row))
+
+
+class ProgressBar(Widget):
+  "Qt3 ProgressBar widget abstractor"
+
+  def __init__(self):
+    self.widget.setProgress(10,0)
+    pass
+
+  def read(self):
+    "Get progress bar position"
+    return self.widget.progress() / 100.0
+    
+  def write(self,value):
+    "Set progress bar position"
+    # negative values pulse the bar, positive values position the bar. 
+    if value < 0:
+      #self.widget.reset()
+      self.widget.setProgress(0,0)
+    else:
+      self.widget.setProgress(int(round(value * 100)),100)
 
 
 class RadioButton(Widget):
@@ -225,6 +321,57 @@ class ToggleButton(Widget):
     self.widget.setChecked(value)
 
 
+class TreeView(ListTreeView):
+  "Qt3 tree view not supported"
+
+  def __init__(self):
+    pass
+
+  def read(self):
+    "Get values displayed by widget"
+    # get head
+    head = map(lambda col_num: str(self.widget.columnText(col_num)),
+      range(self.widget.columns()))
+    # get data rows
+    body = {}
+    # recursive depth first tree data node reader
+    def read_node(node,node_path):
+      row = []
+      for col_num in range(self.cols_num):
+        try:
+            row.append(self.row_types[col_num](node.text(col_num)))
+        except:
+          if self.row_types[col_num] == int:
+            row.append(0)
+          elif self.row_types[col_num] == float:
+            row.append(0.0)
+      body[string.join(map(str,node_path),'.')] = row
+      child = node.firstChild()
+      if child:
+        read_node(child,node_path+[1])
+      sibling = node.nextSibling() 
+      while sibling:
+        node_path[-1] += 1
+        read_node(sibling,node_path)
+        sibling = sibling.nextSibling()
+    node = self.widget.firstChild()
+    if node:
+      read_node(node,[1])
+    # return
+    return {'head': head,'body': body}
+
+  def write_head(self,head):
+    map(self.widget.setColumnText,range(self.widget.columns()),head)
+
+  def root_node(self):
+    "Return the root node of the tree"
+    return self.widget
+
+  def add_node(self,parent,last_node,current_depth,data):
+    "Add current node to the tree"
+    return qt.QListViewItem(*[parent,last_node] + map(str,data))
+ 
+
 ## mapping between real widget and the wal widget
 
 WIDGETS_MAP = { \
@@ -233,6 +380,8 @@ WIDGETS_MAP = { \
   qt.QComboBox:		'ComboBox', \
   qt.QLineEdit:		'Entry', \
   qt.QLabel:		'Label', \
+  qt.QListView:		'listtreeview', \
+  qt.QProgressBar:	'ProgressBar', \
   qt.QRadioButton:	'RadioButton', \
   qt.QSlider:		'Slider', \
   qt.QSpinBox:		'SpinButton', \

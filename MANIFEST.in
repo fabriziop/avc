@@ -3,8 +3,9 @@ include copyright
 include COPYING.*
 include doc/user_manual.odt
 include doc/user_manual.pdf
-include doc/user_manual.pdf.readme
 include doc/license.odt
+include doc/listview.png
+include doc/treeview.png
 include examples/*.*
 include images/*.*
 exclude images/author_mail.png

@@ -39,17 +39,10 @@ based on MVC (Model View Controller).
 
 <h4>News</h4>
 
-<p><b>10-Jun-2008</b>: released AVC 0.6.0, new main features are multiple
-matching namespaces and dynamic connections, changed package importing
-adding automatic widget toolkit detection, extended separation between
-program logic and GUI to all toolkits, new "countdown" example
-demonstrating multiple matching namespaces and dynamic connections,
-updated all examples to new api, internal optimizations.
-<a href="relnotes.html#0_6_0">Release note</a>.</p>
-
-<p><b>10-Jun-2008</b>: created a
-<a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">mailing list</a>
-for AVC users.</p>
+<p><b>10-Feb-2009</b>: released AVC 0.7.0.
+This release expands the number of supported widgets introducing the support
+for the progress bar widget and for two advanced widgets: the list view and the
+tree view. <a href="relnotes.html#0_7_0">Release note</a>.</p>
 
 <h4>Features</h4>
 <ul>
@@ -67,11 +60,13 @@ for AVC users.</p>
   and
   <a href="http://wxglade.sourceforge.net/">wxGlade</a>
   interface design tools. 
-  <li>Widgets support: button, check button, combo box, entry, label,
-  radio button, slider, spin button, status bar, text view/edit,
-  toggle button.</li>
-  <li>Variable types support: boolean, integer, float, string, list,
-  tuple.</li>
+  <li>Normal widgets: button, check button, combo box, entry, label,
+  progress bar, radio button, slider, spin button, status bar,
+  text view/edit, toggle button.</li>
+  <li>Advanced widgets: list view, tree view.</li>
+  <li>Normal variable types: boolean, integer, float, string, list, tuple.</li>
+  <li>Advanced variable types: 2D table (list of lists), hierarchical tree
+  (dictionary with path of values inside tree as keys).</li>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or periodic.</li>
   <li>Testing printout logging activity with selectable verbosity</li>

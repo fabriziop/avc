@@ -7,7 +7,7 @@
 # .author     : Fabrizio Pollastri <pollastri@iriti.cnr.it>
 # .site	      : Torino - Italy
 # .creation   :	11-Nov-2006
-# .copyright  :	(c) 2006 2007 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2009 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -54,11 +54,11 @@ if sys.version_info < (2, 3):
 
 setup (
   name = 'avc',
-  version = '0.6.1',
+  version = '0.7.0',
   author = 'Fabrizio Pollastri',
-  author_email = 'pollastri@inrim.it',
+  author_email = 'f.pollastri@inrim.it',
   maintainer = 'Fabrizio Pollastri',
-  maintainer_email = 'pollastri@inrim.it',
+  maintainer_email = 'f.pollastri@inrim.it',
   url = 'http://avc.inrim.it',
   license = 'http://www.gnu.org/licenses/gpl.txt',
   platforms = ['Linux'],

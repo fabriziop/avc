@@ -1,3 +1,11 @@
+python-avc (0.7.0-1) experimental; urgency=low
+
+  * New upstream
+  * debian/control
+    - switch Vcs-Browser field to viewsvn
+
+ -- Fabrizio Pollastri <f.pollastri@inrim.it>  Mon, 26 Jan 2009 16:10:37 +0100
+
 python-avc (0.6.1-1) unstable; urgency=medium
 
   * New upstream release:

@@ -52,6 +52,7 @@ class Example(AVC):
 
     # all types of connected variables
     self.bool_value = True
+    self.dict_value = {'k1':'A','k2':'B'}
     self.float_value = 1.0
     self.int_value = 1
     self.list_value = [1,2,3]

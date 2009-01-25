@@ -1,3 +1,9 @@
+AVC 0.7.0 released 26-Jan-2009
+  * Added support for advanced widgets: list view and tree view.
+  * Added support for progress bar widget.
+  * New examples: a list tree view example for each supported toolkit.
+  * Updated "showcase" examples to add progress bar.
+
 AVC 0.6.1 released 26-Jan-2009
   * Added PDF documentation sources (ODT file and images).
 

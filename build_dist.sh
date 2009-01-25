@@ -4,10 +4,10 @@
 # .context    : Application View Controller
 # .title      : Build AVC distibutions
 # .kind	      : command shell
-# .author     : Fabrizio Pollastri <pollastri@inrim.it>
+# .author     : Fabrizio Pollastri <f.pollastri@inrim.it>
 # .site	      : Torino - Italy
 # .creation   :	15-Oct-2007
-# .copyright  :	(c) 2007 Fabrizio Pollastri
+# .copyright  :	(c) 2007-2009 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -29,8 +29,8 @@
 
 # parameters
 NAME="avc"
-VERSION="0.6.1"
-MANTAINER_ADDRESS="pollastri@inrim.it"
+VERSION="0.7.0"
+MANTAINER_ADDRESS="f.pollastri@inrim.it"
 
 SECTION="python"
 PRIORITY="optional"

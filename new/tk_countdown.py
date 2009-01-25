@@ -31,7 +31,7 @@
 
 from Tkinter import *			# Tk interface
 
-from avc.avctk import *			# AVC for Tk
+from avc import *			# AVC for Tk
 
 from random import randint		# random integer generator
 

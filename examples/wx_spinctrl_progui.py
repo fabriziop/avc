@@ -50,7 +50,7 @@ class Example(wx.PySimpleApp,AVC):
     root = wx.Frame(None,title='AVC wx spin control example',size=(320,60))
     statictext = wx.StaticText(root,label='%s',name='spin_value__statictext',
       size=(100,20))
-    spinctrl = wx.SpinCtrl(root,name='spin_value__spin',size=(100,25))
+    spinctrl = wx.SpinCtrl(root,name='spin_value__spinctrl',size=(100,25))
 
     # layout the static text and the spin control horizontally into the window
     hsizer = wx.BoxSizer(wx.HORIZONTAL)

@@ -31,6 +31,7 @@
 import gtk			#--
 import gobject			#- gimp tool kit bindings
 
+import string			# string operations
 
 #### GENERAL ABSTRACTION METHODS
 
@@ -44,7 +45,7 @@ def init(*args,**kwargs):
 
 def widget_children(widget):
   "Return the list of all children of the widget"
-  # Widgets that are not a subclass of gtk.Container have no children.
+  # widgets that are not a subclass of gtk.Container have no children.
   if isinstance(widget,gtk.Container):
     return widget.get_children()
   else:
@@ -72,10 +73,29 @@ def timer_wrap(function):
 class Widget:
   "GTK Widget Abstraction Layer abstract class"
 
+  def __init__(self,allowed_types=None):
+    # check for supported control type
+    if allowed_types and not self.connection.control_type in allowed_types:
+      raise error, "Control type '%s' not supported with '%s' widget" % \
+        (self.connection.control_type.__name__,self.widget.__class__.__name__)
+
   def connect_delete(self,widget,delete_method):
     "Connect widget delete method to destroy event"
     widget.connect("destroy",delete_method)
- 
+
+
+class ListTreeView(Widget):
+  "Support to ListView and TreeView abstractors"
+
+  def __init__(self):
+    "Init operations common to ListView and TreeView"
+    pass
+
+  def append_column(self,col_num,text):
+   "Append a column to the TreeView"
+   self.widget.append_column(gtk.TreeViewColumn(
+     text,gtk.CellRendererText(),text=col_num))
+   
 
 class Button(Widget):
   "GTK Button real widget abstractor"
@@ -145,6 +165,69 @@ class Label(Widget):
     "Set text into Label"
     self.widget.set_label(value)
 
+
+class ListView(ListTreeView):
+  "GTK TreeView widget abstractor"
+
+  def __init__(self):
+    # prepare data model.
+    self.model = gtk.ListStore(*self.row_types)
+    # set model to widget
+    self.widget.set_model(self.model)
+
+    # connect relevant signals
+    self.model.connect("row-deleted",self.value_changed)
+    self.model.connect("row-changed",self.value_changed)
+
+
+  def read(self):
+    "Get values displayed by widget"
+    # get head
+    head = map(gtk.TreeViewColumn.get_title,self.widget.get_columns())
+    # get data rows
+    body = []
+    self.model.foreach(
+      lambda model,path,iter,body: body.append(
+        list(model.get(iter,*range(self.cols_num)))),body)
+    # return
+    return {'head': head,'body': body}
+
+
+  def write(self,value):
+    "Set values displayed by widget"
+    # set header
+
+    if value.has_key('head'):
+      map(gtk.TreeViewColumn.set_title,self.widget.get_columns(),value['head'])
+    # set data rows
+    body = value['body']
+    self.model.clear()
+    if type(body[0]) == list:
+      for row in body:
+        self.model.append(row)
+    else:
+      for row in body:
+        self.model.append([row])
+
+
+class ProgressBar(Widget):
+  "GTK ProgressBar widget abstractor"
+
+  def __init__(self):
+    pass
+
+  def read(self):
+    "Get progress bar position"
+    return self.widget.get_fraction()
+    
+  def write(self,value):
+    "Set progress bar position"
+    # negative values pulse the bar, positive values position the bar. 
+    if value < 0:
+      self.widget.pulse()
+    else:
+      self.widget.set_fraction(value)
+ 
 
 class RadioButton(Widget):
   "GTK RadioButton widget abstractor"
@@ -248,6 +331,55 @@ class ToggleButton(Widget):
     self.widget.set_active(value)
 
 
+class TreeView(ListTreeView):
+  "GTK TreeView widget abstractor"
+
+  def __init__(self):
+    # prepare data model.
+    self.model = gtk.TreeStore(*self.row_types)
+    # set model to widget
+    self.widget.set_model(self.model)
+
+    # connect relevant signals
+    self.model.connect("row-deleted",self.value_changed)
+    self.model.connect("row-changed",self.value_changed)
+
+
+  def read(self):
+    "Get values displayed by widget"
+    # get head
+    head = map(gtk.TreeViewColumn.get_title,self.widget.get_columns())
+    # get data rows
+    body = {}
+    # recursive depth first tree data node reader
+    def read_node(node_iter,parent_id):
+      node_id = string.join(
+        map(lambda x: str(x+1),self.model.get_path(node_iter)),'.')
+      body[node_id] = list(self.model.get(node_iter,*range(self.cols_num)))
+      child_iter = self.model.iter_children(node_iter)
+      while child_iter:
+        read_node(child_iter,node_id)
+        child_iter = self.model.iter_next(child_iter)
+    node_iter = self.model.get_iter_first()
+    while node_iter:
+      read_node(node_iter,None)
+      node_iter = self.model.iter_next(node_iter)
+    # return
+    return {'head': head,'body': body}
+
+  def write_head(self,head):
+    "Write header"
+    map(gtk.TreeViewColumn.set_title,self.widget.get_columns(),head)
+
+  def root_node(self):
+    "Return the root node of the tree"
+    return None
+
+  def add_node(self,parent,last_node,current_depth,data):
+    "Add current node to the tree"
+    return self.model.append(parent,data)
+      
+
 ## mapping between the real widget and the wal widget
 
 WIDGETS_MAP = { \
@@ -256,12 +388,14 @@ WIDGETS_MAP = { \
   gtk.ComboBox:		'ComboBox',\
   gtk.Entry:		'Entry', \
   gtk.Label:		'Label', \
+  gtk.ProgressBar:	'ProgressBar', \
   gtk.RadioButton:	'RadioButton', \
   gtk.HScale:		'Slider', \
   gtk.SpinButton:	'SpinButton', \
   gtk.Statusbar:	'StatusBar', \
   gtk.TextView:		'TextView', \
   gtk.ToggleButton:	'ToggleButton', \
+  gtk.TreeView:		'listtreeview', \
   gtk.VScale:		'Slider'}
  
 #### END

@@ -67,6 +67,7 @@ class Example(QApplication,AVC):
     self.boolean2 = False
     self.radio = 0
     self.integer = 0
+    self.progressbar = -1.0
     self.float = 0.0
     self.string = ''
     self.textview = ''
@@ -82,12 +83,14 @@ class Example(QApplication,AVC):
     self.increment.next()
 
 
+
   def incrementer(self):
     """
     Booleans are toggled, radio button index is rotated from first to last,
-    integer is incremented by 1, float by 0.5, string is appended a char
+    integer is incremented by 1, float by 0.5, progress bar is alternatively
+    shuttled or incremented from 0 to 100%, string is appended a char
     until maxlen when string is cleared, text view/edit is appended a line
-    of text until maxlen when text is cleared, status bar message is toggled.
+    of text until maxlen when it is cleared. Status bar message is toggled.
     Return True to keep timer alive.
     """
     while True:
@@ -108,6 +111,12 @@ class Example(QApplication,AVC):
       yield True
 
       self.float += 0.5
+      yield True
+
+      if self.progressbar >= 0.9999:
+        self.progressbar = -1.0
+      else:
+        self.progressbar += 0.1
       yield True
 
       if len(self.string) >= 10:

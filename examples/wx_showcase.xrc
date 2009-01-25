@@ -7,8 +7,8 @@
         <title>AVC wx showcase example</title>
         <object class="wxFlexGridSizer">
             <hgap>5</hgap>
-            <growablerows>0,1,2,3,4,5,6,7,8,9</growablerows>
-            <rows>10</rows>
+            <growablerows>0,1,2,3,4,5,6,7,8,9,10</growablerows>
+            <rows>11</rows>
             <growablecols>2</growablecols>
             <cols>3</cols>
             <vgap>10</vgap>
@@ -233,6 +233,25 @@
             </object>
             <object class="sizeritem">
                 <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxADJUST_MINSIZE</flag>
+                <object class="wxStaticText" name="label_12b">
+                    <label>float</label>
+                </object>
+            </object>
+            <object class="sizeritem">
+                <flag>wxALIGN_CENTER_HORIZONTAL|wxADJUST_MINSIZE</flag>
+                <object class="wxGauge" name="progressbar__progressbar">
+                    <size>250, 27</size>
+                </object>
+            </object>
+            <object class="sizeritem">
+                <flag>wxEXPAND|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+                <object class="wxStaticText" name="progressbar__var">
+                    <style>wxALIGN_CENTRE</style>
+                    <label>string</label>
+                </object>
+            </object>
+            <object class="sizeritem">
+                <flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxADJUST_MINSIZE</flag>
                 <object class="wxStaticText" name="label_12">
                     <label>string</label>
                 </object>
@@ -291,6 +310,7 @@
             </object>
         </object>
         <object class="wxStatusBar" name="status__statusbar">
+            <size>250, 27</size>
             <fields>1</fields>
             <widths>-1</widths>
         </object>

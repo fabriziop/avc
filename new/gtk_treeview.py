@@ -34,7 +34,7 @@ import gobject				#--
 import gtk				#- gimp tool kit bindings
 import gtk.glade			# glade bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC for GTK
 
 
 GLADE_XML = 'gtk_treeview.glade'	# GUI glade descriptor

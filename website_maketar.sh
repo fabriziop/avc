@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # .+
 #
 # .context    : Application View Controller
@@ -29,7 +29,7 @@
 
 # parameters
 NAME="avc"
-VERSION="0.6.1"
+VERSION="0.7.0"
 
 # computed parameters
 SOURCE_ROOT="$NAME-$VERSION"
