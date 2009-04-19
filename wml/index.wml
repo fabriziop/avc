@@ -39,10 +39,15 @@ based on MVC (Model View Controller).
 
 <h4>News</h4>
 
-<p><b>10-Feb-2009</b>: released AVC 0.7.0.
-This release expands the number of supported widgets introducing the support
-for the progress bar widget and for two advanced widgets: the list view and the
-tree view. <a href="relnotes.html#0_7_0">Release note</a>.</p>
+<p><b>20-Apr-2009</b>: released AVC 0.7.1.
+This release makes some cleanup of backup files in "examples" dir and
+restore the file manual.pdf.readme in "doc" dir.
+<a href="relnotes.html#0_7_1">Release note</a>.</p>
+
+<p><b>25-Feb-2009</b>: AVC is now available as
+<a href="http://aur.archlinux.org/packages.php?ID=24215">
+package for the Arch Linux</a>
+distribution.</p>
 
 <h4>Features</h4>
 <ul>

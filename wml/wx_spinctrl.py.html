@@ -1,4 +1,4 @@
-<!-- Generator: GNU source-highlight 2.4
+<!-- Generator: GNU source-highlight 2.10
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -38,10 +38,10 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">34:</font> 
 <font color="#000000">35:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">36:</font> 
-<font color="#000000">37:</font> <font color="#009900">WXGLADE_XML</font> <font color="#990000">=</font> <font color="#FF0000">'wx_spinctrl.xrc'</font>         <i><font color="#9A1900"># GUI wxGlade descriptor</font></i>
+<font color="#000000">37:</font> WXGLADE_XML <font color="#990000">=</font> <font color="#FF0000">'wx_spinctrl.xrc'</font>         <i><font color="#9A1900"># GUI wxGlade descriptor</font></i>
 <font color="#000000">38:</font> 
 <font color="#000000">39:</font> 
-<font color="#000000">40:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font>wx<font color="#990000">.</font><font color="#009900">PySimpleApp</font><font color="#990000">,</font><font color="#009900">AVC</font><font color="#990000">):</font>
+<font color="#000000">40:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font>wx<font color="#990000">.</font>PySimpleApp<font color="#990000">,</font>AVC<font color="#990000">):</font>
 <font color="#000000">41:</font> <i><font color="#9A1900">  """</font></i>
 <font color="#000000">42:</font> <i><font color="#9A1900">  A spin control whose value is replicated into a static text</font></i>
 <font color="#000000">43:</font> <i><font color="#9A1900">  """</font></i>
@@ -49,15 +49,15 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">45:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">):</font>
 <font color="#000000">46:</font> 
 <font color="#000000">47:</font>     <i><font color="#9A1900"># init wx application base class</font></i>
-<font color="#000000">48:</font>     wx<font color="#990000">.</font><font color="#009900">PySimpleApp</font><font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">)</font>
+<font color="#000000">48:</font>     wx<font color="#990000">.</font>PySimpleApp<font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">)</font>
 <font color="#000000">49:</font> 
 <font color="#000000">50:</font>     <i><font color="#9A1900"># create GUI</font></i>
-<font color="#000000">51:</font>     xml<font color="#009900">_</font>resource <font color="#990000">=</font> xrc<font color="#990000">.</font><b><font color="#000000">XmlResource</font></b><font color="#990000">(</font><font color="#009900">WXGLADE_XML</font><font color="#990000">)</font>
-<font color="#000000">52:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> xml<font color="#009900">_</font>resource<font color="#990000">.</font><b><font color="#000000">LoadFrame</font></b><font color="#990000">(</font><font color="#009900">None</font><font color="#990000">,</font><font color="#FF0000">'frame_1'</font><font color="#990000">)</font>
+<font color="#000000">51:</font>     xml_resource <font color="#990000">=</font> xrc<font color="#990000">.</font><b><font color="#000000">XmlResource</font></b><font color="#990000">(</font>WXGLADE_XML<font color="#990000">)</font>
+<font color="#000000">52:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> xml_resource<font color="#990000">.</font><b><font color="#000000">LoadFrame</font></b><font color="#990000">(</font>None<font color="#990000">,</font><font color="#FF0000">'frame_1'</font><font color="#990000">)</font>
 <font color="#000000">53:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">Show</font></b><font color="#990000">()</font>
 <font color="#000000">54:</font>  
 <font color="#000000">55:</font>     <i><font color="#9A1900"># the variable holding the spin control value</font></i>
-<font color="#000000">56:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">56:</font>     self<font color="#990000">.</font>spin_value <font color="#990000">=</font> <font color="#993399">0</font>
 <font color="#000000">57:</font> 
 <font color="#000000">58:</font> 
 <font color="#000000">59:</font> <i><font color="#9A1900">#### MAIN</font></i>
@@ -67,4 +67,4 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">63:</font> example<font color="#990000">.</font><b><font color="#000000">MainLoop</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># run wx event loop until quit</font></i>
 <font color="#000000">64:</font> 
 <font color="#000000">65:</font> <i><font color="#9A1900">#### END</font></i>
-</tt></pre>
+<font color="#000000">66:</font> </tt></pre>

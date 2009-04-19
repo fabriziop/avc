@@ -1,3 +1,7 @@
+AVC 0.7.1 released 20-Apr-2009
+  * Cleanup of backup files in "examples" dir and restore of file
+    "manual.pdf.readme" in "doc" dir.
+
 AVC 0.7.0 released 26-Jan-2009
   * Added support for advanced widgets: list view and tree view.
   * Added support for progress bar widget.

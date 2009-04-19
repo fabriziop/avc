@@ -20,6 +20,11 @@
 {#main_bar#:
 <h3>Release Notes</h3>
 <hr>
+<h3 name="0_7_1">AVC 0.7.1</h3>
+<p>This release makes some cleanup of backup files in "examples" dir and
+restore the file "manual.pdf.readme" in "doc" dir.</p>
+
+<hr>
 <h3 name="0_7_0">AVC 0.7.0</h3>
 <p>This release expands the number of supported widgets introducing the support
 for the progress bar widget and for two advanced widgets: the list view and the
@@ -35,6 +40,10 @@ accross all the supported widget toolkits. The result is a python list of
 lists to represent list view data and a python dictionary where the keys are
 the paths of each corresponding value inside the tree (see "listtreeview/ctrl"
 example).</p>
+
+<hr>
+<h3 name="0_6_1">AVC 0.6.1</h3>
+<p>This release adds PDF documentation sources (ODT file and images).</p>
 
 <hr>
 <h3 name="0_6_0">AVC 0.6.0</h3>

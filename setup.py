@@ -54,7 +54,7 @@ if sys.version_info < (2, 3):
 
 setup (
   name = 'avc',
-  version = '0.7.0',
+  version = '0.7.1',
   author = 'Fabrizio Pollastri',
   author_email = 'f.pollastri@inrim.it',
   maintainer = 'Fabrizio Pollastri',

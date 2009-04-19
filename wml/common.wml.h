@@ -19,7 +19,7 @@ AVC, Application View Controller
 :##}
 
 {#COPYRIGHT#:\
-Copyright &copy; 2006-2008 Fabrizio Pollastri -
+Copyright &copy; 2006-2009 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 :##}
 
@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.7.0</p>
+<p><strong>Current:</strong> 0.7.1</p>
 
-<p><strong>Released:</strong>10-Feb-2009</p>
+<p><strong>Released:</strong>20-Apr-2009</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -150,10 +150,13 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.7.0.tar.gz">avc-0.7.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.7.1.tar.gz">avc-0.7.1.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
-<p>Debian package:<br>
--&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
+<p>Packages:<br>
+-&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
+>Arch Linux</a><br>
+-&nbsp;<a href="http://packages.debian.org/python-avc">Debian</a><br>
+-&nbsp;<a href="http://packages.ubuntu.com/python-avc">Ubuntu</a></p>
 <p>Quick start examples:<br>
 -&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
 <a href="../examples/gtk_spinbutton.glade">glade file</a><br>

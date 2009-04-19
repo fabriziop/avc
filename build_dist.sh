@@ -29,7 +29,7 @@
 
 # parameters
 NAME="avc"
-VERSION="0.7.0"
+VERSION="0.7.1"
 MANTAINER_ADDRESS="f.pollastri@inrim.it"
 
 SECTION="python"

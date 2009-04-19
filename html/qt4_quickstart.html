@@ -28,8 +28,8 @@ AVC, Application View Controller
 <div class="leftbar">
 <div class="item">
 <h3 class="itemhead"><a name="ToC1">OUTLINE</a></h3>
-<p><strong>Current:</strong> 0.7.0</p>
-<p><strong>Released:</strong>10-Feb-2009</p>
+<p><strong>Current:</strong> 0.7.1</p>
+<p><strong>Released:</strong>20-Apr-2009</p>
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
 <p><strong>Common Requirements:</strong><br>
@@ -77,10 +77,13 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead"><a name="ToC5">DOWNLOAD</a></h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.7.0.tar.gz">avc-0.7.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.7.1.tar.gz">avc-0.7.1.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
-<p>Debian package:<br>
--&nbsp;<a href="http://packages.debian.org/python-avc">python-avc</a></p>
+<p>Packages:<br>
+-&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
+>Arch Linux</a><br>
+-&nbsp;<a href="http://packages.debian.org/python-avc">Debian</a><br>
+-&nbsp;<a href="http://packages.ubuntu.com/python-avc">Ubuntu</a></p>
 <p>Quick start examples:<br>
 -&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
 <a href="../examples/gtk_spinbutton.glade">glade file</a><br>
@@ -108,7 +111,7 @@ For full details see the "Qt4 examples" chapter of the
 <h5><a name="ToC7">Source code: Designer version (file
 <a href="../examples/qt4_spinbox.py">qt4_spinbox.py</a>, needs also
 <a href="../examples/qt4_spinbox.ui">qt4_spinbox.ui</a>)</a></h5>
-<!-- Generator: GNU source-highlight 2.4
+<!-- Generator: GNU source-highlight 2.10
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -143,17 +146,17 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">29:</font> <i><font color="#9A1900"># .-</font></i>
 <font color="#000000">30:</font>
 <font color="#000000">31:</font>
-<font color="#000000">32:</font> <b><font color="#000080">from</font></b> <font color="#009900">PyQt4</font><font color="#990000">.</font><font color="#009900">QtCore</font> <b><font color="#000080">import</font></b> <font color="#990000">*</font>              <i><font color="#9A1900"># Qt core</font></i>
-<font color="#000000">33:</font> <b><font color="#000080">from</font></b> <font color="#009900">PyQt4</font><font color="#990000">.</font><font color="#009900">QtGui</font> <b><font color="#000080">import</font></b> <font color="#990000">*</font>               <i><font color="#9A1900"># Qt GUI interface</font></i>
-<font color="#000000">34:</font> <b><font color="#000080">from</font></b> <font color="#009900">PyQt4</font><font color="#990000">.</font>uic <b><font color="#000080">import</font></b> <font color="#990000">*</font>                 <i><font color="#9A1900"># ui files realizer</font></i>
+<font color="#000000">32:</font> <b><font color="#000080">from</font></b> PyQt4<font color="#990000">.</font>QtCore <b><font color="#000080">import</font></b> <font color="#990000">*</font>              <i><font color="#9A1900"># Qt core</font></i>
+<font color="#000000">33:</font> <b><font color="#000080">from</font></b> PyQt4<font color="#990000">.</font>QtGui <b><font color="#000080">import</font></b> <font color="#990000">*</font>               <i><font color="#9A1900"># Qt GUI interface</font></i>
+<font color="#000000">34:</font> <b><font color="#000080">from</font></b> PyQt4<font color="#990000">.</font>uic <b><font color="#000080">import</font></b> <font color="#990000">*</font>                 <i><font color="#9A1900"># ui files realizer</font></i>
 <font color="#000000">35:</font> <b><font color="#000080">import</font></b> sys                              <i><font color="#9A1900"># system support</font></i>
 <font color="#000000">36:</font>
 <font color="#000000">37:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">38:</font>
-<font color="#000000">39:</font> <font color="#009900">UI_FILE</font> <font color="#990000">=</font> <font color="#FF0000">'qt4_spinbox.ui'</font>              <i><font color="#9A1900"># qt ui descriptor</font></i>
+<font color="#000000">39:</font> UI_FILE <font color="#990000">=</font> <font color="#FF0000">'qt4_spinbox.ui'</font>              <i><font color="#9A1900"># qt ui descriptor</font></i>
 <font color="#000000">40:</font>
 <font color="#000000">41:</font>
-<font color="#000000">42:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font><font color="#009900">QApplication</font><font color="#990000">,</font><font color="#009900">AVC</font><font color="#990000">):</font>
+<font color="#000000">42:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font>QApplication<font color="#990000">,</font>AVC<font color="#990000">):</font>
 <font color="#000000">43:</font> <i><font color="#9A1900">  """</font></i>
 <font color="#000000">44:</font> <i><font color="#9A1900">  A spin box whose value is replicated into a text label</font></i>
 <font color="#000000">45:</font> <i><font color="#9A1900">  """</font></i>
@@ -161,12 +164,12 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">47:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">):</font>
 <font color="#000000">48:</font>
 <font color="#000000">49:</font>     <i><font color="#9A1900"># create GUI</font></i>
-<font color="#000000">50:</font>     <font color="#009900">QApplication</font><font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">,</font>sys<font color="#990000">.</font>argv<font color="#990000">)</font>
-<font color="#000000">51:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> <b><font color="#000000">loadUi</font></b><font color="#990000">(</font><font color="#009900">UI_FILE</font><font color="#990000">)</font>
+<font color="#000000">50:</font>     QApplication<font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">,</font>sys<font color="#990000">.</font>argv<font color="#990000">)</font>
+<font color="#000000">51:</font>     self<font color="#990000">.</font>root <font color="#990000">=</font> <b><font color="#000000">loadUi</font></b><font color="#990000">(</font>UI_FILE<font color="#990000">)</font>
 <font color="#000000">52:</font>     self<font color="#990000">.</font>root<font color="#990000">.</font><b><font color="#000000">show</font></b><font color="#990000">()</font>
 <font color="#000000">53:</font>
 <font color="#000000">54:</font>     <i><font color="#9A1900"># the variable holding the spin box value</font></i>
-<font color="#000000">55:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">55:</font>     self<font color="#990000">.</font>spin_value <font color="#990000">=</font> <font color="#993399">0</font>
 <font color="#000000">56:</font>
 <font color="#000000">57:</font>
 <font color="#000000">58:</font> <i><font color="#9A1900">#### MAIN</font></i>
@@ -176,11 +179,11 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">62:</font> example<font color="#990000">.</font><b><font color="#000000">exec_</font></b><font color="#990000">()</font>                         <i><font color="#9A1900"># run Qt event loop until quit</font></i>
 <font color="#000000">63:</font>
 <font color="#000000">64:</font> <i><font color="#9A1900">#### END</font></i>
-</tt></pre>
+<font color="#000000">65:</font> </tt></pre>
 <h5><a name="ToC8">Source code: programmatic version (file
 <a href="../examples/qt4_spinbox_progui.py">
 qt4_spinbox_progui.py</a>)</a></h5>
-<!-- Generator: GNU source-highlight 2.4
+<!-- Generator: GNU source-highlight 2.10
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
@@ -215,14 +218,14 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">29:</font> <i><font color="#9A1900"># .-</font></i>
 <font color="#000000">30:</font>
 <font color="#000000">31:</font>
-<font color="#000000">32:</font> <b><font color="#000080">from</font></b> <font color="#009900">PyQt4</font><font color="#990000">.</font><font color="#009900">QtCore</font> <b><font color="#000080">import</font></b> <font color="#990000">*</font>              <i><font color="#9A1900"># Qt core</font></i>
-<font color="#000000">33:</font> <b><font color="#000080">from</font></b> <font color="#009900">PyQt4</font><font color="#990000">.</font><font color="#009900">QtGui</font> <b><font color="#000080">import</font></b> <font color="#990000">*</font>               <i><font color="#9A1900"># Qt GUI interface</font></i>
+<font color="#000000">32:</font> <b><font color="#000080">from</font></b> PyQt4<font color="#990000">.</font>QtCore <b><font color="#000080">import</font></b> <font color="#990000">*</font>              <i><font color="#9A1900"># Qt core</font></i>
+<font color="#000000">33:</font> <b><font color="#000080">from</font></b> PyQt4<font color="#990000">.</font>QtGui <b><font color="#000080">import</font></b> <font color="#990000">*</font>               <i><font color="#9A1900"># Qt GUI interface</font></i>
 <font color="#000000">34:</font> <b><font color="#000080">import</font></b> sys                              <i><font color="#9A1900"># system support</font></i>
 <font color="#000000">35:</font>
 <font color="#000000">36:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC</font></i>
 <font color="#000000">37:</font>
 <font color="#000000">38:</font>
-<font color="#000000">39:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font><font color="#009900">QApplication</font><font color="#990000">,</font><font color="#009900">AVC</font><font color="#990000">):</font>
+<font color="#000000">39:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font>QApplication<font color="#990000">,</font>AVC<font color="#990000">):</font>
 <font color="#000000">40:</font> <i><font color="#9A1900">  """</font></i>
 <font color="#000000">41:</font> <i><font color="#9A1900">  A spin box whose value is replicated into a text label</font></i>
 <font color="#000000">42:</font> <i><font color="#9A1900">  """</font></i>
@@ -231,7 +234,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">45:</font>
 <font color="#000000">46:</font>     <i><font color="#9A1900">## create GUI</font></i>
 <font color="#000000">47:</font>
-<font color="#000000">48:</font>     <font color="#009900">QApplication</font><font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">,</font>sys<font color="#990000">.</font>argv<font color="#990000">)</font>
+<font color="#000000">48:</font>     QApplication<font color="#990000">.</font><b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">,</font>sys<font color="#990000">.</font>argv<font color="#990000">)</font>
 <font color="#000000">49:</font>
 <font color="#000000">50:</font>     <i><font color="#9A1900"># main window</font></i>
 <font color="#000000">51:</font>     self<font color="#990000">.</font>window <font color="#990000">=</font> <b><font color="#000000">QWidget</font></b><font color="#990000">()</font>
@@ -259,7 +262,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">73:</font>
 <font color="#000000">74:</font>
 <font color="#000000">75:</font>     <i><font color="#9A1900"># the variable holding the spin box value</font></i>
-<font color="#000000">76:</font>     self<font color="#990000">.</font>spin<font color="#009900">_</font>value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">76:</font>     self<font color="#990000">.</font>spin_value <font color="#990000">=</font> <font color="#993399">0</font>
 <font color="#000000">77:</font>
 <font color="#000000">78:</font>
 <font color="#000000">79:</font> <i><font color="#9A1900">#### MAIN</font></i>
@@ -269,10 +272,10 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">83:</font> example<font color="#990000">.</font><b><font color="#000000">exec_</font></b><font color="#990000">()</font>                         <i><font color="#9A1900"># run Qt event loop until quit</font></i>
 <font color="#000000">84:</font>
 <font color="#000000">85:</font> <i><font color="#9A1900">#### END</font></i>
-</tt></pre>
+<font color="#000000">86:</font> </tt></pre>
 </div>
 <div id="footer">
-Copyright &copy; 2006-2008 Fabrizio Pollastri -
+Copyright &copy; 2006-2009 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 </div>
 <p>
