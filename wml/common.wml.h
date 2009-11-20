@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.7.1</p>
+<p><strong>Current:</strong> 0.8.0</p>
 
-<p><strong>Released:</strong>20-Apr-2009</p>
+<p><strong>Released:</strong> 20-Nov-2009</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -108,7 +108,9 @@ Pyqt v3 - v4</a><br>
 <strong>Tk requirements:</strong><br>
 <a href="http://effbot.org/tkinterbook/">Tkinter 2.4</a><br>
 <strong>wxWidgets requirements:</strong><br>
-<a href="http://www.wxpython.org/">wxPython 2.6 - 2.8</a><br></p>
+<a href="http://www.wxpython.org/">wxPython 2.6 - 2.8</a><br>
+<strong>Swing requirements:</strong><br>
+<a href="http://www.jython.org/">jython 2.5.1</a><br></p>
 
 <p><strong>Author:</strong>
 <a href="contact.html">Fabrizio Pollastri</a></p>
@@ -122,7 +124,8 @@ Pyqt v3 - v4</a><br>
 <a href="qt3_quickstart.html">Qt3</a>,
 <a href="qt4_quickstart.html">Qt4</a>,
 <a href="tk_quickstart.html">Tk</a>,<br>
-<a href="wx_quickstart.html">wxWidgets</a>.<br>
+<a href="wx_quickstart.html">wxWidgets</a>,
+<a href="swing_quickstart.html">Swing</a>.<br>
 <a href="../doc/user_manual.pdf">User Manual</a>
 <p><a href="relnotes.html">Release Notes</a></p>
 <p><a href="changelog.html">Changelog</a></p>
@@ -145,12 +148,13 @@ AVC-Simplifying your GUI Code</a></p>
 <p><a href="qt4_screenshots.html">Qt4 examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
 <p><a href="wx_screenshots.html">wxWidgets examples</a></p>
+<p><a href="swing_screenshots.html">Swing examples</a></p>
 </div>
 
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.7.1.tar.gz">avc-0.7.1.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.0.tar.gz">avc-0.8.0.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
@@ -166,8 +170,9 @@ AVC-Simplifying your GUI Code</a></p>
 <a href="../examples/qt4_spinbox.ui">ui file</a><br>
 -&nbsp;<a href="../examples/tk_spinbox.py">Tk spinbox</a> +
 <a href="../examples/tk_spinbox.tcl">tcl file</a><br>
--&nbsp;<a href="../examples/wx_spinctrl.py">wx spincontrol</a> +
-<a href="../examples/wx_spinctrl.xrc">xrc file</a></p>
+-&nbsp;<a href="../examples/wx_spinctrl.py">wxWidgets spincontrol</a> +
+<a href="../examples/wx_spinctrl.xrc">xrc file</a><br>
+-&nbsp;<a href="../examples/swing_spinner.py">Swing spinner</a>
 <p><a href="../examples">All examples</a><p>
 </div>
 <br>

@@ -32,7 +32,7 @@
 import gtk				# gimp tool kit bindings
 import gtk.glade			# glade bindings
 
-from avc.avcgtk import *		# AVC for GTK
+from avc import *			# AVC for GTK
 
 from random import randint		# random integer generator
 GLADE_XML = 'gtk_sum.glade'		# GUI glade descriptor

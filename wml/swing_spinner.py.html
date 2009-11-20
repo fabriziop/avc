@@ -1,0 +1,65 @@
+<!-- Generator: GNU source-highlight 3.1
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><font color="#000000">01:</font> <i><font color="#9A1900">#!/usr/bin/env jython</font></i>
+<font color="#000000">02:</font> <i><font color="#9A1900"># .+</font></i>
+<font color="#000000">03:</font> <i><font color="#9A1900"># .context    : Application View Controller</font></i>
+<font color="#000000">04:</font> <i><font color="#9A1900"># .title      : A spinner replicated into a label (Swing),</font></i>
+<font color="#000000">05:</font> <i><font color="#9A1900">#               GUI programmatically generated</font></i>
+<font color="#000000">06:</font> <i><font color="#9A1900"># .kind       : python source</font></i>
+<font color="#000000">07:</font> <i><font color="#9A1900"># .author     : Fabrizio Pollastri</font></i>
+<font color="#000000">08:</font> <i><font color="#9A1900"># .site       : Revello - Italy</font></i>
+<font color="#000000">09:</font> <i><font color="#9A1900"># .creation   : 16-Mar-2009</font></i>
+<font color="#000000">10:</font> <i><font color="#9A1900"># .copyright  : (c) 2009 Fabrizio Pollastri.</font></i>
+<font color="#000000">11:</font> <i><font color="#9A1900"># .license    : GNU General Public License (see below)</font></i>
+<font color="#000000">12:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">13:</font> <i><font color="#9A1900"># This file is part of "AVC, Application View Controller".</font></i>
+<font color="#000000">14:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">15:</font> <i><font color="#9A1900"># AVC is free software; you can redistribute it and/or modify</font></i>
+<font color="#000000">16:</font> <i><font color="#9A1900"># it under the terms of the GNU General Public License as published by</font></i>
+<font color="#000000">17:</font> <i><font color="#9A1900"># the Free Software Foundation; either version 3 of the License, or</font></i>
+<font color="#000000">18:</font> <i><font color="#9A1900"># (at your option) any later version.</font></i>
+<font color="#000000">19:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">20:</font> <i><font color="#9A1900"># AVC is distributed in the hope that it will be useful,</font></i>
+<font color="#000000">21:</font> <i><font color="#9A1900"># but WITHOUT ANY WARRANTY; without even the implied warranty of</font></i>
+<font color="#000000">22:</font> <i><font color="#9A1900"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</font></i>
+<font color="#000000">23:</font> <i><font color="#9A1900"># GNU General Public License for more details.</font></i>
+<font color="#000000">24:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">25:</font> <i><font color="#9A1900"># You should have received a copy of the GNU General Public License</font></i>
+<font color="#000000">26:</font> <i><font color="#9A1900"># along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</font></i>
+<font color="#000000">27:</font> <i><font color="#9A1900">#</font></i>
+<font color="#000000">28:</font> <i><font color="#9A1900"># .-</font></i>
+<font color="#000000">29:</font> 
+<font color="#000000">30:</font> <b><font color="#000080">from</font></b> javax <b><font color="#000080">import</font></b> swing                 <i><font color="#9A1900"># swing toolkit bindings</font></i>
+<font color="#000000">31:</font> <b><font color="#000080">from</font></b> java <b><font color="#000080">import</font></b> awt                    <i><font color="#9A1900"># awt toolkit bindings</font></i>
+<font color="#000000">32:</font> 
+<font color="#000000">33:</font> <b><font color="#000080">from</font></b> avc <b><font color="#000080">import</font></b> <font color="#990000">*</font>                       <i><font color="#9A1900"># AVC for Swing</font></i>
+<font color="#000000">34:</font> 
+<font color="#000000">35:</font> 
+<font color="#000000">36:</font> <b><font color="#0000FF">class</font></b> <b><font color="#000000">Example</font></b><font color="#990000">(</font>AVC<font color="#990000">):</font>
+<font color="#000000">37:</font> <i><font color="#9A1900">  """</font></i>
+<font color="#000000">38:</font> <i><font color="#9A1900">  A spinner whose value is replicated into a label</font></i>
+<font color="#000000">39:</font> <i><font color="#9A1900">  """</font></i>
+<font color="#000000">40:</font> 
+<font color="#000000">41:</font>   <b><font color="#0000FF">def</font></b> <b><font color="#000000">__init__</font></b><font color="#990000">(</font>self<font color="#990000">):</font>
+<font color="#000000">42:</font> 
+<font color="#000000">43:</font>     <i><font color="#9A1900"># create GUI</font></i>
+<font color="#000000">44:</font>     root <font color="#990000">=</font> swing<font color="#990000">.</font><b><font color="#000000">JFrame</font></b><font color="#990000">(</font><font color="#FF0000">'AVC Swing spinner example'</font><font color="#990000">,</font>size<font color="#990000">=(</font><font color="#993399">320</font><font color="#990000">,</font><font color="#993399">60</font><font color="#990000">),</font>
+<font color="#000000">45:</font>       defaultCloseOperation <font color="#990000">=</font> swing<font color="#990000">.</font>JFrame<font color="#990000">.</font>EXIT_ON_CLOSE<font color="#990000">)</font>
+<font color="#000000">46:</font>     root<font color="#990000">.</font>layout <font color="#990000">=</font> awt<font color="#990000">.</font><b><font color="#000000">FlowLayout</font></b><font color="#990000">()</font>
+<font color="#000000">47:</font>     root<font color="#990000">.</font><b><font color="#000000">add</font></b><font color="#990000">(</font>swing<font color="#990000">.</font><b><font color="#000000">JLabel</font></b><font color="#990000">(</font><font color="#FF0000">'%s'</font><font color="#990000">,</font>name<font color="#990000">=</font><font color="#FF0000">'spin_value__label'</font><font color="#990000">,</font>preferredSize<font color="#990000">=(</font><font color="#993399">80</font><font color="#990000">,</font><font color="#993399">20</font><font color="#990000">)))</font>
+<font color="#000000">48:</font>     root<font color="#990000">.</font><b><font color="#000000">add</font></b><font color="#990000">(</font>swing<font color="#990000">.</font><b><font color="#000000">JSpinner</font></b><font color="#990000">(</font>name<font color="#990000">=</font><font color="#FF0000">'spin_value__spinner'</font><font color="#990000">,</font>preferredSize<font color="#990000">=(</font><font color="#993399">80</font><font color="#990000">,</font><font color="#993399">20</font><font color="#990000">)))</font>
+<font color="#000000">49:</font>     root<font color="#990000">.</font><b><font color="#000000">show</font></b><font color="#990000">()</font>
+<font color="#000000">50:</font> 
+<font color="#000000">51:</font>     <i><font color="#9A1900"># the variable holding the spinner value</font></i>
+<font color="#000000">52:</font>     self<font color="#990000">.</font>spin_value <font color="#990000">=</font> <font color="#993399">0</font>
+<font color="#000000">53:</font> 
+<font color="#000000">54:</font> 
+<font color="#000000">55:</font> <i><font color="#9A1900">#### MAIN</font></i>
+<font color="#000000">56:</font> 
+<font color="#000000">57:</font> example <font color="#990000">=</font> <b><font color="#000000">Example</font></b><font color="#990000">()</font>                     <i><font color="#9A1900"># instantiate the application</font></i>
+<font color="#000000">58:</font> example<font color="#990000">.</font><b><font color="#000000">avc_init</font></b><font color="#990000">()</font>                      <i><font color="#9A1900"># connect widgets with variables</font></i>
+<font color="#000000">59:</font> 
+<font color="#000000">60:</font> <i><font color="#9A1900">#### END</font></i>
+<font color="#000000">61:</font> </tt></pre>

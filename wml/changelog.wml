@@ -20,6 +20,18 @@
 {#main_bar#:
 <h3>Changelog</h3>
 
+<p><b>AVC 0.8.0 released 20-Nov-2009</b></p>
+<ul>
+<li>Added support for java Swing widget toolkit, widgets: button,
+    check box, combo box, label, progress bar, radio box, slider,
+    spinner, table, text area, text field, toggle button, tree.</li>
+<li>Changed real widget mapping: substituted eval of widget string names with
+    dictionary of abstract widget classes keyed by real widget classes.</li>
+<li>Added check for executed avc_init in avc_connect.</li>
+<li>Added dual install capability to setup to cope with both python and
+    jython.</li>
+</ul></p>
+
 <p><b>AVC 0.7.1 released 20-Apr-2009</b></p>
 <ul>
 <li>Cleanup of backup files in "examples" dir and restore of file

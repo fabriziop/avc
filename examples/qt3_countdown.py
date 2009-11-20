@@ -40,6 +40,7 @@ from random import randint		# random integer generator
 UI_MAIN = 'qt3_countdown_main.ui'	# qt ui descriptor for main window
 UI_CD = 'qt3_countdown.ui'		# qt ui descriptor for countdown window
 TOPLEVEL_NAME = 'countdown'		# name of the top level widget
+FIRST_COUNT_DELAY = 1000                # let avc_init be called
 COUNTDOWN_PERIOD = 500			# count down at 2 unit per second
 MAX_CREATION_PERIOD = 4000		# create a new count down at 1/2 this
 
@@ -96,10 +97,10 @@ class Example(QApplication,AVC):
     # close all button connected variable
     self.close_all = False
 
-    # start count down
+    # create the first countdown after avc_init call
     self.timer = QTimer(self)
     self.connect(self.timer,SIGNAL("timeout()"),self.new_countdown)
-    self.timer.start(randint(1,MAX_CREATION_PERIOD))
+    self.timer.start(FIRST_COUNT_DELAY)
 
 
   def new_countdown(self,count_start=10):

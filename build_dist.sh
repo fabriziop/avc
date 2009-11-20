@@ -27,15 +27,8 @@
 #
 # .-
 
-# parameters
-NAME="avc"
-VERSION="0.7.1"
-MANTAINER_ADDRESS="f.pollastri@inrim.it"
-
-SECTION="python"
-PRIORITY="optional"
-DEPENDS="python (>=2.2)"
-DESCRIPTION="live connection among widgets and application variables"
+# import parameters
+source common.sh
 
 # computed parameters
 ROOT=`pwd`

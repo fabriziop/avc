@@ -38,6 +38,7 @@ from random import randint		# random integer generator
 
 WXGLADE_MAIN = 'wx_countdown_main.xrc'	# main window glade descriptor
 WXGLADE_CD = 'wx_countdown.xrc'		# count down window glade descriptor
+FIRST_COUNT_DELAY = 1000		# let avc_init be called
 COUNTDOWN_PERIOD = 500			# count down at 2 unit per second
 MAX_CREATION_PERIOD = 4000		# create a new count down at 1/2 this
 
@@ -102,8 +103,8 @@ class Example(wx.PySimpleApp,AVC):
     self.timer = wx.Timer(self.root,wx.NewId())
     self.root.Bind(wx.EVT_TIMER,self.new_countdown,self.timer)
 
-    # create the first countdown
-    self.new_countdown(None)
+    # create the first countdown after avc_init call
+    self.timer.Start(FIRST_COUNT_DELAY,oneShot=True)
 
 
   def new_countdown(self,event,count_start=10):

@@ -1,0 +1,32 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: Swing quick start
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Revello Italy
+# .creation	: 17-Nov-2009
+# .copyright	: (c) 2008 Fabrizio Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>Swing quick start</h3>
+
+This is the Swing spinner example included in AVC distribution.
+For full details see the "Swing examples" chapter of the
+<a href="../doc/user_manual.pdf">user manual</a>.
+<p class="center"><img src="../images/swing_spinner.png"></p>
+
+<h5>Source code: file
+<a href="../examples/swing_spinner.py">
+swing_spinner.py</a></h5>
+#include 'swing_spinner.py.html'
+:##}

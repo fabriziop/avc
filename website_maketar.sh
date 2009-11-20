@@ -27,9 +27,8 @@
 #
 # .-
 
-# parameters
-NAME="avc"
-VERSION="0.7.1"
+# import parameters
+source common.sh
 
 # computed parameters
 SOURCE_ROOT="$NAME-$VERSION"

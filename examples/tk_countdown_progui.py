@@ -36,6 +36,7 @@ from avc import *			# AVC for Tk
 from random import randint		# random integer generator
 
 TOPLEVEL_NAME = 'countdown'		# name of the top level widget
+FIRST_COUNT_DELAY = 1000		# let avc_init be called
 COUNTDOWN_PERIOD = 500			# count down at 2 unit per second
 MAX_CREATION_PERIOD = 4000		# create a new count down at 1/2 this
 
@@ -110,8 +111,8 @@ class Example(AVC):
     # destroy signal to termination handler.
     self.root.bind_class('Toplevel','<Destroy>',lambda event: self.root.quit())
 
-    # create the first countdown
-    self.new_countdown()
+    # create the first countdown after avc_init call
+    self.root.after(FIRST_COUNT_DELAY,self.new_countdown) 
 
     # close all button connected variable
     self.close_all = False

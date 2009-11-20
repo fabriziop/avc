@@ -20,6 +20,11 @@
 {#main_bar#:
 <h3>All News</h3>
 
+<p><b>20-Nov-2009</b>: released AVC 0.8.0.
+With this release, AVC goes into java environment introducing the support
+for the Swing widget toolkit.
+<a href="relnotes.html#0_8_0">Release note</a>.</p>
+
 <p><b>20-Apr-2009</b>: released AVC 0.7.1.
 This release makes some cleanup of backup files in "examples" dir and
 restore the file manual.pdf.readme in "doc" dir.

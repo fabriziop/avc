@@ -28,7 +28,14 @@ language.
 <a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
 <a href="http://www.tcl.tk/">Tk</a>,
 <a href="http://www.wxwidgets.org/">wxWidgets</a>.
-<b>AVC</b> is a python package that can be imported by any python
+The
+<a href="http://java.sun.com/docs/books/tutorial/uiswing/index.html">Swing</a>
+widget toolkit for the
+<a href="http://java.sun.com/">java</a>
+environment is also supported via the
+<a href="http://www.jython.org/">jython</a> compiler.
+
+<b>AVC</b> is a python package that can be imported by any python or jython
 application.<br>
 <br>
 The display and the control of some application data through
@@ -38,6 +45,11 @@ this programming very easy, far more easy than traditional solutions
 based on MVC (Model View Controller). 
 
 <h4>News</h4>
+
+<p><b>20-Nov-2009</b>: released AVC 0.8.0.
+AVC goes into java environment introducing the support for the Swing
+widget toolkit.
+<a href="relnotes.html#0_8_0">Release note</a>.</p>
 
 <p><b>20-Apr-2009</b>: released AVC 0.7.1.
 This release makes some cleanup of backup files in "examples" dir and
@@ -57,7 +69,8 @@ distribution.</p>
   <li>Dynamic connections</li>
   <li>No design pattern, no application redesign, no widget toolkit
   dependent code, separation between application logic and GUI.</li>
-  <li>Multiple widget toolkits support: GTK+, Qt3, Qt4, Tk, wxWidgets.</li>
+  <li>Multiple widget toolkits support: GTK+, Qt3, Qt4, Tk, wxWidgets,
+  Swing.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
   <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,

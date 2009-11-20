@@ -40,6 +40,7 @@ from random import randint		# random integer generator
 GLADE_XML_MAIN = 'gtk_countdown_main.glade'	# main window glade descriptor
 GLADE_XML_CD = 'gtk_countdown.glade'	# count down window glade descriptor
 TOPLEVEL_NAME = 'countdown'		# name of the top level widget
+FIRST_COUNT_DELAY = 1000		# let avc_init be called
 COUNTDOWN_PERIOD = 500			# count down at 2 unit per second
 MAX_CREATION_PERIOD = 4000		# create a new count down at 1/2 this
 
@@ -70,7 +71,6 @@ class Countdown(AVC):
 
   def decrementer(self):
     "Counter decrementer. Return False to destroy previous timer."
-
     self.counter -= 1
 
     if self.counter:
@@ -95,8 +95,8 @@ class Example(AVC):
     # create main window
     self.glade = gtk.glade.XML(GLADE_XML_MAIN)
 
-    # create the first countdown
-    self.new_countdown()
+    # create the first countdown after avc_init call
+    gobject.timeout_add(FIRST_COUNT_DELAY,self.new_countdown) 
 
     # close all button connected variable
     self.close_all = False

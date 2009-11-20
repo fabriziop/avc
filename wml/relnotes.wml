@@ -20,6 +20,18 @@
 {#main_bar#:
 <h3>Release Notes</h3>
 <hr>
+<h3 name="0_8_0">AVC 0.8.0</h3>
+<p>This release adds the support for the java Swing widget toolkit.
+The supported widgets are: button, check box, combo box, label, progress bar,
+radio box, slider, spinner, table, text area, text field, toggle button,
+tree.<br>
+Among some internal changes, the real to abstract widget mapping substituted
+the eval of widget string names with a dictionary of abstract widget classes
+keyed by real widget classes. To improve module safety, the check for
+executed avc_init in avc_connect was added.<br>
+Now, the setup utility can install for both python and jython.</p>
+
+<hr>
 <h3 name="0_7_1">AVC 0.7.1</h3>
 <p>This release makes some cleanup of backup files in "examples" dir and
 restore the file "manual.pdf.readme" in "doc" dir.</p>

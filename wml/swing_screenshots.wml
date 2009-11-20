@@ -1,0 +1,41 @@
+#!wml	-o UNDEF:../html/%BASE.html
+# .+
+# .context	: AVC, Application View Controller, web site
+# .title	: Swing screenshots
+# .kind		: wml
+# .author	: Fabrizio Pollastri
+# .site		: Torino Italy
+# .creation	: 17-Nov-2009
+# .copyright	: (c) 2007 Fabrizio Pollastri
+# .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
+#		  http://creativecommons.org/licenses/by-nc-nd/3.0/
+# .-
+
+# include common templates
+
+#include 'common.wml.h'
+
+# page contents
+
+{#main_bar#:
+<h3>Swing screenshots</h3>
+
+Some screenshots from the Swing examples included in AVC distribution.
+For full details see the "Swing examples" chapter of the
+<a href="../doc/user_manual.pdf">user manual</a>.
+<p class="center"><img src="../images/swing_button.png"></p>
+<p class="center"><img src="../images/swing_checkbox.png"></p>
+<p class="center"><img src="../images/swing_combobox.png"></p>
+<p class="center"><img src="../images/swing_countdown_main.png">
+<img src="../images/swing_countdown.png"></p>
+<p class="center"><img src="../images/swing_counter.png"></p>
+<p class="center"><img src="../images/swing_progressbar.png"></p>
+<p class="center"><img src="../images/swing_radiobutton.png"></p>
+<p class="center"><img src="../images/swing_slider.png"></p>
+<p class="center"><img src="../images/swing_spinner.png"></p>
+<p class="center"><img src="../images/swing_table.png"></p>
+<p class="center"><img src="../images/swing_textarea.png"></p>
+<p class="center"><img src="../images/swing_textfield.png"></p>
+<p class="center"><img src="../images/swing_togglebutton.png"></p>
+<p class="center"><img src="../images/swing_tree.png"></p>
+:##}
