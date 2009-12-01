@@ -20,6 +20,11 @@
 {#main_bar#:
 <h3>Changelog</h3>
 
+<p><b>AVC 0.8.1 released 1-Dec-2009</b></p>
+<ul>
+<li>Fixed wxWidgets TreeCtrl not updating on connected variable change.</li>
+</ul></p>
+
 <p><b>AVC 0.8.0 released 20-Nov-2009</b></p>
 <ul>
 <li>Added support for java Swing widget toolkit, widgets: button,

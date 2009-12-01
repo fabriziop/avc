@@ -71,13 +71,13 @@ if sys.version_info < (2, 3):
 # do setup
 setup (
   name = 'avc',
-  version = '0.8.0',
+  version = '0.8.1',
   author = 'Fabrizio Pollastri',
   author_email = 'f.pollastri@inrim.it',
   maintainer = 'Fabrizio Pollastri',
   maintainer_email = 'f.pollastri@inrim.it',
   url = 'http://avc.inrim.it',
-  download_url = 'http://avc.inrim.it/dist/avc-0.8.0.tar.gz',
+  download_url = 'http://avc.inrim.it/dist/avc-0.8.1.tar.gz',
   license = 'http://www.gnu.org/licenses/gpl.txt',
   platforms = ['Linux'],
   description = """

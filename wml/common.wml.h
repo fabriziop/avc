@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.8.0</p>
+<p><strong>Current:</strong> 0.8.1</p>
 
-<p><strong>Released:</strong> 20-Nov-2009</p>
+<p><strong>Released:</strong> 1-Dec-2009</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -129,8 +129,8 @@ Pyqt v3 - v4</a><br>
 <a href="../doc/user_manual.pdf">User Manual</a>
 <p><a href="relnotes.html">Release Notes</a></p>
 <p><a href="changelog.html">Changelog</a></p>
-<p><a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">
-Mailing List</a></p>
+#<p><a href="http://serzot.inrim.it/cgi-bin/mailman/listinfo/avc">
+#Mailing List</a></p>
 <p><a href="allnews.html">All News</a></p>
 </div>
 
@@ -154,7 +154,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.0.tar.gz">avc-0.8.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.1.tar.gz">avc-0.8.1.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"

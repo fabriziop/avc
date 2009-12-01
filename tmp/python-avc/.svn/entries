@@ -1,34 +1,0 @@
-9
-
-dir
-8285
-svn+ssh://fabrizio-guest@svn.debian.org/svn/python-modules/packages/python-avc
-svn+ssh://fabrizio-guest@svn.debian.org/svn/python-modules
-
-
-
-2009-01-30T20:13:06.288517Z
-7421
-piotr
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-771dd761-d7fa-0310-a302-f036d1c1ebb6
-
-trunk
-dir
-
-tags
-dir
-

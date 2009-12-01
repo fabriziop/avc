@@ -19,6 +19,14 @@
 
 {#main_bar#:
 <h3>Release Notes</h3>
+
+<hr>
+<h3 name="0_8_1">AVC 0.8.1</h3>
+<p>This release fixes wxWidgets TreeCtrl not updating on connected variable
+change. It was a bug of the wxWidget driver (avcwx.py): the tree items were
+not deleted before rewriting. Since the tree is completely rewritten at each
+update, the expanded/collapsed status of each tree item is lost.</p>
+
 <hr>
 <h3 name="0_8_0">AVC 0.8.0</h3>
 <p>This release adds the support for the java Swing widget toolkit.

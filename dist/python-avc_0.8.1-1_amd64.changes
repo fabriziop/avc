@@ -1,0 +1,42 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Format: 1.8
+Date: Tue, 1 Dec 2009 10:00:00 +0100
+Source: python-avc
+Binary: python-avc
+Architecture: source all
+Version: 0.8.1-1
+Distribution: unstable
+Urgency: low
+Maintainer: Fabrizio Pollastri <f.pollastri@inrim.it>
+Changed-By: Fabrizio Pollastri <f.pollastri@inrim.it>
+Description: 
+ python-avc - live connection among widgets and application variables
+Changes: 
+ python-avc (0.8.1-1) unstable; urgency=low
+ .
+   * New upstream
+Checksums-Sha1: 
+ c147bb82b7036921965dc79c835084c26e5a11c2 1317 python-avc_0.8.1-1.dsc
+ 2cc94e4c43ad02dde79b40188d3d06939c02e5f6 1698036 python-avc_0.8.1.orig.tar.gz
+ 1dc86782700fd2f88b4fbeb7580162b00ae5c86d 2017 python-avc_0.8.1-1.diff.gz
+ 91b5847a992476081f9a1c55ce7c024fcf6a2a90 1165600 python-avc_0.8.1-1_all.deb
+Checksums-Sha256: 
+ db2c1d53c8a0a9421694d70369e7205cddc0a236946fd891ecec90a4fd976933 1317 python-avc_0.8.1-1.dsc
+ 3e744a4cd1b66cd3c329f51f3d7b4208890ba26fd299367b2b81226be8d3e935 1698036 python-avc_0.8.1.orig.tar.gz
+ 35e65b0416c32a5541760ac30e1777a91375bb839edaee5fe756ee69b696eca9 2017 python-avc_0.8.1-1.diff.gz
+ 72918c702ac912f6fb3a0ebdbcbdaa0feea23c41322ec887fd2f7ff524fc6cc1 1165600 python-avc_0.8.1-1_all.deb
+Files: 
+ 36615fba9abcea33abbf7567fd2a525d 1317 python optional python-avc_0.8.1-1.dsc
+ dbbcf2820510d8cfdacec2ce2255f952 1698036 python optional python-avc_0.8.1.orig.tar.gz
+ a2e0e4214ebdcf1be33821a29c670083 2017 python optional python-avc_0.8.1-1.diff.gz
+ 81abdf675c38911cb97af7a0c1d7735c 1165600 python optional python-avc_0.8.1-1_all.deb
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.9 (GNU/Linux)
+
+iEYEARECAAYFAksU2msACgkQDiyphMdoNxNIOQCgg4+NJQvaDyzyhP0DM1OfTGQZ
+TbIAnAvMxyMQPI97tiPJj6SfDMAxgCaC
+=nkyo
+-----END PGP SIGNATURE-----

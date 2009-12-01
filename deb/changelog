@@ -1,8 +1,14 @@
+python-avc (0.8.1-1) unstable; urgency=low
+
+  * New upstream
+
+ -- Fabrizio Pollastri <f.pollastri@inrim.it>  Tue, 1 Dec 2009 10:00:00 +0100
+
 python-avc (0.8.0-1) unstable; urgency=low
 
   * New upstream
 
- -- Fabrizio Pollastri <f.pollastri@inrim.it>  Mon, 20 Apr 2009 12:28:35 +0100
+ -- Fabrizio Pollastri <f.pollastri@inrim.it>  Fry, 20 Nov 2009 12:28:35 +0100
 
 python-avc (0.7.1-1) unstable; urgency=low
 

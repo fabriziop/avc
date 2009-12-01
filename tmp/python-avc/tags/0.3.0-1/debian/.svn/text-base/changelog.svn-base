@@ -1,6 +1,0 @@
-python-avc (0.3.0-1) unstable; urgency=low
-
-  * Initial release (Closes: #448646)
-
- -- Fabrizio Pollastri <pollastri@inrim.it>  Tue, 30 Oct 2007 12:07:23 +0100
-

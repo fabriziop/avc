@@ -433,7 +433,8 @@ class TreeView(ListTreeView):
     pass
 
   def root_node(self):
-    "Return the root node of the tree"
+    "Clean tree and return the root node"
+    self.widget.DeleteAllItems()
     return self.widget.AddRoot('')
 
   def add_node(self,parent,last_node,current_depth,data):
