@@ -1,3 +1,6 @@
+AVC 0.8.2 released 24-Dec-2009
+  * Fixed wxWidgets ListCtrl not updating header on connected variable change.
+
 AVC 0.8.1 released 1-Dec-2009
   * Fixed wxWidgets TreeCtrl not updating on connected variable change.
 

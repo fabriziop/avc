@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 18-Sep-2007
-# .copyright	: (c) 2007 Fabrizio Pollastri
+# .copyright	: (c) 2007-2009 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.8.1</p>
+<p><strong>Current:</strong> 0.8.2</p>
 
-<p><strong>Released:</strong> 1-Dec-2009</p>
+<p><strong>Released:</strong> 24-Dec-2009</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -154,7 +154,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.1.tar.gz">avc-0.8.1.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.2.tar.gz">avc-0.8.2.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"

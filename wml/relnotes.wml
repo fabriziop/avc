@@ -21,6 +21,12 @@
 <h3>Release Notes</h3>
 
 <hr>
+<h3 name="0_8_2">AVC 0.8.2</h3>
+<p>This release fixes wxWidgets ListCtrl not updating header on connected
+variable change. It was a bug of the wxWidget driver (avcwx.py): missed
+the column name (header) setting call.</p>
+
+<hr>
 <h3 name="0_8_1">AVC 0.8.1</h3>
 <p>This release fixes wxWidgets TreeCtrl not updating on connected variable
 change. It was a bug of the wxWidget driver (avcwx.py): the tree items were

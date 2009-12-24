@@ -46,6 +46,10 @@ based on MVC (Model View Controller).
 
 <h4>News</h4>
 
+<p><b>24-Dec-2009</b>: released AVC 0.8.2.
+Fixed wxWidgets ListCtrl not updating header on connected variable change.
+<a href="relnotes.html#0_8_2">Release note</a>.</p>
+
 <p><b>1-Dec-2009</b>: released AVC 0.8.1.
 Fixed wxWidgets TreeCtrl not updating on connected variable change.
 <a href="relnotes.html#0_8_1">Release note</a>.</p>

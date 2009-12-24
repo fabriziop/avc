@@ -29,7 +29,7 @@
 
 # general parameters
 NAME="avc"
-VERSION="0.8.1"
+VERSION="0.8.2"
 MANTAINER_ADDRESS="f.pollastri@inrim.it"
 
 # debian parameters

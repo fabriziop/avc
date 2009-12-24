@@ -242,6 +242,7 @@ class ListView(ListTreeView):
       for col_num in range(self.widget.GetColumnCount()):
         col_item = self.widget.GetColumn(col_num)
         col_item.SetText(value['head'][col_num])
+        self.widget.SetColumn(col_num,col_item)
     # set data rows
     body = value['body']
     self.widget.DeleteAllItems()
