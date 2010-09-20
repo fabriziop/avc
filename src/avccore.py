@@ -103,7 +103,7 @@ class AVC(object):
 
     # if verbosity > 0 , print header
     if avccd.verbosity > 0:
-      print 'AVC ' + '0.8.0' + ' - Activity Report'
+      print 'AVC ' + '0.8.2' + ' - Activity Report'
       print 'widget toolkit binding: ' + TOOLKITS[toolkit]
       print 'program: ' + sys.argv[0]  
       print 'verbosity: ' + str(avccd.verbosity)
