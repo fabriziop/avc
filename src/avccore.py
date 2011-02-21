@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	3-Nov-2006
-# .copyright  :	(c) 2006-2008 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2011 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -37,6 +37,12 @@ class error(Exception):
     self.value = value
   def __str__(self):
     return repr(self.value)
+
+
+## module information
+__author__ = 'Fabrizio Pollastri <f.pollastri@inrim.it>'
+__license__ = '>= GPL v3'
+__version__ = '0.8.3'
 
 
 ## load proper AVC widget toolkit binding according with the widget toolkit
@@ -73,6 +79,7 @@ WIDGET_NAME_SEP = '__'
 # AVC common data
 class AVCCD:
   def __init__(self):
+    self.toolkit_version = ''
     self.verbosity = 0
     self.view_period = 0.1
     self.widget_map = {}
@@ -101,10 +108,14 @@ class AVC(object):
     except:
       pass
 
+    # do init specific to widget toolkit
+    real.init(globals())
+
     # if verbosity > 0 , print header
     if avccd.verbosity > 0:
-      print 'AVC ' + '0.8.2' + ' - Activity Report'
-      print 'widget toolkit binding: ' + TOOLKITS[toolkit]
+      print 'AVC ' + __version__ + ' - Activity Report'
+      print 'widget toolkit binding: ' + TOOLKITS[toolkit] + ' v' \
+        + avccd.toolkit_version
       print 'program: ' + sys.argv[0]  
       print 'verbosity: ' + str(avccd.verbosity)
       if avccd.view_period:
@@ -113,16 +124,13 @@ class AVC(object):
       else:
         print 'connection update mode: immediate'
 
-    # do init specific to widget toolkit
-    real.init(globals())
-
     # connect widgets-variables in __main__ namespace
     self.avc_connect(real.toplevel_widgets())
 
     # if a sampled (periodic) update of all controls views is required,
     # start a periodic call to view update function.
     if avccd.view_period != 0.0:
-      avccd.timer = real.timer(view_update,avccd.view_period)
+      avccd.timer = real.timer(self.view_update,avccd.view_period)
 
 
   def avc_connect(self,toplevel):
@@ -143,7 +151,7 @@ class AVC(object):
       print 'widget tree scansion from top level ' + str(toplevel)
 
     # for each widget in GUI ... 
-    for widget, widget_name in get_widget(toplevel):
+    for widget, widget_name in self.get_widget(toplevel):
 
       # if widget is not supported: go to next widget
       if not avccd.widget_map.has_key(widget.__class__):
@@ -188,39 +196,37 @@ class AVC(object):
       avccd.connected_widgets[widget] = connection
 
 
-# core functions
-
-def get_widget(widgets):
-  """
-  Widget tree iterator. Start from toplevel widgets and traverse their
-  widgets trees in breath first mode returning for each widget its
-  pointer and name.
-  """
-  # for each toplevel widget ...
-  while widgets:
-    children = []
-    # for each widget in this level ...
-    for widget in widgets:
-      # return pointer and name of widget
-      yield (widget,real.widget_name(widget))
-      children += real.widget_children(widget)
-      # children of this level are widgets of next level
-      widgets = children
+  def get_widget(self,widgets):
+    """
+    Widget tree iterator. Start from toplevel widgets and traverse their
+    widgets trees in breath first mode returning for each widget its
+    pointer and name.
+    """
+    # for each toplevel widget ...
+    while widgets:
+      children = []
+      # for each widget in this level ...
+      for widget in widgets:
+        # return pointer and name of widget
+        yield (widget,real.widget_name(widget))
+        children += real.widget_children(widget)
+        # children of this level are widgets of next level
+        widgets = children
 
 
-def view_update():
-  "Periodically update views for all scheduled cogets"
+  def view_update(self):
+    "Periodically update views for all scheduled cogets"
 
-  for connection in avccd.connections_updates.keys():
-    setter = avccd.connections_updates[connection]
-    # set the new control value in all widgets binded to this control
-    # excluding the setting widget, if setter is a widget.
-    for wal_widget in connection.wal_widgets:
-      if wal_widget != setter:
-        wal_widget.write(connection.control_value)
+    for connection in avccd.connections_updates.keys():
+      setter = avccd.connections_updates[connection]
+      # set the new control value in all widgets binded to this control
+      # excluding the setting widget, if setter is a widget.
+      for wal_widget in connection.wal_widgets:
+        if wal_widget != setter:
+          wal_widget.write(connection.control_value)
 
-  # clear all update requests
-  avccd.connections_updates = {}
+    # clear all update requests
+    avccd.connections_updates = {}
 
 
 class Connection:

@@ -58,6 +58,8 @@ def init(core):
     wx.TextCtrl:	core['Entry'],
     wx.ToggleButton:	core['ToggleButton'], \
     wx.TreeCtrl:	core['TreeView']}
+  # get toolkit version
+  core['avccd'].toolkit_version = wx.VERSION_STRING
 
 def widget_children(widget):
   "Return the list of all children of the widget"

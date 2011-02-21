@@ -20,6 +20,11 @@
 {#main_bar#:
 <h3>All News</h3>
 
+<p><b>15-Feb-2011</b>: released AVC 0.8.3.
+Added widget toolkit printing to testing printout and changed some internals:
+program version management and directory structure for Debian package building.
+<a href="relnotes.html#0_8_3">Release note</a>.</p>
+
 <p><b>24-Dec-2009</b>: released AVC 0.8.2.
 Fixed wxWidgets ListCtrl not updating header on connected variable change.
 <a href="relnotes.html#0_8_2">Release note</a>.</p>

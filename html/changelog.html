@@ -28,8 +28,8 @@ AVC, Application View Controller
 <div class="leftbar">
 <div class="item">
 <h3 class="itemhead"><a name="ToC1">OUTLINE</a></h3>
-<p><strong>Current:</strong> 0.8.2</p>
-<p><strong>Released:</strong> 24-Dec-2009</p>
+<p><strong>Current:</strong> 0.8.3</p>
+<p><strong>Released:</strong> 15-Feb-2011</p>
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
 <p><strong>Common Requirements:</strong><br>
@@ -64,7 +64,8 @@ Pyqt v3 - v4</a><br>
 </div>
 <div class="item">
 <h3 class="itemhead"><a name="ToC3">ARTICLES</a></h3>
-<p><a href="http://pymag.phparch.com/c/issue/view/71">
+<p><a
+href="http://www.learningpython.com/2010/03/14/avc-simplifying-your-gui-code/">
 AVC-Simplifying your GUI Code</a></p>
 </div>
 <div class="item">
@@ -79,7 +80,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead"><a name="ToC5">DOWNLOAD</a></h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.2.tar.gz">avc-0.8.2.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.3.tar.gz">avc-0.8.3.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
@@ -104,6 +105,25 @@ AVC-Simplifying your GUI Code</a></p>
 </div>
 <div class="mainbar">
 <h3><a name="ToC6">Changelog</a></h3>
+<p><b>AVC 0.8.3 released 15-Feb-2011</b></p>
+<ul>
+<li>Added printing of the widget toolk version to testing printout.</li>
+<li>Changed functions view_update and get_widget to be methods of class AVC
+  </li>
+<li>Centralized version, author, license information: program and building
+    scripts now read this info from reference strings defined in avccore.py .
+  </li>
+<li>Updated instructions for pdf manual generation.</li>
+</ul>
+INTERNALS
+<ul>
+<li>Centralized version, author, license information: program and
+    building scripts now read this info from reference strings defined in
+    avccore.py.</li>
+<li>Splitted dir structure into AVC source and debian binary build areas.</li>
+<li>Source build control from shell script to scons.</li>
+<li>All build shell scripts converted from shell to python.</li>
+</ul></p>
 <p><b>AVC 0.8.2 released 24-Dec-2009</b></p>
 <ul>
 <li>Fixed wxWidgets ListCtrl not updating header on connected variable
@@ -204,7 +224,7 @@ AVC-Simplifying your GUI Code</a></p>
 </ul></p>
 </div>
 <div id="footer">
-Copyright &copy; 2006-2009 Fabrizio Pollastri -
+Copyright &copy; 2006-2011 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 </div>
 <p>

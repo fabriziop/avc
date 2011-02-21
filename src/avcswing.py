@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	18-Nov-2007
-# .copyright  :	(c) 2007 Fabrizio Pollastri
+# .copyright  :	(c) 2007-2011 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -30,6 +30,7 @@
 
 from java import awt		# awt tool kit bindings
 from javax import swing		# swing tool kit bindings
+from java.lang import System	# to get java version
 
 import sys
 
@@ -57,6 +58,8 @@ def init(core,*args,**kwargs):
     swing.JTextArea:	core['TextView'],
     swing.JToggleButton:core['ToggleButton'],
     swing.JTree:	core['TreeView']}
+  # get toolkit version
+  core['avccd'].toolkit_version = System.getProperties()['java.runtime.version']
 
 def widget_children(widget):
   "Return the list of all children of the widget"

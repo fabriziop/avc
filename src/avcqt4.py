@@ -55,6 +55,8 @@ def init(core):
     qt.QDoubleSpinBox:	core['SpinButton'], \
     qt.QTextEdit:	core['TextView'], \
     qt.QTreeWidget:	core['listtreeview']}
+  # get toolkit version
+  core['avccd'].toolkit_version = qt.PYQT_VERSION_STR
 
 def widget_children(widget):
   "Return the list of all children of the widget"

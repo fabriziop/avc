@@ -28,8 +28,8 @@ AVC, Application View Controller
 <div class="leftbar">
 <div class="item">
 <h3 class="itemhead"><a name="ToC1">OUTLINE</a></h3>
-<p><strong>Current:</strong> 0.8.2</p>
-<p><strong>Released:</strong> 24-Dec-2009</p>
+<p><strong>Current:</strong> 0.8.3</p>
+<p><strong>Released:</strong> 15-Feb-2011</p>
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
 <p><strong>Common Requirements:</strong><br>
@@ -64,7 +64,8 @@ Pyqt v3 - v4</a><br>
 </div>
 <div class="item">
 <h3 class="itemhead"><a name="ToC3">ARTICLES</a></h3>
-<p><a href="http://pymag.phparch.com/c/issue/view/71">
+<p><a
+href="http://www.learningpython.com/2010/03/14/avc-simplifying-your-gui-code/">
 AVC-Simplifying your GUI Code</a></p>
 </div>
 <div class="item">
@@ -79,7 +80,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead"><a name="ToC5">DOWNLOAD</a></h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.2.tar.gz">avc-0.8.2.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.3.tar.gz">avc-0.8.3.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
@@ -105,18 +106,25 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="mainbar">
 <h3><a name="ToC6">Release Notes</a></h3>
 <hr>
-<h3 name="0_8_2"><a name="ToC7">AVC 0.8.2</a></h3>
+<h3 name="0_8_3"><a name="ToC7">AVC 0.8.3</a></h3>
+<p>This release adds widget toolkit version information to testing printout
+and changes the program version propagation from file to file, fixing a wrong
+version in testing printout. The development directory structure is also
+changed to have a better decupling among program releases and debian package
+releases.</p>
+<hr>
+<h3 name="0_8_2"><a name="ToC8">AVC 0.8.2</a></h3>
 <p>This release fixes wxWidgets ListCtrl not updating header on connected
 variable change. It was a bug of the wxWidget driver (avcwx.py): missed
 the column name (header) setting call.</p>
 <hr>
-<h3 name="0_8_1"><a name="ToC8">AVC 0.8.1</a></h3>
+<h3 name="0_8_1"><a name="ToC9">AVC 0.8.1</a></h3>
 <p>This release fixes wxWidgets TreeCtrl not updating on connected variable
 change. It was a bug of the wxWidget driver (avcwx.py): the tree items were
 not deleted before rewriting. Since the tree is completely rewritten at each
 update, the expanded/collapsed status of each tree item is lost.</p>
 <hr>
-<h3 name="0_8_0"><a name="ToC9">AVC 0.8.0</a></h3>
+<h3 name="0_8_0"><a name="ToC10">AVC 0.8.0</a></h3>
 <p>This release adds the support for the java Swing widget toolkit.
 The supported widgets are: button, check box, combo box, label, progress bar,
 radio box, slider, spinner, table, text area, text field, toggle button,
@@ -127,11 +135,11 @@ keyed by real widget classes. To improve module safety, the check for
 executed avc_init in avc_connect was added.<br>
 Now, the setup utility can install for both python and jython.</p>
 <hr>
-<h3 name="0_7_1"><a name="ToC10">AVC 0.7.1</a></h3>
+<h3 name="0_7_1"><a name="ToC11">AVC 0.7.1</a></h3>
 <p>This release makes some cleanup of backup files in "examples" dir and
 restore the file "manual.pdf.readme" in "doc" dir.</p>
 <hr>
-<h3 name="0_7_0"><a name="ToC11">AVC 0.7.0</a></h3>
+<h3 name="0_7_0"><a name="ToC12">AVC 0.7.0</a></h3>
 <p>This release expands the number of supported widgets introducing the support
 for the progress bar widget and for two advanced widgets: the list view and the
 tree view.</p>
@@ -146,10 +154,10 @@ lists to represent list view data and a python dictionary where the keys are
 the paths of each corresponding value inside the tree (see "listtreeview/ctrl"
 example).</p>
 <hr>
-<h3 name="0_6_1"><a name="ToC12">AVC 0.6.1</a></h3>
+<h3 name="0_6_1"><a name="ToC13">AVC 0.6.1</a></h3>
 <p>This release adds PDF documentation sources (ODT file and images).</p>
 <hr>
-<h3 name="0_6_0"><a name="ToC13">AVC 0.6.0</a></h3>
+<h3 name="0_6_0"><a name="ToC14">AVC 0.6.0</a></h3>
 <p>This release comes with a big code rewrite and a step up in
 internal complexity for the introduction of multiple matching
 namespaces and dynamic connections. A small change in user api is
@@ -191,7 +199,7 @@ example). Older releases allowed this separation for GTK+ and Tk toolkits only.
 </p>
 </div>
 <div id="footer">
-Copyright &copy; 2006-2009 Fabrizio Pollastri -
+Copyright &copy; 2006-2011 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 </div>
 <p>

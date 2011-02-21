@@ -1,0 +1,10 @@
+Da fare
+
+* completare spostamanto file/comandi per creare .deb
+* aggiungere tutte le variazioni 'internals' al changelog
+  (messa sotto scons, separazione dir source da build -deb)
+* fare SConstruct per build .deb nella dir deb
+* preparare build del .deb verificando aggiornamento dello stato
+  attuale su alioth vs quello qui locale.
+* richiesta a Piotr di publish 
+

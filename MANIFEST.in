@@ -6,7 +6,11 @@ include doc/user_manual.pdf
 include doc/user_manual.pdf.readme
 include doc/listview.png
 include doc/treeview.png
-include examples/*.*
-include images/*.*
+include examples/*.py
+include examples/*.glade
+include examples/*.tcl
+include examples/*.ui
+include examples/*.xrc
+include images/*.png
 exclude images/author_mail.png
 exclude images/new*.png

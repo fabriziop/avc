@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	7-Nov-2006
-# .copyright  :	(c) 2006-2008 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2011 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -54,6 +54,9 @@ def init(core):
     qt.QSlider:		core['Slider'], \
     qt.QSpinBox:	core['SpinButton'], \
     qt.QTextEdit:	core['TextView']}
+  # get toolkit version
+  core['avccd'].toolkit_version = qt.PYQT_VERSION_STR
+
 
 def widget_children(widget):
   "Return the list of all children of the widget"

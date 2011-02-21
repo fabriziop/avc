@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 18-Sep-2007
-# .copyright	: (c) 2007-2009 Fabrizio Pollastri
+# .copyright	: (c) 2007-2011 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,7 +19,7 @@ AVC, Application View Controller
 :##}
 
 {#COPYRIGHT#:\
-Copyright &copy; 2006-2009 Fabrizio Pollastri -
+Copyright &copy; 2006-2011 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 :##}
 
@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.8.2</p>
+<p><strong>Current:</strong> 0.8.3</p>
 
-<p><strong>Released:</strong> 24-Dec-2009</p>
+<p><strong>Released:</strong> 15-Feb-2011</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -136,7 +136,8 @@ Pyqt v3 - v4</a><br>
 
 <div class="item">
 <h3 class="itemhead">ARTICLES</h3>
-<p><a href="http://pymag.phparch.com/c/issue/view/71">
+<p><a
+href="http://www.learningpython.com/2010/03/14/avc-simplifying-your-gui-code/">
 AVC-Simplifying your GUI Code</a></p>
 </div>
 
@@ -154,7 +155,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.2.tar.gz">avc-0.8.2.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.8.3.tar.gz">avc-0.8.3.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"

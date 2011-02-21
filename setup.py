@@ -30,6 +30,7 @@
 from distutils.core import setup
 from shutil import copytree, rmtree
 import os, os.path
+import re
 import sys
 
 # parameters
@@ -68,16 +69,22 @@ if sys.version_info < (2, 3):
       del kwargs["classifiers"]
     _setup(**kwargs)
 
+# read version string, author name, author e-mail from file
+ftext = open('src/avccore.py').read()
+VERSION = re.search('__version__\s+=\s+\'(\d+\.\d+\.\d+)\'',ftext).group(1)
+AUTHOR = re.search('__author__ = \'([a-zA-Z]+\s+[a-zA-Z]+)\s+',ftext).group(1)
+AUTHOR_EMAIL = re.search('__author__ = .*?<(.*?)>',ftext).group(1)
+
 # do setup
 setup (
   name = 'avc',
-  version = '0.8.2',
-  author = 'Fabrizio Pollastri',
-  author_email = 'f.pollastri@inrim.it',
-  maintainer = 'Fabrizio Pollastri',
-  maintainer_email = 'f.pollastri@inrim.it',
+  version = VERSION,
+  author = AUTHOR,
+  author_email = AUTHOR_EMAIL,
+  maintainer = AUTHOR,
+  maintainer_email = AUTHOR_EMAIL,
   url = 'http://avc.inrim.it',
-  download_url = 'http://avc.inrim.it/dist/avc-0.8.2.tar.gz',
+  download_url = 'http://avc.inrim.it/dist/avc-' + VERSION + '.tar.gz',
   license = 'http://www.gnu.org/licenses/gpl.txt',
   platforms = ['Linux'],
   description = """

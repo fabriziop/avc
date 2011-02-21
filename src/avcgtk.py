@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	7-Nov-2006
-# .copyright  :	(c) 2006-2008 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2011 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -57,6 +57,8 @@ def init(core):
   gtk.ToggleButton:	core['ToggleButton'], \
   gtk.TreeView:		core['listtreeview'], \
   gtk.VScale:		core['Slider']}
+  # get toolkit version
+  core['avccd'].toolkit_version = '.'.join(map(str,gtk.gtk_version))
 
 def widget_children(widget):
   "Return the list of all children of the widget"

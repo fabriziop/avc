@@ -1,3 +1,15 @@
+AVC 0.8.3 released 15-Feb-2011
+  * Added printing of the widget toolk version to testing printout.
+  * Changed functions view_update and get_widget to be methods of class AVC.
+  * Updated instructions for pdf manual generation.
+  INTERNALS
+  i Centralized version, author, license information: program and
+    building scripts now read this info from reference strings defined in
+    avccore.py.
+  i Splitted dir structure into AVC source and debian binary build areas.
+  i Source build control from shell script to scons.
+  i All build shell scripts converted from shell to python. 
+
 AVC 0.8.2 released 24-Dec-2009
   * Fixed wxWidgets ListCtrl not updating header on connected variable change.
 

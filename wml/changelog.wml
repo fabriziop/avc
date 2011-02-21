@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 31-Oct-2007
-# .copyright	: (c) 2007 Fabrizio Pollastri
+# .copyright	: (c) 2007-2011 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,6 +19,26 @@
 
 {#main_bar#:
 <h3>Changelog</h3>
+
+<p><b>AVC 0.8.3 released 15-Feb-2011</b></p>
+<ul>
+<li>Added printing of the widget toolk version to testing printout.</li>
+<li>Changed functions view_update and get_widget to be methods of class AVC
+  </li>
+<li>Centralized version, author, license information: program and building
+    scripts now read this info from reference strings defined in avccore.py .
+  </li>
+<li>Updated instructions for pdf manual generation.</li>
+</ul>
+INTERNALS
+<ul>
+<li>Centralized version, author, license information: program and
+    building scripts now read this info from reference strings defined in
+    avccore.py.</li>
+<li>Splitted dir structure into AVC source and debian binary build areas.</li>
+<li>Source build control from shell script to scons.</li>
+<li>All build shell scripts converted from shell to python.</li>
+</ul></p>
 
 <p><b>AVC 0.8.2 released 24-Dec-2009</b></p>
 <ul>

@@ -2,13 +2,12 @@ This is "AVC, Application View Controller", written and maintained
 by Fabrizio Pollastri <f.pollastri@inrim.it>
 
 Instructions to generate the pdf version of the user manual
+on Linux Debian or Ubuntu or equivalent distributions.
 -----------------------------------------------------------
 
 1. You need open office and unoconv packages installed.
 
-2. Run open office in background.
+2. Change directory to AVC doc directory.
 
-3. Change directory to AVC doc directory.
-
-4. Run converter:
-   odt2pdf user_manual.odt
+3. Run converter.
+   cmd: odt2pdf user_manual.odt

@@ -102,6 +102,8 @@ def init(core):
     Tkinter.Scale:	core['Slider'], \
     Tkinter.Spinbox:	core['SpinButton'],
     Tkinter.Text:	core['TextView']}
+  # get toolkit version
+  core['avccd'].toolkit_version = Tkinter.__version__
 
 
 def widget_children(widget):
