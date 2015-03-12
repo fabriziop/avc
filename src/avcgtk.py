@@ -43,20 +43,22 @@ def init(core):
   "Do init specific for this widget toolkit"
   # mapping between the real widget and the wal widget
   core['avccd'].widget_map = { \
-  gtk.Button:		core['Button'], \
-  gtk.CheckButton:	core['ToggleButton'], \
-  gtk.ComboBox:		core['ComboBox'],\
-  gtk.Entry:		core['Entry'], \
-  gtk.Label:		core['Label'], \
-  gtk.ProgressBar:	core['ProgressBar'], \
-  gtk.RadioButton:	core['RadioButton'], \
-  gtk.HScale:		core['Slider'], \
-  gtk.SpinButton:	core['SpinButton'], \
-  gtk.Statusbar:	core['StatusBar'], \
-  gtk.TextView:		core['TextView'], \
-  gtk.ToggleButton:	core['ToggleButton'], \
-  gtk.TreeView:		core['listtreeview'], \
-  gtk.VScale:		core['Slider']}
+  gtk.Button:		    core['Button'], \
+  gtk.Calendar:	    	core['Calendar'], \
+  gtk.CheckButton:	    core['ToggleButton'], \
+  gtk.ComboBox:	    	core['ComboBox'],\
+  gtk.ColorSelection:	core['ColorChooser'],\
+  gtk.Entry:    		core['Entry'], \
+  gtk.Label:	    	core['Label'], \
+  gtk.ProgressBar:	    core['ProgressBar'], \
+  gtk.RadioButton:  	core['RadioButton'], \
+  gtk.HScale:		    core['Slider'], \
+  gtk.SpinButton:	    core['SpinButton'], \
+  gtk.Statusbar:    	core['StatusBar'], \
+  gtk.TextView:		    core['TextView'], \
+  gtk.ToggleButton:	    core['ToggleButton'], \
+  gtk.TreeView:		    core['listtreeview'], \
+  gtk.VScale:		    core['Slider']}
   # get toolkit version
   core['avccd'].toolkit_version = '.'.join(map(str,gtk.gtk_version))
 
@@ -134,6 +136,47 @@ class Button(Widget):
       self.widget.set_state(gtk.STATE_ACTIVE)
     else:
       self.widget.set_state(gtk.STATE_NORMAL)
+
+
+class Calendar(Widget):
+  "GTK Calendar real widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    self.widget.connect("day-selected",self.value_changed)
+
+  def read(self):
+    "Get calendar date"
+    date = self.widget.get_date()
+    # make month number starting from 1
+    return (date[0],date[1]+1,date[2])
+
+  def write(self,value):
+    "Set calendar date"
+    # make month number starting from 0
+    self.widget.select_month(value[1]-1,value[0])
+    self.widget.select_day(value[2])
+
+
+class ColorChooser(Widget):
+  "GTK ColorChooser real widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    self.widget.connect("color-changed",self.value_changed)
+
+  def read(self):
+    "Get current color"
+    color = self.widget.get_current_color()
+    alpha = self.widget.get_current_alpha()
+    # color from int to float 0.0-1.0
+    return (color.red/65535.,color.green/65535.,color.blue/65535.,alpha/65535.)
+
+  def write(self,value):
+    "Set current color"
+    self.widget.set_current_color(gtk.gdk.Color(
+      int(value[0]*65535),int(value[1]*65535),int(value[2]*65535)))
+    self.widget.set_current_alpha(int(value[3] * 65535))
 
 
 class ComboBox(Widget):

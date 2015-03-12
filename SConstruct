@@ -59,7 +59,7 @@ for source in Glob('wml/*.wml'):
 
 ## build user manual pdf
 env.Command('doc/user_manual.pdf','doc/user_manual.odt', \
-  ['ooffice -invisible &','odt2pdf $SOURCE'])
+  ['libreoffice --invisible &','sleep 1','odt2pdf $SOURCE'])
 
 ## build python source distribution
 # get dependences from file 'MANIFEST.in'

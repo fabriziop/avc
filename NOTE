@@ -44,3 +44,6 @@ Version Control Systems and mtime preservation
 - Darcs, no mtime switches not found.
 - TLA,  no mtime switches not found.
 
+fp20150312
+Libreoffice how to remome a paragraph from heading: cursor in paragraph then
+press crtl-0.

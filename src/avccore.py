@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # .+
 # .context    : Application View Controller
 # .title      : AVC core
@@ -5,7 +6,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	3-Nov-2006
-# .copyright  :	(c) 2006-2011 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2015 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -31,29 +32,32 @@ import copy				# object deep copy
 import sys				# command line option reading
 
 
-class error(Exception):
-  "A generic error exception"
-  def __init__(self, value):
-    self.value = value
-  def __str__(self):
-    return repr(self.value)
+class Error(Exception):
+    """A generic error exception"""
+
+    def __init__(self, value):
+        Exception.__init__(self)
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
 
 
 ## module information
 __author__ = 'Fabrizio Pollastri <f.pollastri@inrim.it>'
 __license__ = '>= GPL v3'
-__version__ = '0.8.3'
+__version__ = '0.9.0'
 
 
 ## load proper AVC widget toolkit binding according with the widget toolkit
 # imported by application program
 
 # supported toolkit names indexed by python binding module names
-TOOLKITS = { 'gtk':'GTK+','qt':'Qt3','PyQt4':'Qt4','javax':'Swing', \
+TOOLKITS = { 'gtk':'GTK+','PyQt4':'Qt4','javax':'Swing', \
   'Tkinter':'Tkinter','wx':'wxWidgets'}
 
 # avc toolkit bindings indexed by python binding module names
-AVC_BINDINGS = { 'gtk':'avcgtk','qt':'avcqt3','PyQt4':'avcqt4', \
+AVC_BINDINGS = { 'gtk':'avcgtk','PyQt4':'avcqt4', \
   'javax':'avcswing','Tkinter':'avctk', 'wx':'avcwx'}
 
 AVC_PREFIX = 'avc.'
@@ -63,7 +67,7 @@ for toolkit in TOOLKITS.keys():
   if sys.modules.has_key(toolkit):
     break
 else:
-  raise error,'No supported toolkit found: import it before AVC import.'
+  raise Error,'No supported toolkit found: import it before AVC import.'
 
 # found a supported toolkit: import its AVC binding
 real = __import__(AVC_PREFIX + AVC_BINDINGS[toolkit],globals(),locals(),
@@ -77,7 +81,7 @@ OPT_VERBOSITY = '--avc-verbosity'
 WIDGET_NAME_SEP = '__'
 
 # AVC common data
-class AVCCD:
+class AVCcd:
   def __init__(self):
     self.toolkit_version = ''
     self.verbosity = 0
@@ -88,7 +92,7 @@ class AVCCD:
     self.connections_updates = {}
     self.connected_widgets = {}
     self.timer = None
-avccd = AVCCD()
+avccd = AVCcd()
 
 
 class AVC(object):
@@ -141,7 +145,7 @@ class AVC(object):
 
     # check for avc_init execution
     if not avccd.widget_map:
-      raise error, "avc_connect must be called after avc_init call."
+      raise Error, "avc_connect must be called after avc_init call."
 
     # force top level widgets to be a list
     if toplevel.__class__ != list:
@@ -223,7 +227,13 @@ class AVC(object):
       # excluding the setting widget, if setter is a widget.
       for wal_widget in connection.wal_widgets:
         if wal_widget != setter:
-          wal_widget.write(connection.control_value)
+          try:
+            wal_widget.write(connection.control_value)
+          # on writing error terminate
+          except:
+            print "error writing " + str(connection.control_value) \
+                    + " to " + str(wal_widget) + ':\n', sys.exc_info()[1]
+            sys.exit()
 
     # clear all update requests
     avccd.connections_updates = {}
@@ -413,7 +423,7 @@ class Coget(object):
 
   def __delete__(self,instance):
     "Cogets cannot be deleted"
-    raise error,"Trying to delete "+ str(self) +": Cogets cannot be deleted."
+    raise Error,"Trying to delete "+ str(self) +": Cogets cannot be deleted."
 
 
 #### WIDGETS ABSTRACTION LAYER (coget side)
@@ -425,7 +435,7 @@ class Widget:
   
     # check for supported control type
     if allowed_types and not connection.control_type in allowed_types:
-      raise error, "Control type '%s' not supported with '%s' widget" % \
+      raise Error, "Control type '%s' not supported with '%s' widget" % \
         (connection.control_type.__name__,widget.__class__.__name__)
 
     # save references
@@ -437,10 +447,10 @@ class Widget:
 
 
   def read(self):
-    raise error,"Method \"read\" of abstract class Widget is undefined"
+    raise Error,"Method \"read\" of abstract class Widget is undefined"
 
   def write(self,value):
-    raise error,"Method \"write\" of abstract class Widget is undefined"
+    raise Error,"Method \"write\" of abstract class Widget is undefined"
 
   def value_changed(self,*args):
     "widget value changed handler"
@@ -464,7 +474,7 @@ class ListTreeView(Widget,real.ListTreeView):
     # check for allowed control type
     head = connection.control_value.get('head',None)
     if head and type(head) != list:
-      raise error, "%s widget do not allow '%s' type as header, use a list." \
+      raise Error, "%s widget do not allow '%s' type as header, use a list." \
       % (listtreeview.__class__.__name__,type(head).__name__)
 
     # save column number
@@ -472,7 +482,7 @@ class ListTreeView(Widget,real.ListTreeView):
 
     # check for header size equal to column number
     if head and len(head) != self.cols_num:
-      raise error, "%s widget require header lenght equal to data row size." \
+      raise Error, "%s widget require header lenght equal to data row size." \
       % listtreeview.__class__.__name__
 
     # real common init
@@ -497,6 +507,16 @@ class Button(real.Button,Widget):
     real.Button.__init__(self)
 
 
+class Calendar(real.Calendar,Widget):
+  "Calendar widget abstractor"
+
+  def __init__(self,connection,calendar):
+    # generic abstract widget init
+    Widget.__init__(self,connection,calendar,(list,tuple))
+    # real widget init
+    real.Calendar.__init__(self)
+
+
 class ComboBox(real.ComboBox,Widget):
   "ComboBox widget abstractor"
 
@@ -505,6 +525,16 @@ class ComboBox(real.ComboBox,Widget):
     Widget.__init__(self,connection,combobox,(int,))
     # real widget init
     real.ComboBox.__init__(self)
+
+
+class ColorChooser(real.ColorChooser,Widget):
+  "ColorChooser widget abstractor"
+
+  def __init__(self,connection,colorchooser):
+    # generic abstract widget init
+    Widget.__init__(self,connection,colorchooser,(list,tuple))
+    # real widget init
+    real.ColorChooser.__init__(self)
 
 
 class Entry(real.Entry,Widget):
@@ -748,7 +778,7 @@ def listtreeview(connection,treeview):
   elif body_type == dict:
     return TreeView(connection,treeview)
   else:
-    raise error, "%s widget do not allow '%s' type as data," \
+    raise Error, "%s widget do not allow '%s' type as data," \
     + "use a list for tabular data or a dictionary for tree data." \
     % (treeview.__class__.__name__,type(body).__name__)
 

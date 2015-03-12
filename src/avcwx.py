@@ -1,12 +1,13 @@
+"""
 # .+
-# .context    : Application View Controller
-# .title      : AVC wx bindings
-# .kind	      : python source
-# .author     : Fabrizio Pollastri
-# .site	      : Torino - Italy
-# .creation   :	23-Nov-2007
-# .copyright  :	(c) 2007-2008 Fabrizio Pollastri
-# .license    : GNU General Public License (see below)
+# .context      : Application View Controller
+# .title        : AVC wx bindings
+# .kind         : python source
+# .author       : Fabrizio Pollastri
+# .site         : Torino - Italy
+# .creation     : 23-Nov-2007
+# .copyright    : (c) 2007-2008 Fabrizio Pollastri
+# .license      : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
 #
@@ -24,13 +25,14 @@
 # along with AVC.  If not, see <http://www.gnu.org/licenses/>.
 #
 # .-
-
+"""
 
 #### IMPORT REQUIRED MODULES
 
-import wx			# wx tool kit bindings
+import wx               # wx tool kit bindings
+import wx.calendar      # wx calendar module
 
-import string			# string operations
+import string           # string operations
 
 
 #### GENERAL ABSTRACTION METHODS
@@ -43,28 +45,30 @@ def init(core):
   "Do init specific to this widget toolkit"
   # mapping between the real widget and the wal widget
   core['avccd'].widget_map = { \
-    wx.BitmapButton:	core['Button'], \
-    wx.Button:		core['Button'], \
-    wx.CheckBox:	core['ToggleButton'], \
-    wx.ComboBox:	core['ComboBox'],\
-    wx.Choice:		core['ComboBox'],\
-    wx.Gauge:		core['ProgressBar'], \
-    wx.ListCtrl:	core['ListView'], \
-    wx.RadioBox:	core['RadioButton'], \
-    wx.Slider:		core['Slider'], \
-    wx.SpinCtrl:	core['SpinButton'], \
-    wx.StaticText:	core['Label'], \
-    wx.StatusBar:	core['StatusBar'],
-    wx.TextCtrl:	core['Entry'],
-    wx.ToggleButton:	core['ToggleButton'], \
-    wx.TreeCtrl:	core['TreeView']}
+    wx.BitmapButton:    core['Button'], \
+    wx.Button:            core['Button'], \
+    wx.calendar.CalendarCtrl:core['Calendar'], \
+    wx.CheckBox:        core['ToggleButton'], \
+    wx.ColourPickerCtrl:core['ColorChooser'],\
+    wx.ComboBox:        core['ComboBox'],\
+    wx.Choice:            core['ComboBox'],\
+    wx.Gauge:           core['ProgressBar'], \
+    wx.ListCtrl:        core['ListView'], \
+    wx.RadioBox:        core['RadioButton'], \
+    wx.Slider:          core['Slider'], \
+    wx.SpinCtrl:        core['SpinButton'], \
+    wx.StaticText:      core['Label'], \
+    wx.StatusBar:        core['StatusBar'],
+    wx.TextCtrl:        core['Entry'],
+    wx.ToggleButton:    core['ToggleButton'], \
+    wx.TreeCtrl:        core['TreeView']}
   # get toolkit version
   core['avccd'].toolkit_version = wx.VERSION_STRING
 
 def widget_children(widget):
   "Return the list of all children of the widget"
   # Widgets that are not a subclass of gtk.Container have no children.
-  if isinstance(widget,wx.Window):
+  if isinstance(widget, wx.Window):
     return widget.GetChildren()
   else:
     return []
@@ -73,16 +77,16 @@ def widget_name(widget):
   "Return the widget name"
   return widget.GetName()
 
-def timer(function,period):
+def timer(function, period):
   "Create and start a timer calling 'function' every 'period' time"
   first_toplevel = toplevel_widgets()[0]
-  timer = wx.Timer(first_toplevel,wx.NewId())
-  first_toplevel.Bind(wx.EVT_TIMER,lambda event: function(),timer)
-  timer.Start(int(period * 1000.0),oneShot=False)
+  timer = wx.Timer(first_toplevel, wx.NewId())
+  first_toplevel.Bind(wx.EVT_TIMER, lambda event: function(), timer)
+  timer.Start(int(period * 1000.0), oneShot=False)
   return timer
 
 
-class error(Exception):
+class Error(Exception):
   "A generic error exception"
   def __init__(self, value):
     self.value = value
@@ -95,16 +99,16 @@ class error(Exception):
 class Widget:
   "wx Widget Abstraction Layer abstract class"
 
-  def delete_method_filter(self,event):
+  def delete_method_filter(self, event):
     "Ignore destroy events not coming from current widget"
     if self.widget.GetId() == event.GetId():
       self.delete_method()
 
-  def connect_delete(self,widget,delete_method):
+  def connect_delete(self, widget, delete_method):
     "Connect widget delete method to window destroy event"
     self.delete_method = delete_method
     #widget.Bind(wx.EVT_WINDOW_DESTROY,delete_method)
-    widget.Bind(wx.EVT_WINDOW_DESTROY,self.delete_method_filter)
+    widget.Bind(wx.EVT_WINDOW_DESTROY, self.delete_method_filter)
 
 
 class ListTreeView(Widget):
@@ -137,9 +141,48 @@ class Button(Widget):
     "Get button status"
     return self.widget.value
 
-  def write(self,value):
+  def write(self, value):
     "Set button status"
     self.widget.value = value
+
+
+class Calendar(Widget):
+  "wx Calendar widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    self.widget.Bind(wx.calendar.EVT_CALENDAR_SEL_CHANGED, self.value_changed)
+
+  def read(self):
+    "Get selected date"
+    date = self.widget.GetDate()
+    # make month number starting from 1
+    return (date.GetYear(), date.GetMonth()+1, date.GetDay())
+
+  def write(self, value):
+    "Set selected date"
+    # change date from yyyymmdd to dd mm-1 yyyy, required by Set
+    self.widget.SetDate(wx.DateTime().Set(value[2], value[1]-1, value[0]))
+
+
+class ColorChooser(Widget):
+  "wx ColorChooser widget abstractor"
+
+  def __init__(self):
+    # color storage
+    self.color = wx.Color()
+    # connect relevant signals
+    self.widget.Bind(wx.EVT_COLOURPICKER_CHANGED, self.value_changed)
+
+  def read(self):
+    "Get selected color"
+    color = self.widget.GetColour().Get(True)
+    return tuple([float(component / 255.) for component in color])
+
+  def write(self, value):
+    "Set selected color"
+    self.color.Set(*[int(component * 255) for component in value])
+    self.widget.SetColour(self.color)
 
 
 class ComboBox(Widget):
@@ -151,13 +194,13 @@ class ComboBox(Widget):
       event_type = wx.EVT_COMBOBOX
     else:
       event_type = wx.EVT_CHOICE
-    self.widget.Bind(event_type,self.value_changed)
+    self.widget.Bind(event_type, self.value_changed)
 
   def read(self):
     "Get index of selected item"
     return self.widget.GetSelection()
 
-  def write(self,value):
+  def write(self, value):
     "Set selected item by its index value"
     self.widget.SetSelection(value)
 
@@ -169,7 +212,7 @@ class Entry(Widget):
     # create entry text value variable
     self.widget.value =  self.widget.GetValue()
     # connect relevant signals
-    self.widget.Bind(wx.EVT_TEXT,self.value_changed)
+    self.widget.Bind(wx.EVT_TEXT, self.value_changed)
 
   def read(self):
     "Get text from Entry"
@@ -181,12 +224,12 @@ class Entry(Widget):
       return text
     else:
       return self.widget.value
-    
-  def write(self,value):
+
+  def write(self, value):
     "Set text into Entry"
     self.widget.SetValue(str(value))
     self.widget.value = str(value)
- 
+
 
 class Label(Widget):
   "wx Label widget abstractor"
@@ -198,7 +241,7 @@ class Label(Widget):
     "Get value from Label"
     return self.widget.GetLabel()
 
-  def write(self,value):
+  def write(self, value):
     "Set text into Label"
     self.widget.SetLabel(value)
 
@@ -211,10 +254,10 @@ class ListView(ListTreeView):
     self.widget.Bind(wx.EVT_LIST_END_LABEL_EDIT,
       lambda event: wx.CallAfter(self.value_changed) or event.Skip())
 
-  def append_column(self,col_num,text):
+  def append_column(self, col_num, text):
     "Append a column to the ListView"
-    self.widget.InsertColumn(col_num,text)
-   
+    self.widget.InsertColumn(col_num, text)
+
   def read(self):
     "Get values displayed by widget"
     # get head
@@ -235,27 +278,27 @@ class ListView(ListTreeView):
             row.append(0.0)
       body.append(row)
     # return
-    return {'head': head,'body': body}
+    return {'head': head, 'body': body}
 
-  def write(self,value):
+  def write(self, value):
     "Set values displayed by widget"
     # set header
     if value.has_key('head'):
       for col_num in range(self.widget.GetColumnCount()):
         col_item = self.widget.GetColumn(col_num)
         col_item.SetText(value['head'][col_num])
-        self.widget.SetColumn(col_num,col_item)
+        self.widget.SetColumn(col_num, col_item)
     # set data rows
     body = value['body']
     self.widget.DeleteAllItems()
     if type(body[0]) == list:
-      for row_num,row in enumerate(body):
-        index = self.widget.InsertStringItem(row_num,'')
-        for col_num,item in enumerate(row):
-          self.widget.SetStringItem(row_num,col_num,str(item))
+      for row_num, row in enumerate(body):
+        self.widget.InsertStringItem(row_num,'')
+        for col_num, item in enumerate(row):
+          self.widget.SetStringItem(row_num, col_num, str(item))
     else:
-      for row_num,row in enumerate(body):
-        self.widget.InsertStringItem(row_num,str(row))
+      for row_num, row in enumerate(body):
+        self.widget.InsertStringItem(row_num, str(row))
 
 
 class ProgressBar(Widget):
@@ -267,15 +310,15 @@ class ProgressBar(Widget):
   def read(self):
     "Get progress bar position"
     return self.widget.GetValue() / 100.
-    
-  def write(self,value):
+
+  def write(self, value):
     "Set progress bar position"
-    # negative values pulse the bar, positive values position the bar. 
+    # negative values pulse the bar, positive values position the bar.
     if value < 0:
       self.widget.Pulse()
     else:
       self.widget.SetValue(int(round(value * 100)))
- 
+
 
 class RadioButton(Widget):
   "wx RadioButton widget abstractor"
@@ -286,13 +329,13 @@ class RadioButton(Widget):
       event_type = wx.EVT_RADIOBOX
     else:
       event_type = wx.EVT_RADIOBUTTON
-    self.widget.Bind(event_type,self.value_changed)
+    self.widget.Bind(event_type, self.value_changed)
 
   def read(self):
     "Get index of activated button"
     return self.widget.GetSelection()
 
-  def write(self,value):
+  def write(self, value):
     "Set activate button indexed by value"
     self.widget.SetSelection(value)
 
@@ -304,12 +347,12 @@ class Slider(Widget):
     # connect relevant signals
     self.widget.Bind(wx.EVT_LEFT_UP,
       lambda event: wx.CallAfter(self.value_changed) or event.Skip())
- 
+
   def read(self):
     "Get Slider value"
     return self.widget.GetValue()
 
-  def write(self,value):
+  def write(self, value):
     "Set Slider value"
     self.widget.SetValue(value)
 
@@ -319,14 +362,14 @@ class SpinButton(Widget):
 
   def __init__(self):
     # connect relevant signals to handlers
-    wx.EVT_SPINCTRL(self.widget,self.widget.GetId(),self.value_changed)
+    wx.EVT_SPINCTRL(self.widget, self.widget.GetId(), self.value_changed)
 
 
   def read(self):
     "Get spinbutton value"
     return self.widget.GetValue()
 
-  def write(self,value):
+  def write(self, value):
     "Set spinbutton value"
     self.widget.SetValue(value)
 
@@ -337,7 +380,7 @@ class StatusBar(Widget):
   def __init__(self):
     pass
 
-  def write(self,value):
+  def write(self, value):
     "Set StatusBar value (only field 1)"
     self.widget.SetStatusText(value)
 
@@ -347,14 +390,14 @@ class TextView(Widget):
 
   def __init__(self):
     # connect relevant signals to handlers
-    self.widget.get_buffer().connect("changed",self.value_changed)
+    self.widget.get_buffer().connect("changed", self.value_changed)
 
   def read(self):
     "Get text from TextView"
     textbuf = self.widget.get_buffer()
-    return textbuf.get_text(textbuf.get_start_iter(),textbuf.get_end_iter())
-    
-  def write(self,value):
+    return textbuf.get_text(textbuf.get_start_iter(), textbuf.get_end_iter())
+
+  def write(self, value):
     "Set text into TextView"
     self.widget.get_buffer().set_text(str(value))
 
@@ -368,13 +411,13 @@ class ToggleButton(Widget):
       event_type = wx.EVT_CHECKBOX
     else:
       event_type = wx.EVT_TOGGLEBUTTON
-    self.widget.Bind(event_type,self.value_changed)
+    self.widget.Bind(event_type, self.value_changed)
 
   def read(self):
     "Get button status"
     return bool(self.widget.GetValue())
 
-  def write(self,value):
+  def write(self, value):
     "Set button status"
     self.widget.SetValue(value)
 
@@ -385,30 +428,33 @@ class TreeView(ListTreeView):
   def __init__(self):
 
     # check for allowed control type
-    if self.connection.control_value.get('head',None):
+    if self.connection.control_value.get('head', None):
       raise error, "%s widget do not support header." \
         % self.widget.__class__.__name__
-    key,row = self.connection.control_value.get('body',None).iteritems().next()
+    key, row = \
+        self.connection.control_value.get('body', None).iteritems().next()
     if type(row) == list and not len(row) == 1:
-      raise error,"%s widget do not allow data rows with more than one column."\
+      raise error, \
+          "%s widget do not allow data rows with more than one column."\
         % self.widget.__class__.__name__
 
     # connect relevant signals
     self.widget.Bind(wx.EVT_TREE_END_LABEL_EDIT,
       lambda event: wx.CallAfter(self.value_changed) or event.Skip())
 
-  def append_column(self,col_num,text):
+  def append_column(self, col_num, text):
     "wx TreeCtrl has no columns support"
     pass
-   
+
   def read(self):
     "Get values displayed by widget"
     # get data rows
     body = {}
-    # recursive depth first tree data node reader
-    def read_node(node_id,node_path):
+
+    def read_node(node_id, node_path):
+      """recursive depth first tree data node reader"""
       try:
-        body[string.join(map(str,node_path),'.')] = \
+        body[string.join(map(str, node_path), '.')] = \
           self.row_types[0](self.widget.GetItemText(node_id))
       except:
         if self.row_types[0] == int:

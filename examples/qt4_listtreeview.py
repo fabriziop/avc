@@ -3,7 +3,7 @@
 #
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : list tree view widget display capabilities (Qt3)
+# .title      : list tree view widget display capabilities (Qt4)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy

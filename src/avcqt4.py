@@ -5,7 +5,7 @@
 # .author     : Fabrizio Pollastri
 # .site	      : Revello - Italy
 # .creation   :	7-Nov-2006
-# .copyright  :	(c) 2006-2008 Fabrizio Pollastri
+# .copyright  :	(c) 2006-2013 Fabrizio Pollastri
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -29,6 +29,7 @@
 #### IMPORT REQUIRED MODULES
 
 import PyQt4.Qt as qt		# Qt4 tool kit GUI bindings
+from PyQt4.QtCore import Qt # Qt4 tool kit GUI attribute bindings
 
 import string			# string operations
 
@@ -43,18 +44,20 @@ def init(core):
   "Do init specific for this widget toolkit"
   # mapping between the real widget and the wal widget
   core['avccd'].widget_map = { \
-    qt.QPushButton:	core['Button'], \
-    qt.QCheckBox:	core['ToggleButton'], \
-    qt.QComboBox:	core['ComboBox'], \
-    qt.QLineEdit:	core['Entry'], \
-    qt.QLabel:		core['Label'], \
+    qt.QPushButton: 	core['Button'], \
+    qt.QCalendarWidget: core['Calendar'], \
+    qt.QCheckBox:   	core['ToggleButton'], \
+    qt.QColorDialog:    core['ColorChooser'], \
+    qt.QComboBox:   	core['ComboBox'], \
+    qt.QLineEdit:	    core['Entry'], \
+    qt.QLabel:		    core['Label'], \
     qt.QProgressBar:	core['ProgressBar'], \
     qt.QRadioButton:	core['RadioButton'], \
-    qt.QSlider:		core['Slider'], \
-    qt.QSpinBox:	core['SpinButton'], \
+    qt.QSlider:	    	core['Slider'], \
+    qt.QSpinBox:	    core['SpinButton'], \
     qt.QDoubleSpinBox:	core['SpinButton'], \
-    qt.QTextEdit:	core['TextView'], \
-    qt.QTreeWidget:	core['listtreeview']}
+    qt.QTextEdit:   	core['TextView'], \
+    qt.QTreeWidget:	    core['listtreeview']}
   # get toolkit version
   core['avccd'].toolkit_version = qt.PYQT_VERSION_STR
 
@@ -80,7 +83,8 @@ class Widget:
   "Qt4 Widget Abstraction Layer abstract class"
 
   def connect_delete(self,widget,delete_method):
-    "Connect widget delete method to iclose and destroy events"
+    "Connect widget delete method to close and destroy events"
+    widget.window().setAttribute(Qt.WA_DeleteOnClose)
     qt.QObject.connect(widget,qt.SIGNAL("destroyed()"),delete_method)
 
 
@@ -132,6 +136,44 @@ class Button(Widget):
   def write(self,value):
     "Set button status"
     self.widget.setDown(value)
+
+
+class Calendar(Widget):
+  "Qt4 Calendar widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    qt.QObject.connect(
+      self.widget,qt.SIGNAL("selectionChanged()"),self.value_changed)
+
+  def read(self):
+    "Get selected date"
+    date = self.widget.selectedDate()
+    return (date.year(),date.month(),date.day())
+
+  def write(self,value):
+    "Set selected date"
+    self.widget.setSelectedDate(qt.QDate(*value))
+
+
+class ColorChooser(Widget):
+  "Qt4 ColorChooser widget abstractor"
+
+  def __init__(self):
+    # persistent color object
+    self.color = qt.QColor()
+    # connect relevant signals
+    qt.QObject.connect(
+      self.widget,qt.SIGNAL("colorSelected(QColor)"),self.value_changed)
+
+  def read(self):
+    "Get selected color"
+    return self.widget.selectedColor().getRgbF()
+
+  def write(self,value):
+    "Set selected color"
+    self.color.setRgbF(*value)
+    self.widget.setCurrentColor(self.color)
 
 
 class ComboBox(Widget):

@@ -168,9 +168,23 @@ class Button(Widget):
     self.widget.value = value
 
 
+class Calendar(Widget):
+  "Widget not in tk"
+
+  def __init__(self):
+      pass
+
+
 class ComboBox(Widget):
   "Tk no combo box support"
   pass
+
+
+class ColorChooser(Widget):
+  "Widget not in tk"
+
+  def __init__(self):
+      pass
 
 
 class Entry(Widget):

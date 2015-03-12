@@ -1,3 +1,14 @@
+AVC 0.9.0 released 12-Mar-2015
+  * Added support for calendar widget in GTK+, QT, Wx widgets toolkits.
+  * Added support for color selection widget in GTK+, Swing, QT, Wx widgets
+    toolkits.
+  * New examples: calendar for widget each supporter toolkit.
+  * New examples: color selection widget for each supporter toolkit.
+  * Fixed Qt widget removal not working at widget destroy.
+  * Dropped Qt3 support
+  INTERNALS
+  i Added 1 sec wait between libreoffice launch and odt2pdf in manual pdf build.
+
 AVC 0.8.3 released 15-Feb-2011
   * Added printing of the widget toolk version to testing printout.
   * Changed functions view_update and get_widget to be methods of class AVC.

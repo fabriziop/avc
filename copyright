@@ -3,19 +3,19 @@ Name: python-avc
 Maintainer: Fabrizio Pollastri <f.pollastri@inrim.it>
 Source: http://avc.inrim.it/dist/
 
-Copyright: 2006-2011 Fabrizio Pollastri <f.pollastri@inrim.it>
+Copyright: 2006-2015 Fabrizio Pollastri <f.pollastri@inrim.it>
 License: GPL-2+
 
 Files: src/*.py, examples/*
-Copyright: 2006-2011 Fabrizio Pollastri <f.pollastri@inrim.it>
+Copyright: 2006-2015 Fabrizio Pollastri <f.pollastri@inrim.it>
 License: GPL-2+
 
 Files: debian/*
-Copyright: 2006-2011 Fabrizio Pollastri <f.pollastri@inrim.it>
+Copyright: 2006-2015 Fabrizio Pollastri <f.pollastri@inrim.it>
 License: GPL-2+
 
 Files: doc/*
-Copyright: 2006-2011 Fabrizio Pollastri <f.pollastri@inrim.it>
+Copyright: 2006-2015 Fabrizio Pollastri <f.pollastri@inrim.it>
 License: GFDL-1.2
 
 License: GPL-2+

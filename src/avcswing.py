@@ -28,7 +28,7 @@
 
 #### IMPORT REQUIRED MODULES
 
-from java import awt		# awt tool kit bindings
+from java import awt,beans	# awt and beans tool kit bindings
 from javax import swing		# swing tool kit bindings
 from java.lang import System	# to get java version
 
@@ -47,6 +47,7 @@ def init(core,*args,**kwargs):
   core['avccd'].widget_map = { \
     swing.JButton:	core['Button'], \
     swing.JCheckBox:	core['ToggleButton'], \
+    swing.JColorChooser:core['ColorChooser'], \
     swing.JComboBox:	core['ComboBox'],\
     swing.JTextField:	core['Entry'], \
     swing.JLabel:	core['Label'], \
@@ -134,6 +135,31 @@ class Button(Widget):
   def write(self,value):
     "Set button status"
     self.widget.model.setArmed(value)
+
+
+class Calendar(Widget):
+  "Widget not in swing"
+
+  def __init__(self):
+      pass
+
+
+class ColorChooser(Widget):
+  "ColorChooser widget abstractor"
+
+  def __init__(self):
+    # connect relevant signals
+    self.widget.getSelectionModel().stateChanged = self.value_changed
+
+  def read(self):
+    "Get button status"
+    color = self.widget.getColor()
+    return (color.getRed() / 255., color.getGreen() / 255.,
+            color.getBlue() / 255., color.getAlpha() / 255.)
+
+  def write(self,value):
+    "Set button status"
+    self.widget.setColor(awt.Color(*value))
 
 
 class ComboBox(Widget):
