@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 18-Sep-2007
-# .copyright	: (c) 2007-2011 Fabrizio Pollastri
+# .copyright	: (c) 2007-2015 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,7 +19,7 @@ AVC, Application View Controller
 :##}
 
 {#COPYRIGHT#:\
-Copyright &copy; 2006-2011 Fabrizio Pollastri -
+Copyright &copy; 2006-2015 Fabrizio Pollastri -
 <a href="terms_of_use.html"> Terms of Use</a>
 :##}
 
@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.8.3</p>
+<p><strong>Current:</strong> 0.9.0</p>
 
-<p><strong>Released:</strong> 15-Feb-2011</p>
+<p><strong>Released:</strong> 12-Mar-2015</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -121,8 +121,7 @@ Pyqt v3 - v4</a><br>
 <h3 class="itemhead">DOCUMENTATION</h3>
 <p>Quick start examples:<br>
 <a href="gtk_quickstart.html">GTK+</a>,
-<a href="qt3_quickstart.html">Qt3</a>,
-<a href="qt4_quickstart.html">Qt4</a>,
+<a href="qt4_quickstart.html">Qt</a>,
 <a href="tk_quickstart.html">Tk</a>,<br>
 <a href="wx_quickstart.html">wxWidgets</a>,
 <a href="swing_quickstart.html">Swing</a>.<br>
@@ -145,8 +144,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">SCREENSHOTS</h3>
 <p><a href="gtk_screenshots.html">GTK+ examples</a></p>
-<p><a href="qt3_screenshots.html">Qt3 examples</a></p>
-<p><a href="qt4_screenshots.html">Qt4 examples</a></p>
+<p><a href="qt4_screenshots.html">Qt examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
 <p><a href="wx_screenshots.html">wxWidgets examples</a></p>
 <p><a href="swing_screenshots.html">Swing examples</a></p>
@@ -155,7 +153,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.8.3.tar.gz">avc-0.8.3.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.9.0.tar.gz">avc-0.9.0.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
@@ -165,9 +163,8 @@ AVC-Simplifying your GUI Code</a></p>
 <p>Quick start examples:<br>
 -&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
 <a href="../examples/gtk_spinbutton.glade">glade file</a><br>
--&nbsp;<a href="../examples/qt3_spinbox.py">Qt3 spinbox</a> +
 <a href="../examples/qt3_spinbox.ui">ui file</a><br>
--&nbsp;<a href="../examples/qt4_spinbox.py">Qt4 spinbox</a> +
+-&nbsp;<a href="../examples/qt4_spinbox.py">Qt spinbox</a> +
 <a href="../examples/qt4_spinbox.ui">ui file</a><br>
 -&nbsp;<a href="../examples/tk_spinbox.py">Tk spinbox</a> +
 <a href="../examples/tk_spinbox.tcl">tcl file</a><br>

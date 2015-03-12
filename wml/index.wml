@@ -24,8 +24,7 @@ graphical interface widgets and application variables for the
 language.
 <b>AVC</b> supports in a uniform way the most popular widget toolkits:
 <a href="http://www.gtk.org/">GTK+</a>,
-<a href="http://trolltech.com/products/qt/qt3/">Qt3</a>,
-<a href="http://trolltech.com/products/qt/qt3/">Qt4</a>,
+<a href="http://qt.io">Qt</a>,
 <a href="http://www.tcl.tk/">Tk</a>,
 <a href="http://www.wxwidgets.org/">wxWidgets</a>.
 The
@@ -47,11 +46,9 @@ based on MVC (Model View Controller).
 
 <h4>News</h4>
 
-<p><b>15-Feb-2011</b>: released AVC 0.8.3.
-Added widget toolkit printing to testing printout and changed some internals:
-program version management and directory structure for Debian package building.
-<a href="relnotes.html#0_8_3">Release note</a>.</p>
-
+<p><b>12-Mar-2015</b>: released AVC 0.9.0.
+New widgets: calendar and color selection. Dropped Qt3 support.
+<a href="relnotes.html#0_9_0">Release note</a>.</p>
 
 <h4>Features</h4>
 <ul>
@@ -61,11 +58,10 @@ program version management and directory structure for Debian package building.
   <li>Dynamic connections</li>
   <li>No design pattern, no application redesign, no widget toolkit
   dependent code, separation between application logic and GUI.</li>
-  <li>Multiple widget toolkits support: GTK+, Qt3, Qt4, Tk, wxWidgets,
-  Swing.</li>
+  <li>Multiple widget toolkits support: GTK+, Qt, Tk, wxWidgets, Swing.</li>
   <li>Full compatibility and support for
   <a href="http://glade.gnome.org/">Glade</a>,
-  <a href="http://trolltech.com/products/qt/features/designer/">Qt Designer</a>,
+  <a href="http://doc.qt.io/qt-5/qtdesigner-manual.html">Qt Designer</a>,
   <a href="http://vtcl.sourceforge.net/">Visual Tcl</a>
   and
   <a href="http://wxglade.sourceforge.net/">wxGlade</a>
@@ -73,10 +69,11 @@ program version management and directory structure for Debian package building.
   <li>Normal widgets: button, check button, combo box, entry, label,
   progress bar, radio button, slider, spin button, status bar,
   text view/edit, toggle button.</li>
-  <li>Advanced widgets: list view, tree view.</li>
+  <li>Advanced widgets: calendar, color selection, list view, tree view.</li>
   <li>Normal variable types: boolean, integer, float, string, list, tuple.</li>
-  <li>Advanced variable types: 2D table (list of lists), hierarchical tree
-  (dictionary with path of values inside tree as keys).</li>
+  <li>Advanced variable types: date tuple/list, color tuple/list, 2D table
+  (list of lists), hierarchical tree (dictionary with path of values inside
+  tree as keys).</li>
   <li>Multiple widgets to one variable connection</li>
   <li>Dual update timing of variable value views: immediate or periodic.</li>
   <li>Testing printout logging activity with selectable verbosity</li>

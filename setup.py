@@ -84,7 +84,7 @@ setup (
   maintainer = AUTHOR,
   maintainer_email = AUTHOR_EMAIL,
   url = 'http://avc.inrim.it',
-  download_url = 'http://avc.inrim.it/dist/avc-' + VERSION + '.tar.gz',
+  #download_url = 'http://avc.inrim.it/dist/avc-' + VERSION + '.tar.gz',
   license = 'http://www.gnu.org/licenses/gpl.txt',
   platforms = ['Linux'],
   description = """

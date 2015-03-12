@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 3-Jun-2008
-# .copyright	: (c) 2008 Pollastri
+# .copyright	: (c) 2008-2015 Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,6 +19,10 @@
 
 {#main_bar#:
 <h3>All News</h3>
+
+<p><b>12-Mar-2015</b>: released AVC 0.9.0.
+New widgets: calendar and color selection. Dropped Qt3 support.
+<a href="relnotes.html#0_9_0">Release note</a>.</p>
 
 <p><b>15-Feb-2011</b>: released AVC 0.8.3.
 Added widget toolkit printing to testing printout and changed some internals:

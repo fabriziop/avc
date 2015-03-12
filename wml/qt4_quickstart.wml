@@ -1,7 +1,7 @@
 #!wml	-o UNDEF:../html/%BASE.html
 # .+
 # .context	: AVC, Application View Controller, web site
-# .title	: Qt4 quick start
+# .title	: Qt quick start
 # .kind		: wml
 # .author	: Fabrizio Pollastri
 # .site		: Revello Italy
@@ -18,13 +18,13 @@
 # page contents
 
 {#main_bar#:
-<h3>Qt4 quick start</h3>
+<h3>Qt quick start</h3>
 
-This is the Qt4 spin box example included in AVC distribution.
+This is the Qt spin box example included in AVC distribution.
 It comes into two versions. The first has the GUI generated from
 a Qt Designer UI description. The second has the GUI generated directly
 by program instructions.
-For full details see the "Qt4 examples" chapter of the
+For full details see the "Qt examples" chapter of the
 <a href="../doc/user_manual.pdf">user manual</a>.
 <p class="center"><img src="../images/qt4_spinbox.png"></p>
 

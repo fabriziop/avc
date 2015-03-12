@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 31-Oct-2007
-# .copyright	: (c) 2007-2011 Fabrizio Pollastri
+# .copyright	: (c) 2007-2015 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,6 +19,21 @@
 
 {#main_bar#:
 <h3>Changelog</h3>
+
+<p><b>AVC 0.9.0 released 12-Mar-2015</b></p>
+<ul>
+<li>Added support for calendar widget in GTK+, QT, Wx widgets toolkits.</li>
+<li>Added support for color selection widget in GTK+, Swing, QT, Wx widgets
+    toolkits.</li>
+<li>New examples: calendar for widget each supporter toolkit.</li>
+<li>New examples: color selection widget for each supporter toolkit.</li>
+<li>Fixed Qt widget removal not working at widget destroy.</li>
+<li>Dropped Qt3 support</li>
+</ul>
+INTERNALS
+<ul>
+<li>Added 1 sec wait between libreoffice launch and odt2pdf in manual pdf build.</li>
+</ul></p>
 
 <p><b>AVC 0.8.3 released 15-Feb-2011</b></p>
 <ul>
