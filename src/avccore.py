@@ -46,19 +46,19 @@ class Error(Exception):
 ## module information
 __author__ = 'Fabrizio Pollastri <f.pollastri@inrim.it>'
 __license__ = '>= GPL v3'
-__version__ = '0.9.0'
+__version__ = '0.10.0'
 
 
 ## load proper AVC widget toolkit binding according with the widget toolkit
 # imported by application program
 
 # supported toolkit names indexed by python binding module names
-TOOLKITS = { 'gtk':'GTK+','PyQt4':'Qt4','javax':'Swing', \
-  'Tkinter':'Tkinter','wx':'wxWidgets'}
+TOOLKITS = { 'gtk':'GTK+','gi.repository.Gtk':'GTK3','PyQt4':'Qt4', \
+  'javax':'Swing', 'Tkinter':'Tkinter','wx':'wxWidgets'}
 
 # avc toolkit bindings indexed by python binding module names
-AVC_BINDINGS = { 'gtk':'avcgtk','PyQt4':'avcqt4', \
-  'javax':'avcswing','Tkinter':'avctk', 'wx':'avcwx'}
+AVC_BINDINGS = { 'gtk':'avcgtk','gi.repository.Gtk':'avcgtk3', \
+  'PyQt4':'avcqt4', 'javax':'avcswing','Tkinter':'avctk', 'wx':'avcwx'}
 
 AVC_PREFIX = 'avc.'
 
@@ -92,6 +92,7 @@ class AVCcd:
     self.connections_updates = {}
     self.connected_widgets = {}
     self.timer = None
+    self.avc = None
 avccd = AVCcd()
 
 
@@ -105,6 +106,9 @@ class AVC(object):
     avccd.verbosity = verbosity
     avccd.view_period = view_period
 
+    # save itself
+    avccd.avc = self
+
     # if any, get options from command line and override init arguments
     try:
       opt_switch_index = sys.argv.index(OPT_VERBOSITY)
@@ -117,16 +121,7 @@ class AVC(object):
 
     # if verbosity > 0 , print header
     if avccd.verbosity > 0:
-      print 'AVC ' + __version__ + ' - Activity Report'
-      print 'widget toolkit binding: ' + TOOLKITS[toolkit] + ' v' \
-        + avccd.toolkit_version
-      print 'program: ' + sys.argv[0]  
-      print 'verbosity: ' + str(avccd.verbosity)
-      if avccd.view_period:
-        print 'connection update mode: periodic, period=' + \
-          str(avccd.view_period) + ' sec'
-      else:
-        print 'connection update mode: immediate'
+      self.print_header()
 
     # connect widgets-variables in __main__ namespace
     self.avc_connect(real.toplevel_widgets())
@@ -239,6 +234,48 @@ class AVC(object):
     avccd.connections_updates = {}
 
 
+  def dump(self):
+    "Printout all internal data"
+
+    print '++++ AVC internal data dump ++++'
+
+    # cogets a depending data
+    cogets = [(key,coget) for key,coget in avccd.cogets.items()]
+    cogets.sort()
+    for key,coget in cogets:
+      print coget.__str__(),
+
+    # connections to be updated
+    print 'connections to be updated'
+    conns_up = [(key,value) for key, value in avccd.connections_updates.items()]
+    if conns_up:
+      conns_up.sort()
+      for key,conn_up in conns_up:
+        print '  ',str(conn_up)
+    else:
+      print '  None'
+
+    # timer
+    print 'timer',avccd.timer
+
+    print '---- AVC internal data dump end ----'
+
+
+  def print_header(self):
+    "Printout header data"
+
+    print 'AVC ' + __version__ + ' - Activity Report'
+    print 'widget toolkit binding: ' + TOOLKITS[toolkit] + ' v' \
+      + avccd.toolkit_version
+    print 'program: ' + sys.argv[0]  
+    print 'verbosity: ' + str(avccd.verbosity)
+    if avccd.view_period:
+      print 'connection update mode: periodic, period=' + \
+        str(avccd.view_period) + ' sec'
+    else:
+      print 'connection update mode: immediate'
+
+
 class Connection:
   "Widgets-variable connection"
 
@@ -278,7 +315,7 @@ class Connection:
           Coget(control_name,object_)
         # set coget as an property in place of application variable.
         setattr(object_.__class__,control_name,self.coget)
-	
+
       # save connection reference into coget
       self.coget.add_connection(self)
 
@@ -309,6 +346,9 @@ class Connection:
     one in the connection, delete the connection.
     """
 
+    if avccd.verbosity > 4:
+      avccd.avc.dump()
+
     self.wal_widgets.remove(wal_widget)
 
     if avccd.verbosity > 1:
@@ -320,6 +360,7 @@ class Connection:
     del wal_widget.connection
     del wal_widget.widget
 
+
     # if connection has no more widgets delete it
     if not self.wal_widgets:
 
@@ -327,15 +368,18 @@ class Connection:
         print 'removing connection "' + self.coget.control_name + \
           '" from ' + str(self.object_)
 
+      # delete connection from those with a pending update
+      if avccd.connections_updates.has_key(self):
+        del avccd.connections_updates[self]
+
+      # restore application variable to its bare value (remove coget from it)
+      #setattr(self.object_,self.coget.control_name,self.control_value)
+
       # delete connection from general connection dictionary
       del avccd.connections[(self.coget.control_name,self.object_)]
 
       # delete connection from coget
       self.coget.remove_connection(self)
-
-      # delete connection from those with a pending update
-      if avccd.connections_updates.has_key(self):
-        del avccd.connections_updates[self]
 
       # clear connection data
       del self.control_value
@@ -346,14 +390,39 @@ class Connection:
       del self.coget
 
 
+  def __str__(self,indent=None,name=None,object_=None):
+    "Human redable representation of connection"
+    if not indent:
+      indent = ''
+    conn = indent + 'connection: ' + object.__str__(self) + '\n'
+    if name:
+      conn += indent + '  name:          ' + name + '\n'
+    if object_:
+      conn += indent + '  object:        ' + str(object_)  + '\n'
+    conn += \
+    indent +   '  control value: ' + str(self.control_value) + '\n' \
+    + indent + '  control type:  ' + str(self.control_type) + '\n' \
+    + indent + '  coget:         ' + object.__str__(self.coget) + '\n' \
+    + indent + '  set handler:   ' + str(self.set_handler) + '\n' \
+    + indent + '  wal widgets    ' + '\n'
+    for wal_widget in self.wal_widgets:
+      conn += wal_widget.__str__(indent + '    ')
+    return conn
+
+
 class Coget(object):
   "A control object as data descriptor"
 
   def __init__(self,control_name,object_):
     "Create the coget control and bind it to one attribute in object"
+
+    if avccd.verbosity > 3:
+      print '  creating coget "' + control_name + '" in ' + object.__str__(self)
+
     # save argument
     self.control_name = control_name
     self.connections = []
+
 
   def add_connection(self,connection):
     "Add a connection"
@@ -363,9 +432,19 @@ class Coget(object):
     "Remove a connection. If it is the last one, delete coget."
     self.connections.remove(connection)
     if not self.connections:
+
+      if avccd.verbosity > 3:
+        print 'deleting coget "' + self.control_name + '" ' \
+          + object.__str__(self)
+
+      # restore property to its bare value (remove coget from it)
+      #setattr(connection.object_.__class__,self.control_name,
+      #  connection.control_value)
+
       del avccd.cogets[(self.control_name,connection.object_.__class__)]
-      del self.control_name
       del self.connections
+      del self.control_name
+
 
   def __get__(self,object_,classinfo):
     "Get control value"
@@ -426,6 +505,18 @@ class Coget(object):
     raise Error,"Trying to delete "+ str(self) +": Cogets cannot be deleted."
 
 
+  def __str__(self,indent=None):
+    "Human redable representation of coget"
+    if not indent:
+      indent = ''
+    coget = indent + 'coget: ' + object.__str__(self) + '\n' \
+      + indent + '  name:          ' + self.control_name + '\n' \
+      + indent + '  connections   ' + '\n'
+    for connection in self.connections:
+      coget += connection.__str__('    ')
+    return coget
+
+
 #### WIDGETS ABSTRACTION LAYER (coget side)
 
 class Widget:
@@ -461,6 +552,16 @@ class Widget:
   def delete(self,*args):
     "delete widget from connection"
     self.connection.remove_widget(self)
+
+  def __str__(self,indent=None):
+    "human readable representation"
+    if not indent:
+      indent = ''
+    walwidget = \
+      indent + 'wal widget:    ' + object.__str__(self) + '\n' \
+    + indent + '  real widget: ' + str(self.widget) + '\n' \
+    + indent + '  connection:  ' + object.__str__(self.connection) + '\n'
+    return walwidget
 
 
 class ListTreeView(Widget,real.ListTreeView):

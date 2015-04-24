@@ -90,9 +90,9 @@ AVC, Application View Controller
 
 <div class="item">
 <h3 class="itemhead">OUTLINE</h3>
-<p><strong>Current:</strong> 0.9.0</p>
+<p><strong>Current:</strong> 0.10.0</p>
 
-<p><strong>Released:</strong> 12-Mar-2015</p>
+<p><strong>Released:</strong> 24-Apr-2015</p>
 
 <p><strong>License:</strong>
 <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a></p>
@@ -100,8 +100,10 @@ AVC, Application View Controller
 <p><strong>Common Requirements:</strong><br>
 <a href="http://www.python.org/">python 2.2 - &lt;3.0</a></p>
 
-<p><strong>GTK+ requirements:</strong><br>
+<p><strong>GTK2+ requirements:</strong><br>
 <a href="http://www.pygtk.org/">Pygtk 2.8 - 2.10</a><br>
+<strong>GTK3+ requirements:</strong><br>
+<a href="https://wiki.gnome.org/Projects/PyGObject">PyGObject &gt;=3.10</a><br>
 <strong>Qt requirements:</strong><br>
 <a href="http://www.riverbankcomputing.co.uk/software/pyqt/intro">
 Pyqt v3 - v4</a><br>
@@ -120,7 +122,8 @@ Pyqt v3 - v4</a><br>
 <div class="item">
 <h3 class="itemhead">DOCUMENTATION</h3>
 <p>Quick start examples:<br>
-<a href="gtk_quickstart.html">GTK+</a>,
+<a href="gtk2_quickstart.html">GTK2+</a>,
+<a href="gtk3_quickstart.html">GTK3+</a>,
 <a href="qt4_quickstart.html">Qt</a>,
 <a href="tk_quickstart.html">Tk</a>,<br>
 <a href="wx_quickstart.html">wxWidgets</a>,
@@ -143,7 +146,8 @@ AVC-Simplifying your GUI Code</a></p>
 
 <div class="item">
 <h3 class="itemhead">SCREENSHOTS</h3>
-<p><a href="gtk_screenshots.html">GTK+ examples</a></p>
+<p><a href="gtk2_screenshots.html">GTK2+ examples</a></p>
+<p><a href="gtk3_screenshots.html">GTK3+ examples</a></p>
 <p><a href="qt4_screenshots.html">Qt examples</a></p>
 <p><a href="tk_screenshots.html">Tk examples</a></p>
 <p><a href="wx_screenshots.html">wxWidgets examples</a></p>
@@ -153,7 +157,7 @@ AVC-Simplifying your GUI Code</a></p>
 <div class="item">
 <h3 class="itemhead">DOWNLOAD</h3>
 <p>Source:<br>
--&nbsp;current <a href="../dist/avc-0.9.0.tar.gz">avc-0.9.0.tar.gz</a><br>
+-&nbsp;current <a href="../dist/avc-0.10.0.tar.gz">avc-0.10.0.tar.gz</a><br>
 -&nbsp;<a href="../dist">all sources</a></p>
 <p>Packages:<br>
 -&nbsp;<a href="http://aur.archlinux.org/packages.php?ID=24215"
@@ -161,8 +165,10 @@ AVC-Simplifying your GUI Code</a></p>
 -&nbsp;<a href="http://packages.debian.org/python-avc">Debian</a><br>
 -&nbsp;<a href="http://packages.ubuntu.com/python-avc">Ubuntu</a></p>
 <p>Quick start examples:<br>
--&nbsp;<a href="../examples/gtk_spinbutton.py">GTK+ spinbutton</a> +
-<a href="../examples/gtk_spinbutton.glade">glade file</a><br>
+-&nbsp;<a href="../examples/gtk2_spinbutton.py">GTK2+ spinbutton</a> +
+<a href="../examples/gtk2_spinbutton.glade">glade file</a><br>
+<a href="../examples/gtk3_spinbutton.py">GTK3+ spinbutton</a> +
+<a href="../examples/gtk3_spinbutton.ui">glade file</a><br>
 <a href="../examples/qt3_spinbox.ui">ui file</a><br>
 -&nbsp;<a href="../examples/qt4_spinbox.py">Qt spinbox</a> +
 <a href="../examples/qt4_spinbox.ui">ui file</a><br>

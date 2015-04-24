@@ -29,13 +29,14 @@
 # .-
 
 
-import gobject				#--
-import gtk				#- gimp tool kit bindings
-import gtk.glade			# glade bindings
+import gi.repository.GObject as GObject #--
+import gi.repository.Gtk as Gtk		#- gimp tool kit bindings
 
 from avc import *			# AVC
 
-GLADE_XML = 'gtk_counter.glade'		# GUI glade descriptor
+UI_XML = 'gtk3_counter.ui'		# GUI descriptor
+
+ROOT_WINDOW = 'root_window'		# name of the top level widget
 LOW_SPEED = 500				#--
 HIGH_SPEED = 100			#- low and high speed period (ms)
 
@@ -46,19 +47,20 @@ class ExampleGUI:
   def __init__(self):
 
     # create GUI
-    glade = gtk.glade.XML(GLADE_XML)
-
-    # autoconnect GUI signal handlers
-    glade.signal_autoconnect(self)
+    self.builder = Gtk.Builder()
+    self.builder.add_from_file(UI_XML)
+    self.builder.connect_signals(self)
+    self.root_window = self.builder.get_object(ROOT_WINDOW)
+    self.root_window.show_all()
 
 
   def timer(self,period,function):
     "Start a GTK timer calling back 'function' every 'period' seconds."
-    self.timer1 = gobject.timeout_add(period,function)
+    self.timer1 = GObject.timeout_add(period,function)
   
   def on_destroy(self,window):
     "Terminate program at window destroy"
-    gtk.main_quit()
+    Gtk.main_quit()
 
 
 class ExampleMain(AVC):
@@ -107,6 +109,6 @@ class ExampleMain(AVC):
 example_gui = ExampleGUI()		# create the application GUI
 example = ExampleMain(example_gui)	# instantiate the application
 example.avc_init()			# connect widgets with variables
-gtk.main()				# run GTK event loop until quit
+Gtk.main()				# run GTK event loop until quit
 
 #### END

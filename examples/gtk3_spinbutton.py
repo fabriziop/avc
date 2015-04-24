@@ -3,12 +3,12 @@
 #
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : Formatting capabilities for label widget (GTK)
+# .title      : A spin button replicated into a label (GTK3)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
-# .site	      : Torino - Italy
-# .creation   :	2-Jan-2008
-# .copyright  : (c) 2008 Fabrizio Pollastri.
+# .site	      : Revello - Italy
+# .creation   :	15-Mar-2015
+# .copyright  : (c) 2015 Fabrizio Pollastri.
 # .license    : GNU General Public License (see below)
 #
 # This file is part of "AVC, Application View Controller".
@@ -29,52 +29,42 @@
 # .-
 
 
-import gtk				# gimp tool kit bindings
-import gtk.glade			# glade bindings
+import gi.repository.Gtk as Gtk		# gimp tool kit bindings
 
 from avc import *			# AVC
 
-GLADE_XML = 'gtk_label.glade'		# GUI glade descriptor
+UI_XML = 'gtk3_spinbutton.ui'		# GUI descriptor
+
+ROOT_WINDOW = 'root_window'		# root window name
 
 
 class Example(AVC):
   """
-  Showcase of formatting capabilities for the label widget
+  A spin button whose value is replicated into a label
   """
 
   def __init__(self):
 
     # create GUI
-    self.glade = gtk.glade.XML(GLADE_XML)
+    self.builder = Gtk.Builder()
+    self.builder.add_from_file(UI_XML)
+    self.builder.connect_signals(self)
+    self.root_window = self.builder.get_object(ROOT_WINDOW)
+    self.root_window.show_all()
 
-    # autoconnect GUI signal handlers
-    self.glade.signal_autoconnect(self)
-
-    # all types of connected variables
-    self.bool_value = True
-    self.dict_value = {'k1':'A','k2':'B'}
-    self.float_value = 1.0
-    self.int_value = 1
-    self.list_value = [1,2,3]
-    self.str_value = 'abc'
-    self.tuple_value = (1,2,3)
-    class Obj():
-      "A generic object with 2 attributes x,y"
-      def  __init__(self):
-        self.x = 1
-        self.y = 2
-    self.obj_value = Obj()
+    # the variable holding the spin button value
+    self.spin_value = 0
 
 
   def on_destroy(self,window):
     "Terminate program at window destroy"
-    gtk.main_quit()
+    Gtk.main_quit()
 
 
 #### MAIN
 
 example = Example()			# instantiate the application
 example.avc_init()			# connect widgets with variables
-gtk.main()			 	# run GTK event loop until quit
+Gtk.main()			 	# run GTK event loop until quit
 
 #### END

@@ -3,11 +3,11 @@
 #
 # .identifier :	$Id:$
 # .context    : Application View Controller
-# .title      : Formatting capabilities for label widget (GTK)
+# .title      : A spin button replicated into a label (GTK3)
 # .kind	      : python source
 # .author     : Fabrizio Pollastri
-# .site	      : Torino - Italy
-# .creation   :	2-Jan-2008
+# .site	      : Revello - Italy
+# .creation   :	14-Mar-2015
 # .copyright  : (c) 2008 Fabrizio Pollastri.
 # .license    : GNU General Public License (see below)
 #
@@ -29,52 +29,55 @@
 # .-
 
 
-import gtk				# gimp tool kit bindings
-import gtk.glade			# glade bindings
+import gi.repository.Gtk as Gtk		# gimp tool kit bindings
 
 from avc import *			# AVC
-
-GLADE_XML = 'gtk_label.glade'		# GUI glade descriptor
 
 
 class Example(AVC):
   """
-  Showcase of formatting capabilities for the label widget
+  A spin button whose value is replicated into a label
   """
 
   def __init__(self):
 
-    # create GUI
-    self.glade = gtk.glade.XML(GLADE_XML)
+    ## create GUI
+ 
+    # main window
+    window = Gtk.Window()
+    window.set_title('AVC GTK3 spin button example')
+    window.resize(310,50)
+    window.connect('destroy',Gtk.main_quit)
 
-    # autoconnect GUI signal handlers
-    self.glade.signal_autoconnect(self)
+    # horizontal layout for widgets inside main window
+    hbox = Gtk.HBox()
+    window.add(hbox)
 
-    # all types of connected variables
-    self.bool_value = True
-    self.dict_value = {'k1':'A','k2':'B'}
-    self.float_value = 1.0
-    self.int_value = 1
-    self.list_value = [1,2,3]
-    self.str_value = 'abc'
-    self.tuple_value = (1,2,3)
-    class Obj():
-      "A generic object with 2 attributes x,y"
-      def  __init__(self):
-        self.x = 1
-        self.y = 2
-    self.obj_value = Obj()
+    # label replicating the spin button value with formatting string
+    label = Gtk.Label()
+    label.set_name('spin_value__label')
+    label.set_markup('<b>%d</b>')
+    hbox.add(label)
+
+    # spin button
+    #spinbutton = Gtk.SpinButton(Gtk.Adjustment(0,0,100,1,5,0),1,0)
+    spinbutton = Gtk.SpinButton()
+    spinbutton.set_adjustment(Gtk.Adjustment(0,0,100,1,5,0))
+    spinbutton.set_name('spin_value__spinbutton')
+    hbox.add(spinbutton)
+
+    # show all widgets
+    window.show_all()
 
 
-  def on_destroy(self,window):
-    "Terminate program at window destroy"
-    gtk.main_quit()
+    # the variable holding the spin button value
+    self.spin_value = 0
 
 
 #### MAIN
 
 example = Example()			# instantiate the application
 example.avc_init()			# connect widgets with variables
-gtk.main()			 	# run GTK event loop until quit
+Gtk.main()			 	# run GTK event loop until quit
 
 #### END

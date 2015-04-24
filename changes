@@ -1,3 +1,12 @@
+AVC 0.10.0 released 24-Apr-2015
+  * Added support for GTK3+.
+  * New full set of GTK3+ examples.
+  * New verbosity level 5 for debug: internal data structures printout. 
+  * Fixed typo into examples/gtk_counter.py.
+  INTERNALS
+  * Refactored verbose printout: structured as functions.
+  * Added  __str__ representation for internal structures.
+
 AVC 0.9.0 released 12-Mar-2015
   * Added support for calendar widget in GTK+, QT, Wx widgets toolkits.
   * Added support for color selection widget in GTK+, Swing, QT, Wx widgets

@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 4-Jun-2008
-# .copyright	: (c) 2008-2011 Pollastri
+# .copyright	: (c) 2008-2015 Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -19,6 +19,13 @@
 
 {#main_bar#:
 <h3>Release Notes</h3>
+
+<hr>
+<h3 name="0_10_0">AVC 0.10.0</h3>
+<p>With this release starts the support for GTK3+. The set of supported
+widgets is the same of GTK2+. Also the set of examples is the same of GTK2+.
+A new verbosity level allows the printout of the internal structures for
+a deeper debugging.</p>
 
 <hr>
 <h3 name="0_9_0">AVC 0.9.0</h3>

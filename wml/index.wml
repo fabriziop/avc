@@ -6,7 +6,7 @@
 # .author	: Fabrizio Pollastri
 # .site		: Torino Italy
 # .creation	: 18-Sep-2007
-# .copyright	: (c) 2007 Fabrizio Pollastri
+# .copyright	: (c) 2007-2015 Fabrizio Pollastri
 # .license	: Creative Commons Attribution - NonCommercial - NoDerivs 3.0
 #		  http://creativecommons.org/licenses/by-nc-nd/3.0/
 # .-
@@ -45,6 +45,11 @@ based on MVC (Model View Controller).
 
 
 <h4>News</h4>
+
+<p><b>24-Apr-2015</b>: released AVC 0.10.0.
+New support for GTK3+ with a full set of widgets and related examples.
+New deeper debug printout that examines internal control data.
+<a href="relnotes.html#0_10_0">Release note</a>.</p>
 
 <p><b>12-Mar-2015</b>: released AVC 0.9.0.
 New widgets: calendar and color selection. Dropped Qt3 support.
